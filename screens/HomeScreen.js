@@ -14,7 +14,7 @@ export default function App() {
         <ColoredButton name="Trending" color="lightgreen" />
       </View>
 
-      <ScrollView>
+      <ScrollView style={{ height: "100%" }}>
         <View style={styles.genre}>
           <Text style={{ fontSize: 25, color: "green" }}>Your Top Genres</Text>
 
@@ -36,26 +36,11 @@ export default function App() {
             <GenreContainer name="Bollywood" color="lightyellow" />
             <GenreContainer name="Pop Fusion" color="grey" />
             <GenreContainer name="Made for You" color="lightblue" />
-            <GenreContainer name="RELEASED" color="lightgreen" />
-            <GenreContainer name="Music Charts" color="pink" />
-            <GenreContainer name="Bollywood" color="lightyellow" />
-            <GenreContainer name="Pop Fusion" color="grey" />
-            <GenreContainer name="Made for You" color="lightblue" />
-            <GenreContainer name="RELEASED" color="lightgreen" />
-            <GenreContainer name="Music Charts" color="pink" />
-            <GenreContainer name="Bollywood" color="lightyellow" />
-            <GenreContainer name="Pop Fusion" color="grey" />
-            <GenreContainer name="Made for You" color="lightblue" />
-            <GenreContainer name="RELEASED" color="lightgreen" />
-            <GenreContainer name="Music Charts" color="pink" />
-            <GenreContainer name="Bollywood" color="lightyellow" />
-            <GenreContainer name="Pop Fusion" color="grey" />
           </View>
         </View>
       </ScrollView>
 
       <BottomNavigation />
-
       <StatusBar style="auto" />
     </View>
   );

@@ -1,4 +1,4 @@
-import { Link, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -11,7 +11,7 @@ import {
 
 const SoundwaveLogo = require("../assets/Soundwave-Logo.png");
 
-export default function Login() {
+export default function SignUp() {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -29,12 +29,11 @@ export default function Login() {
         </Text>
       </View>
       <View style={{ marginTop: 50 }}>
+        <TextInput style={styles.inputBox} placeholder="Full Name" />
         <TextInput style={styles.inputBox} placeholder="Username" />
         <TextInput style={styles.inputBox} placeholder="Password" />
-
-        <Text style={{ textAlign: "center", marginTop: 10, fontSize: 17 }}>
-          Forgot your Password?
-        </Text>
+        <TextInput style={styles.inputBox} placeholder="Confirm Password" />
+        <TextInput style={styles.inputBox} placeholder="Country" />
       </View>
 
       <View>
@@ -52,32 +51,19 @@ export default function Login() {
             borderRadius: 10,
           }}
         >
-          <Text style={{ fontSize: 20, textAlign: "center" }}>LOG IN</Text>
+          <Text style={{ fontSize: 20, textAlign: "center" }}>REGISTER</Text>
         </Pressable>
 
-        <Text
-          style={{
-            marginTop: 60,
-            justifyContent: "center",
-            alignItems: "center",
-            fontSize: 18,
-          }}
-        >
-          Don't have an account?
-          <Pressable onPress={() => navigation.navigate("SignUpScreen")}>
-            <Text
-              style={{
-                color: "green",
-                fontSize: 18,
-                marginHorizontal: 5,
-              }}
-            >
-              Sign Up
+        <Text style={{ marginTop: 50, fontSize: 18 }}>
+          Already have an account ?
+          <Pressable onPress={() => navigation.navigate("LoginScreen")}>
+            <Text style={{ color: "green", fontSize: 18, marginLeft: 10 }}>
+              Log In
             </Text>
           </Pressable>
         </Text>
 
-        <Text style={{ marginTop: 150, fontSize: 15, textAlign: "center" }}>
+        <Text style={{ marginTop: 50, fontSize: 15, textAlign: "center" }}>
           Need Help?
         </Text>
       </View>

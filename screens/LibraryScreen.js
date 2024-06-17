@@ -12,12 +12,12 @@ const LibraryScreen = () => {
         </Text>
 
         <View style={{ marginVertical: 50 }}>
-          <LibrarySections name="Liked Tracks" />
-          <LibrarySections name="Playlists" />
-          <LibrarySections name="Albums" />
-          <LibrarySections name="Following" />
-          <LibrarySections name="Stream" />
-          <LibrarySections name="Your Uploads" />
+          <LibrarySections name="Liked Tracks" link="LikedTracks" />
+          <LibrarySections name="Playlists" link="Playlists" />
+          <LibrarySections name="Albums" link="Albums" />
+          <LibrarySections name="Following" link="Following" />
+          <LibrarySections name="Stream" link="Stream" />
+          <LibrarySections name="Your Uploads" link="Uploads" />
         </View>
       </View>
 

@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import BottomNavigation from "../components/BottomNavigation";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import GenreBox from "../components/GenreBox";
@@ -62,7 +61,6 @@ const SearchScreen = () => {
         </View>
       </ScrollView>
 
-      <BottomNavigation />
       <StatusBar style="auto" />
     </View>
   );

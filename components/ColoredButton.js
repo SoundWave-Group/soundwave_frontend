@@ -1,20 +1,23 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { StyleSheet } from "react-native";
-import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
-const ColoredButton = ({ name, color = "green" }) => {
+const ColoredButton = ({ name, link, color }) => {
+  const navigation = useNavigation();
+
   return (
-    <View style={[styles.button, { backgroundColor: `${color}` }]}>
-      <Text style={{ fontSize: 15, fontWeight: 600, color: "white" }}>
-        {name}
-      </Text>
-    </View>
+    <Pressable onPress={() => navigation.navigate(`${link}`)}>
+      <View style={[styles.button, { backgroundColor: `${color}` }]}>
+        <Text style={{ fontSize: 15, fontWeight: 600, color: "white" }}>
+          {name}
+        </Text>
+      </View>
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "green",
     padding: 10,
     borderRadius: 50,
     width: 100,

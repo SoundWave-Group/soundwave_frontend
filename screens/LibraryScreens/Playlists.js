@@ -7,7 +7,6 @@ import {
   Pressable,
   TextInput,
 } from "react-native";
-import BottomNavigation from "../../components/BottomNavigation";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
@@ -72,8 +71,6 @@ const Playlists = () => {
           <Ionicons name="add-circle" size={25} style={{ margin: "auto" }} />
         </Pressable>
       </View>
-
-      <BottomNavigation />
 
       <StatusBar style="auto" />
     </View>

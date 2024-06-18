@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, StyleSheet, StatusBar } from "react-native";
-import BottomNavigation from "../components/BottomNavigation";
 import LibrarySections from "../components/LibrarySections";
 
 const LibraryScreen = () => {
@@ -20,8 +19,6 @@ const LibraryScreen = () => {
           <LibrarySections name="Your Uploads" link="Uploads" />
         </View>
       </View>
-
-      <BottomNavigation />
 
       <StatusBar style="auto" />
     </View>

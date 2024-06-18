@@ -1,4 +1,4 @@
-import { Link, useNavigation } from "@react-navigation/native";
+import { useNavigation, SafeAreaView } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -30,7 +30,11 @@ export default function Login() {
       </View>
       <View style={{ marginTop: 50 }}>
         <TextInput style={styles.inputBox} placeholder="Username" />
-        <TextInput style={styles.inputBox} placeholder="Password" />
+        <TextInput
+          style={styles.inputBox}
+          secureTextEntry={true}
+          placeholder="Password"
+        />
 
         <Text style={{ textAlign: "center", marginTop: 10, fontSize: 17 }}>
           Forgot your Password?
@@ -39,7 +43,7 @@ export default function Login() {
 
       <View>
         <Pressable
-          onPress={() => navigation.navigate("HomeScreen")}
+          onPress={() => navigation.navigate("MainScreen")}
           style={{
             marginTop: 50,
             backgroundColor: "lightgreen",

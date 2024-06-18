@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, StyleSheet, StatusBar, Pressable } from "react-native";
-import BottomNavigation from "../../components/BottomNavigation";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
@@ -51,8 +50,6 @@ const Albums = () => {
           </Text>
         </Pressable>
       </View>
-
-      <BottomNavigation />
 
       <StatusBar style="auto" />
     </View>

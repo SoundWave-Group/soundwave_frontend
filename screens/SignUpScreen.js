@@ -31,14 +31,22 @@ export default function SignUp() {
       <View style={{ marginTop: 50 }}>
         <TextInput style={styles.inputBox} placeholder="Full Name" />
         <TextInput style={styles.inputBox} placeholder="Username" />
-        <TextInput style={styles.inputBox} placeholder="Password" />
-        <TextInput style={styles.inputBox} placeholder="Confirm Password" />
+        <TextInput
+          style={styles.inputBox}
+          secureTextEntry={true}
+          placeholder="Password"
+        />
+        <TextInput
+          style={styles.inputBox}
+          secureTextEntry={true}
+          placeholder="Confirm Password"
+        />
         <TextInput style={styles.inputBox} placeholder="Country" />
       </View>
 
       <View>
         <Pressable
-          onPress={() => navigation.navigate("HomeScreen")}
+          onPress={() => navigation.navigate("MainScreen")}
           style={{
             marginTop: 50,
             backgroundColor: "lightgreen",

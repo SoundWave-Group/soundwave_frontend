@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import BottomNavigation from "../components/BottomNavigation";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const ProfileScreen = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View
@@ -14,11 +15,6 @@ const ProfileScreen = () => {
           marginHorizontal: 25,
         }}
       >
-        <View>
-          <Pressable onPress={() => navigation.navigate("LibraryScreen")}>
-            <Ionicons name="chevron-back" size={25} />
-          </Pressable>
-        </View>
         <Text
           style={{
             fontSize: 20,
@@ -28,9 +24,11 @@ const ProfileScreen = () => {
         >
           User Profile
         </Text>
-        <View>
-          <Ionicons name="settings-outline" color="green" size={25} />
-        </View>
+        <Pressable onPress={() => navigation.navigate("Settings")}>
+          <View>
+            <Ionicons name="settings-outline" color="green" size={25} />
+          </View>
+        </Pressable>
       </View>
 
       <View>
@@ -69,7 +67,6 @@ const ProfileScreen = () => {
         </View>
       </View>
 
-      <BottomNavigation />
       <StatusBar style="auto" />
     </View>
   );

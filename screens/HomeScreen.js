@@ -3,39 +3,45 @@ import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
 
 import GenreContainer from "../components/GenreContainer";
 import HomeNavigation from "../components/HomeNavigation";
+import GenreBox from "../components/GenreBox";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <HomeNavigation activeRouteName="MainScreen" />
-
       <ScrollView>
-        <View style={styles.genre}>
-          <Text style={{ fontSize: 25, color: "green" }}>Your Top Genres</Text>
+        <View style={styles.section}>
+          <Text style={styles.headerStyle}>Your Top Genres</Text>
 
-          <View style={{ flexDirection: "row", flexWrap: 1 }}>
-            <GenreContainer
-              name="K Pop"
-              image={require("../assets/art4.jpg")}
-              color="lightblue"
-            />
-            <GenreContainer name="Indie" color="lightgreen" />
-            <GenreContainer name="R&B" color="pink" />
-            <GenreContainer name="Pop" color="lightyellow" />
-          </View>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{ marginTop: 5 }}
+          >
+            <GenreBox name="Hip Hop" />
+            <GenreBox name="Pop" color="yellow" />
+            <GenreBox name="Rock" color="grey" />
+            <GenreBox name="Jazz" color="lightblue" />
+            <GenreBox name="Bollywood" color="pink" />
+          </ScrollView>
         </View>
 
-        <View style={styles.browse}>
-          <Text style={{ fontSize: 25, color: "green" }}>Browse More</Text>
+        <Text style={[styles.headerStyle, { marginTop: 40 }]}>Browse More</Text>
 
-          <View style={{ flexDirection: "row", flexWrap: 1 }}>
-            <GenreContainer name="Made for You" color="lightblue" />
-            <GenreContainer name="RELEASED" color="lightgreen" />
-            <GenreContainer name="Music Charts" color="pink" />
-            <GenreContainer name="Bollywood" color="lightyellow" />
-            <GenreContainer name="Pop Fusion" color="grey" />
-            <GenreContainer name="Made for You" color="lightblue" />
-          </View>
+        <View
+          style={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            marginLeft: 5,
+            marginTop: 10,
+          }}
+        >
+          <GenreContainer name="Pop Fusion" color="lightgreen" />
+          <GenreContainer name="Classical" color="lightgrey" />
+          <GenreContainer name="Country" color="brown" />
+          <GenreContainer name="Indie" color="purple" />
+          <GenreContainer name="Reggae" color="orange" />
+          <GenreContainer name="Rap" color="lightgreen" />
         </View>
       </ScrollView>
       <StatusBar style="auto" />
@@ -44,15 +50,14 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  genre: {
+  section: {
     flex: 1,
-    paddingTop: 20,
-    paddingLeft: 10,
+    marginTop: 30,
   },
-  browse: {
-    flex: 1,
-    marginTop: 50,
-    paddingLeft: 10,
+  headerStyle: {
+    fontSize: 25,
+    color: "green",
+    marginLeft: 10,
   },
   container: {
     flex: 1,

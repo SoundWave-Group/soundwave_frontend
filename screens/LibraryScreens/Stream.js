@@ -31,7 +31,7 @@ const Stream = () => {
       </View>
 
       <View style={{ margin: 20 }}>
-        <Text style={{ fontSize: 16 }}>You can stream your music here </Text>
+        <Text style={{ fontSize: 20 }}>You can stream your music here </Text>
 
         <Pressable
           style={{

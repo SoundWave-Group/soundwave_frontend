@@ -37,30 +37,32 @@ const Playlists = () => {
         </Text>
       </View>
 
-      <View style={{ margin: 20 }}>
-        <Text style={{ fontSize: 20 }}>Playlists</Text>
+      <View style={{ marginTop: 10, marginLeft: 10 }}>
+        <Text style={{ fontSize: 25, marginLeft: 5 }}>Playlists</Text>
 
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <TextInput
             style={{
-              width: "90%",
+              width: "85%",
               borderWidth: 0.5,
-              marginHorizontal: "auto",
-              paddingHorizontal: 20,
-              margin: 10,
-              height: 30,
-              borderRadius: 20,
+              paddingHorizontal: 10,
+              marginHorizontal: 5,
+
+              marginVertical: 10,
+              height: 40,
+              borderRadius: 10,
+              borderColor: "green",
             }}
             placeholder="Songs, Artist & More"
           />
           <Ionicons name="shuffle" size={30} />
         </View>
 
-        <Text style={{ fontSize: 20 }}>Create a playlist </Text>
+        <Text style={{ fontSize: 25 }}>Create a playlist </Text>
 
         <Pressable
           style={{
-            backgroundColor: "grey",
+            backgroundColor: "lightgreen",
             padding: 10,
             width: 100,
             height: 100,
@@ -68,7 +70,11 @@ const Playlists = () => {
             marginTop: 20,
           }}
         >
-          <Ionicons name="add-circle" size={25} style={{ margin: "auto" }} />
+          <Ionicons
+            name="add-circle"
+            size={25}
+            style={{ margin: "auto", color: "white" }}
+          />
         </Pressable>
       </View>
 

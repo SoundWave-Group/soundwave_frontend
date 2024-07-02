@@ -1,14 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar } from "react-native";
+import { View, Text, StyleSheet, StatusBar, SafeAreaView } from "react-native";
 import LibrarySections from "../components/LibrarySections";
 
 const LibraryScreen = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.content}>
-        <Text style={{ fontSize: 20, margin: 10, marginTop: 60 }}>
-          Your Library
-        </Text>
+      <SafeAreaView style={styles.content}>
+        <Text style={{ fontSize: 25, margin: 10 }}>Your Library</Text>
 
         <View style={{ marginVertical: 50 }}>
           <LibrarySections name="Liked Tracks" link="LikedTracks" />
@@ -18,7 +16,7 @@ const LibraryScreen = () => {
           <LibrarySections name="Stream" link="Stream" />
           <LibrarySections name="Your Uploads" link="Uploads" />
         </View>
-      </View>
+      </SafeAreaView>
 
       <StatusBar style="auto" />
     </View>

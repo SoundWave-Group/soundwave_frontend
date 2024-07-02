@@ -1,3 +1,11 @@
+import {
+  FontAwesome,
+  FontAwesome5,
+  Ionicons,
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from "@expo/vector-icons";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -28,14 +36,8 @@ import Legal from "./screens/ProfileScreens/Legal";
 import Account from "./screens/ProfileScreens/Account";
 import Storage from "./screens/ProfileScreens/Storage";
 import Analytics from "./screens/ProfileScreens/Analytics";
-
-import {
-  FontAwesome,
-  FontAwesome5,
-  Ionicons,
-  MaterialCommunityIcons,
-  MaterialIcons,
-} from "@expo/vector-icons";
+import ShazamScreen from "./screens/ShazamScreen";
+import DownloadScreens from "./screens/DownloadScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -70,6 +72,22 @@ const BottomNavigationBar = () => {
               <Ionicons name="search" size={24} color="#0A4A3B" />
             ) : (
               <Ionicons name="search-outline" size={24} color="#0A4A3B" />
+            ),
+        }}
+      />
+
+      <Tab.Screen
+        name="ShazamScreen"
+        component={ShazamScreen}
+        options={{
+          tabBarLabel: "Shazam",
+          headerShown: false,
+          tabBarLabelStyle: { color: "white" },
+          tabBarIcon: ({ focused }) =>
+            focused ? (
+              <MaterialIcons name="podcasts" size={24} color="#0A4A3B" />
+            ) : (
+              <MaterialIcons name="podcasts" size={24} color="#0A4A3B" />
             ),
         }}
       />
@@ -226,6 +244,11 @@ export default function App() {
         <Stack.Screen
           name="Analytics"
           component={Analytics}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Downloads"
+          component={DownloadScreens}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

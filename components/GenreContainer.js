@@ -1,38 +1,23 @@
-import { View, Text, Image } from "react-native";
-import { StyleSheet } from "react-native";
+import { View, Text } from "react-native";
+import React from "react";
 
-const genreImage = require("../assets/pop.jpg");
+const placeholderImage = require("../assets/adaptive-icon.png");
 
-const GenreContainer = ({ name, image = genreImage }) => {
+const GenreContainer = ({ name, image = placeholderImage, color = "red" }) => {
   return (
-    <View style={[styles.genreContainer, { flexDirection: "row" }]}>
-      <Text
-        style={{ fontSize: 20, color: "white", marginLeft: 30, marginTop: 10 }}
-      >
-        {name}
-      </Text>
-      <Image
-        source={image}
-        style={{
-          height: 150,
-          width: 150,
-          justifyContent: "center",
-          marginLeft: "auto",
-          borderRadius: 8,
-          zIndex: -1,
-        }}
-        alt="Genre"
-      />
+    <View
+      style={{
+        backgroundColor: color,
+        width: 180,
+        height: 150,
+        marginHorizontal: 5,
+        marginVertical: 5,
+        borderRadius: 10,
+      }}
+    >
+      <Text style={{ fontSize: 20, padding: 10 }}>{name}</Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  genreContainer: {
-    width: "45%",
-    marginTop: 10,
-    marginRight: 5,
-  },
-});
 
 export default GenreContainer;

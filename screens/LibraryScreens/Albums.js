@@ -1,17 +1,23 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  StatusBar,
+  Pressable,
+  SafeAreaView,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 const Albums = () => {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          marginTop: 60,
           marginHorizontal: 25,
         }}
       >
@@ -30,9 +36,9 @@ const Albums = () => {
         </Text>
       </View>
 
-      <View style={{ margin: 20 }}>
-        <Text style={{ fontSize: 20 }}>No Albums Yet</Text>
-        <Text style={{ fontSize: 16 }}>
+      <View style={{ marginTop: 20, marginLeft: 10 }}>
+        <Text style={{ fontSize: 25, color: "green" }}>No Albums Yet</Text>
+        <Text style={{ fontSize: 18, marginTop: 10, width: "70%" }}>
           Albums you have created or liked will appear here.
         </Text>
 
@@ -52,7 +58,7 @@ const Albums = () => {
       </View>
 
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 };
 

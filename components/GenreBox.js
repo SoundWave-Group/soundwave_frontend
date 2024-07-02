@@ -8,10 +8,10 @@ const GenreBox = ({ name, image = placeholderImage, color = "red" }) => {
     <View
       style={{
         backgroundColor: color,
-        width: "45%",
+        width: 150,
         height: 150,
-        marginHorizontal: "auto",
-        margin: 10,
+        marginHorizontal: 5,
+        marginVertical: 5,
         borderRadius: 10,
       }}
     >

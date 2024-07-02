@@ -15,7 +15,9 @@ const LibrarySections = ({ name, link }) => {
             marginHorizontal: 10,
           }}
         >
-          <Text style={{ fontSize: 20, marginVertical: 10 }}>{name}</Text>
+          <Text style={{ fontSize: 25, marginVertical: 10, color: "green" }}>
+            {name}
+          </Text>
           <Ionicons
             name="arrow-forward-circle-outline"
             size={24}

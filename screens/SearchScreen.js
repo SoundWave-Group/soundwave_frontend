@@ -13,7 +13,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import GenreContainer from "../components/GenreContainer";
 
 const SearchScreen = () => {
-  const navigator = useNavigation();
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -25,14 +25,14 @@ const SearchScreen = () => {
       >
         <Pressable
           onPress={() => {
-            navigator.goBack();
+            navigation.goBack();
           }}
         >
           <Ionicons name="arrow-back" size={24} color="black" />
         </Pressable>
         <Pressable
           onPress={() => {
-            navigator.navigate("Downloads");
+            navigation.navigate("DownloadScreen");
           }}
         >
           <Ionicons name="cloud-download" size={24} color="black" />

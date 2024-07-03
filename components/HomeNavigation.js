@@ -1,13 +1,13 @@
 import { View, StyleSheet } from "react-native";
 import ColoredButton from "./ColoredButton";
 
-const HomeNavigation = ({ activeRouteName, color }) => {
+const HomeNavigation = ({ activeRouteName }) => {
   return (
     <View style={styles.topNavigation}>
       <ColoredButton
         name="Genre"
         color={activeRouteName === "MainScreen" ? "green" : "lightgreen"}
-        link="MainScreen"
+        link="HomeScreen"
       />
       <ColoredButton
         name="New Music"

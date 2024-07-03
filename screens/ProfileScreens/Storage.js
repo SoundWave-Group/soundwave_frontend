@@ -23,11 +23,16 @@ const Storage = () => {
         <View>
           <Text style={styles.headText}></Text>
           <Text style={styles.paragraphText}></Text>
-          <Button
-            title="Delete account"
-            buttonStyle={styles.button}
-            textStyle={styles.buttonText}
-          />
+          <Text
+            style={{
+              fontSize: 20,
+              marginTop: 10,
+              marginLeft: 20,
+              color: "red",
+            }}
+          >
+            Delete Account
+          </Text>
         </View>
       </View>
     </SafeAreaView>

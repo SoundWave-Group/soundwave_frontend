@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 
-const DownloadScreens = () => {
+const DownloadScreen = () => {
   return (
     <View style={styles.container}>
       <Text>DownloadScreens</Text>
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DownloadScreens;
+export default DownloadScreen;

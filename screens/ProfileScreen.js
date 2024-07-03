@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Image,
+  SafeAreaView,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -6,12 +13,11 @@ import { useNavigation } from "@react-navigation/native";
 const ProfileScreen = () => {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          marginTop: 60,
           marginHorizontal: 25,
         }}
       >
@@ -68,7 +74,7 @@ const ProfileScreen = () => {
       </View>
 
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 };
 

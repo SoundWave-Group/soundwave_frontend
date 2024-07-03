@@ -237,15 +237,18 @@ const styles = StyleSheet.create({
   buttonBox: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-around",
+    marginLeft: 10,
   },
   buttonText: {
     color: "black",
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "400",
   },
   autoBtn: {
     color: "black",
-    fontSize: 16,
+    fontSize: 20,
+    marginLeft: 5,
     fontWeight: "400",
   },
   signOut: {

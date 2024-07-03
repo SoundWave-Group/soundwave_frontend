@@ -11,7 +11,7 @@ import {
 
 const SoundwaveLogo = require("../assets/Soundwave-Logo.png");
 
-export default function Login() {
+export default function LoginScreen() {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>

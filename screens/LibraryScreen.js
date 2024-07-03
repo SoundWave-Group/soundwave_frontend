@@ -4,7 +4,7 @@ import LibrarySections from "../components/LibrarySections";
 
 const LibraryScreen = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.content}>
         <Text style={{ fontSize: 25, margin: 10 }}>Your Library</Text>
 
@@ -17,9 +17,8 @@ const LibraryScreen = () => {
           <LibrarySections name="Your Uploads" link="Uploads" />
         </View>
       </SafeAreaView>
-
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 };
 

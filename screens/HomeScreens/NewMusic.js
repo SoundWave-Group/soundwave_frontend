@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
 
 import HomeNavigation from "../../components/HomeNavigation";
+import GenreContainer from "../../components/GenreContainer";
 
 export default function App() {
   return (
@@ -10,7 +11,22 @@ export default function App() {
 
       <ScrollView>
         <View style={styles.genre}>
-          <Text style={{ fontSize: 25, color: "green" }}>New Music</Text>
+          <Text style={{ fontSize: 25, color: "green", marginLeft: 5 }}>
+            New Music
+          </Text>
+
+          <View
+            style={{ flexDirection: "row", flexWrap: "wrap", marginTop: 20 }}
+          >
+            <GenreContainer name="Trending Ghana" color="lightblue" />
+            <GenreContainer name="Worldwide" color="lightblue" />
+            <GenreContainer name="Release Radar" color="lightgreen" />
+            <GenreContainer name="Country Songs" color="teal" />
+            <GenreContainer name="Nigeria" color="lightblue" />
+            <GenreContainer name="Benin" color="lightblue" />
+            <GenreContainer name="Newly Released" color="yellow" />
+            <GenreContainer name="Asakaa" color="red" />
+          </View>
         </View>
       </ScrollView>
       <StatusBar style="auto" />
@@ -22,7 +38,7 @@ const styles = StyleSheet.create({
   genre: {
     flex: 1,
     paddingTop: 20,
-    paddingLeft: 10,
+    marginLeft: 5,
   },
   browse: {
     flex: 1,

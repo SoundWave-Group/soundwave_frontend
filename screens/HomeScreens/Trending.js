@@ -2,15 +2,26 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
 
 import HomeNavigation from "../../components/HomeNavigation";
+import { useNavigation } from "@react-navigation/native";
 
 export default function App() {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.container}>
       <HomeNavigation activeRouteName="Trending" />
-
       <ScrollView>
         <View style={styles.genre}>
           <Text style={{ fontSize: 25, color: "green" }}>Trending</Text>
+
+          <Text>
+            <Text
+              style={{ fontSize: 20, color: "green", fontWeight: "bold" }}
+              onPress={() => navigation.navigate("PlayerScreen")}
+            >
+              Top 50
+            </Text>
+          </Text>
         </View>
       </ScrollView>
       <StatusBar style="auto" />

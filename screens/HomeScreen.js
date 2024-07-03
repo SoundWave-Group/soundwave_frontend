@@ -5,7 +5,7 @@ import GenreContainer from "../components/GenreContainer";
 import HomeNavigation from "../components/HomeNavigation";
 import GenreBox from "../components/GenreBox";
 
-export default function App() {
+export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <HomeNavigation activeRouteName="MainScreen" />

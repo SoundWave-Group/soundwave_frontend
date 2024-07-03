@@ -4,7 +4,7 @@ import React from "react";
 const DownloadScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>DownloadScreens</Text>
+      <Text>Downloads Screen. Sike, Nothing Here yet</Text>
     </View>
   );
 };

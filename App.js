@@ -9,6 +9,10 @@ import SignUpScreen from "./screens/SignUpScreen";
 import BottomNavigationBar from "./components/BottomNavigationBar";
 import PlayerScreen from "./screens/PlayerScreen";
 
+import VerticalStackAnimation from "./components/utils/VerticalStackAnimation";
+import { enableScreens } from "react-native-screens";
+enableScreens();
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -43,7 +47,7 @@ export default function App() {
         <Stack.Screen
           name="PlayerScreen"
           component={PlayerScreen}
-          options={{ headerShown: false }}
+          options={{ headerShown: false, VerticalStackAnimation }}
         />
       </Stack.Navigator>
     </NavigationContainer>

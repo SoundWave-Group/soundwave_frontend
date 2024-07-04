@@ -5,7 +5,7 @@ import { Slider } from "@miblanchard/react-native-slider";
 const AudioLoaderUI = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      <View style={styles.containerSecondary}>
         <Slider
           minimumValue={0}
           maximumValue={10}
@@ -15,8 +15,8 @@ const AudioLoaderUI = () => {
           width={300}
         />
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text>0.00</Text>
-          <Text>10.00</Text>
+          <Text>0:00</Text>
+          <Text>3:45</Text>
         </View>
         <View style={styles.buttonContainer}>
           <Ionicons name="shuffle" size={36} color="black" />

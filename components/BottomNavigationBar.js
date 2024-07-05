@@ -1,5 +1,3 @@
-// BottomNavigationBar.js
-import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeStack from "./screenStacks/HomeStack";
 import SearchStack from "./screenStacks/SearchStack";
@@ -20,12 +18,12 @@ const BottomNavigationBar = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="Home"
+        name="HomeScreen"
         component={HomeStack}
         options={{
           tabBarLabel: "Home",
           headerShown: false,
-          tabBarLabelStyle: { color: "white" },
+          tabBarLabelStyle: { color: "green" },
           tabBarIcon: ({ focused }) =>
             focused ? (
               <Ionicons name="home" size={24} color="#0A4A3B" />

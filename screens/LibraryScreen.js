@@ -6,9 +6,15 @@ const LibraryScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.content}>
-        <Text style={{ fontSize: 25, margin: 10 }}>Your Library</Text>
+        <Text style={{ fontSize: 25, margin: 20 }}>Your Library</Text>
 
-        <View style={{ marginVertical: 50 }}>
+        <View
+          style={{
+            marginVertical: 50,
+            marginHorizontal: 10,
+            justifyContent: "center",
+          }}
+        >
           <LibrarySections name="Liked Tracks" link="LikedTracks" />
           <LibrarySections name="Playlists" link="Playlists" />
           <LibrarySections name="Albums" link="Albums" />

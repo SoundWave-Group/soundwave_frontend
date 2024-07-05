@@ -63,9 +63,12 @@ export default function SignUp() {
         </Pressable>
 
         <Text style={{ marginTop: 50, fontSize: 18 }}>
-          Already have an account ?
-          <Pressable onPress={() => navigation.navigate("LoginScreen")}>
-            <Text style={{ color: "green", fontSize: 18, marginLeft: 10 }}>
+          Already have an account?
+          <Pressable
+            onPress={() => navigation.navigate("LoginScreen")}
+            style={{ marginTop: -2.6 }}
+          >
+            <Text style={{ color: "green", fontSize: 18, marginLeft: 5 }}>
               Log In
             </Text>
           </Pressable>
@@ -89,7 +92,7 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     borderStyle: "solid",
-    backgroundColor: "lightgreen",
+    backgroundColor: "rgb(193, 247, 201)",
     padding: 10,
     paddingTop: 20,
     borderRadius: 5,

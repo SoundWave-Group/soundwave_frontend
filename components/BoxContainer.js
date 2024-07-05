@@ -6,9 +6,11 @@ const BoxContainer = () => {
 
   return (
     <View style={styles.boxContainer}>
-      <Text style={{ fontSize: 25, textAlign: "center", color: "white" }}>
-        From the latest to the greatest hits, play your favorite tracks on
-        SoundWave now!
+      <Text style={{ fontSize: 23, textAlign: "center", color: "white" }}>
+        From the <Text style={{ color: "lightgreen" }}>latest</Text> to the
+        <Text style={{ color: "lightgreen" }}> greatest</Text> hits, play your
+        favorite tracks on{" "}
+        <Text style={{ color: "lightgreen" }}>SoundWave</Text> now!
       </Text>
       <View style={{ marginTop: 100 }}>
         <Pressable

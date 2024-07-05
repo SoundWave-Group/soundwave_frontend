@@ -1,4 +1,3 @@
-// ProfileStack.js
 import { createStackNavigator } from "@react-navigation/stack";
 import ProfileScreen from "../../screens/ProfileScreen";
 import Settings from "../../screens/ProfileScreens/Settings";

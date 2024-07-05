@@ -29,33 +29,13 @@ const PlayerScreen = () => {
         <Image
           source={placeholder}
           style={{
-            width: 300,
-            height: 300,
+            width: 330,
+            height: 330,
             marginHorizontal: "auto",
             marginTop: 20,
             borderRadius: 10,
           }}
         />
-        <Text
-          style={{
-            fontSize: 20,
-            textAlign: "center",
-            marginTop: 20,
-            fontWeight: "bold",
-          }}
-        >
-          We Can't Be Friends
-        </Text>
-        <Text
-          style={{
-            fontSize: 15,
-            textAlign: "center",
-            marginTop: 5,
-            color: "gray",
-          }}
-        >
-          Ariana Grande
-        </Text>
       </View>
 
       <View>
@@ -77,7 +57,7 @@ const PlayerScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "rgb(50, 153, 168)",
   },
 });
 

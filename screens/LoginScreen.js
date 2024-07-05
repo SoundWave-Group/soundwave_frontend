@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, SafeAreaView } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -31,12 +32,22 @@ export default function LoginScreen() {
       <View style={{ marginTop: 50 }}>
         <TextInput style={styles.inputBox} placeholder="Username" />
         <TextInput
-          style={styles.inputBox}
+          style={[
+            styles.inputBox,
+            { flexDirection: "row", justifyContent: "space-between" },
+          ]}
           secureTextEntry={true}
           placeholder="Password"
         />
 
-        <Text style={{ textAlign: "center", marginTop: 10, fontSize: 17 }}>
+        <Text
+          style={{
+            textAlign: "center",
+            marginTop: 10,
+            fontSize: 17,
+            color: "grey",
+          }}
+        >
           Forgot your Password?
         </Text>
       </View>
@@ -59,27 +70,32 @@ export default function LoginScreen() {
           <Text style={{ fontSize: 20, textAlign: "center" }}>LOG IN</Text>
         </Pressable>
 
-        <Text
-          style={{
-            marginTop: 60,
-            justifyContent: "center",
-            alignItems: "center",
-            fontSize: 18,
-          }}
-        >
-          Don't have an account?
-          <Pressable onPress={() => navigation.navigate("SignUpScreen")}>
-            <Text
-              style={{
-                color: "green",
-                fontSize: 18,
-                marginHorizontal: 5,
-              }}
+        <View style={{ alignItems: "center" }}>
+          <Text
+            style={{
+              marginTop: 60,
+              justifyContent: "center",
+              alignItems: "center",
+              fontSize: 18,
+            }}
+          >
+            Don't have an account?
+            <Pressable
+              onPress={() => navigation.navigate("SignUpScreen")}
+              style={{ marginTop: -2.5 }}
             >
-              Sign Up
-            </Text>
-          </Pressable>
-        </Text>
+              <Text
+                style={{
+                  color: "green",
+                  fontSize: 18,
+                  marginHorizontal: 5,
+                }}
+              >
+                Sign Up
+              </Text>
+            </Pressable>
+          </Text>
+        </View>
 
         <Text style={{ marginTop: 150, fontSize: 15, textAlign: "center" }}>
           Need Help?
@@ -99,7 +115,7 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     borderStyle: "solid",
-    backgroundColor: "lightgreen",
+    backgroundColor: "rgb(193, 247, 201)",
     padding: 10,
     paddingTop: 20,
     borderRadius: 5,

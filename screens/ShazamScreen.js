@@ -1,17 +1,63 @@
 import { Ionicons } from "@expo/vector-icons";
-import { View, Text, StyleSheet, Pressable, Alert } from "react-native";
+import React, { useEffect, useRef } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Easing,
+  Animated,
+  Pressable,
+  Alert,
+} from "react-native";
+import { TapGestureHandler, State } from "react-native-gesture-handler";
 
 const ShazamScreen = () => {
+  const scale = useRef(new Animated.Value(1)).current;
+
+  const startAnimation = () => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(scale, {
+          toValue: 1.1,
+          duration: 1000,
+          easing: Easing.inOut(Easing.ease),
+          useNativeDriver: true,
+        }),
+        Animated.timing(scale, {
+          toValue: 1,
+          duration: 1000,
+          easing: Easing.inOut(Easing.ease),
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.shazamOuterContainer}>
-        <View style={styles.shazamInnerContainer}>
-          <Pressable onPress={() => Alert.alert("Shazam nigga")}>
-            <Ionicons name="musical-notes" size={100} color="lightgreen" />
-          </Pressable>
-        </View>
-      </View>
-      <Text style={{ fontSize: 15, marginTop: 20, color: "green" }}>
+      <TapGestureHandler
+        onHandlerStateChange={({ nativeEvent }) => {
+          if (nativeEvent.state === State.END) {
+            startAnimation();
+          }
+        }}
+      >
+        <Animated.View style={[styles.button, { transform: [{ scale }] }]}>
+          <View style={styles.shazamOuterContainer}>
+            <View style={styles.shazamInnerContainer}>
+              <Pressable
+                onPress={() => {
+                  startAnimation();
+                  Alert.alert("Shazam nigga");
+                }}
+              >
+                <Ionicons name="musical-notes" size={70} color="white" />
+              </Pressable>
+            </View>
+          </View>
+        </Animated.View>
+      </TapGestureHandler>
+      <Text style={{ fontSize: 15, marginTop: 40, color: "green" }}>
         Tap the Button Above to Identify A Song
       </Text>
     </View>
@@ -27,19 +73,21 @@ const styles = StyleSheet.create({
   },
   shazamOuterContainer: {
     borderWidth: 2,
-    borderColor: "green",
+    borderColor: "lightgreen",
     borderRadius: 200,
     padding: 30,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "lightgreen",
   },
   shazamInnerContainer: {
     borderWidth: 2,
-    borderColor: "lightgreen",
+    borderColor: "green",
     borderRadius: 100,
     padding: 30,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "green",
   },
 });
 

@@ -6,11 +6,31 @@ const AudioLoaderUI = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.containerSecondary}>
+        <Text
+          style={{
+            fontSize: 22,
+            textAlign: "center",
+            marginTop: 60,
+            fontWeight: "bold",
+          }}
+        >
+          We Can't Be Friends
+        </Text>
+        <Text
+          style={{
+            fontSize: 18,
+            textAlign: "center",
+            marginTop: 5,
+          }}
+        >
+          Ariana Grande
+        </Text>
+
         <Slider
           minimumValue={0}
           maximumValue={10}
-          thumbTintColor="green"
-          trackStyle={{ backgroundColor: "lightgreen" }}
+          thumbTintColor="lightblue"
+          trackStyle={{ backgroundColor: "lightblue" }}
           disabled={true}
           width={300}
         />

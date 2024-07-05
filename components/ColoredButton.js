@@ -6,7 +6,10 @@ const ColoredButton = ({ name, link, color }) => {
   const navigation = useNavigation();
 
   return (
-    <Pressable onPress={() => navigation.navigate(`${link}`)}>
+    <Pressable
+      onPress={() => navigation.navigate(`${link}`)}
+      style={{ marginHorizontal: 2 }}
+    >
       <View style={[styles.button, { backgroundColor: `${color}` }]}>
         <Text style={{ fontSize: 15, fontWeight: 600, color: "white" }}>
           {name}
@@ -18,11 +21,11 @@ const ColoredButton = ({ name, link, color }) => {
 
 const styles = StyleSheet.create({
   button: {
-    padding: 10,
-    borderRadius: 50,
-    width: 100,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    width: "100%",
     alignItems: "center",
-    marginRight: 5,
   },
 });
 export default ColoredButton;

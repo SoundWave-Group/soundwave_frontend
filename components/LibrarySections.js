@@ -12,17 +12,14 @@ const LibrarySections = ({ name, link }) => {
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
+            alignItems: "center",
             marginHorizontal: 10,
           }}
         >
           <Text style={{ fontSize: 25, marginVertical: 10, color: "green" }}>
             {name}
           </Text>
-          <Ionicons
-            name="arrow-forward-circle-outline"
-            size={24}
-            color="black"
-          />
+          <Ionicons name="chevron-forward" size={24} color="black" />
         </View>
       </View>
     </Pressable>

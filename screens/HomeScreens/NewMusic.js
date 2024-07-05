@@ -3,10 +3,18 @@ import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
 
 import HomeNavigation from "../../components/HomeNavigation";
 import GenreContainer from "../../components/GenreContainer";
-import Artiste from "../../components/Artiste";
 import GenreBox from "../../components/GenreBox";
+import Artiste from "../../components/Artiste";
 
-const placeholderArtisteImage = require("../../assets/singer1.jpg");
+const recentlyPlayed = require.context("../../assets/recents", true);
+const recentlyPlayedList = recentlyPlayed.keys().map(recentlyPlayed);
+
+const mixes = require.context("../../assets/mixes", true);
+const mixesList = mixes.keys().map(mixes);
+
+const artistes = require.context("../../assets/artistes", true);
+const artistesList = artistes.keys().map(artistes);
+const artistesName = ["Burna Boy", "Dave", "Isaiah Robin", "Tyla"];
 
 export default function App() {
   return (
@@ -24,10 +32,13 @@ export default function App() {
             showsHorizontalScrollIndicator={false}
             style={{ flexDirection: "row", flexWrap: "wrap", marginTop: 20 }}
           >
-            <GenreContainer name="Afro Gospel Hits" color="lightblue" />
-            <GenreContainer name="Worldwide" color="lightblue" />
-            <GenreContainer name="Release Radar" color="lightgreen" />
-            <GenreContainer name="Country Songs" color="teal" />
+            <View
+              style={{ flexDirection: "row", flexWrap: "wrap", marginLeft: 5 }}
+            >
+              {recentlyPlayedList.map((image, index) => (
+                <GenreContainer key={index} image={image} />
+              ))}
+            </View>
           </ScrollView>
 
           <Text
@@ -40,16 +51,18 @@ export default function App() {
           >
             Your favorite artists
           </Text>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            style={{ flexDirection: "row", gap: 10, marginTop: 20 }}
-          >
-            <Artiste name="Burna Boy" image={placeholderArtisteImage} />
-            <Artiste name="Dave" />
-            <Artiste name="Isaiah Robin" />
-            <Artiste name="Tyla" />
-          </ScrollView>
+
+          <View>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={{ flexDirection: "row", gap: 10, marginTop: 20 }}
+            >
+              {artistesList.map((image, index) => (
+                <Artiste key={index} image={image} name={artistesName[index]} />
+              ))}
+            </ScrollView>
+          </View>
 
           <Text
             style={{
@@ -67,11 +80,9 @@ export default function App() {
             showsHorizontalScrollIndicator={false}
             style={{ marginTop: 5 }}
           >
-            <GenreBox name="Hip Hop" />
-            <GenreBox name="Pop" color="yellow" />
-            <GenreBox name="Rock" color="grey" />
-            <GenreBox name="Jazz" color="lightblue" />
-            <GenreBox name="Bollywood" color="pink" />
+            {mixesList.map((image, index) => (
+              <GenreContainer key={index} image={image} />
+            ))}
           </ScrollView>
         </View>
       </ScrollView>

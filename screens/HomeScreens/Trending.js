@@ -3,6 +3,27 @@ import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
 
 import HomeNavigation from "../../components/HomeNavigation";
 import { useNavigation } from "@react-navigation/native";
+import GenreBox from "../../components/GenreBox";
+import GenreContainer from "../../components/GenreContainer";
+import { Ionicons } from "@expo/vector-icons";
+
+const trending = require.context("../../assets/trending", true);
+const trendingList = trending.keys().map(trending);
+
+const trendingText = [
+  // afropop, r&b, gospel, rock, jazz, country, pop, reggae, soul, folk
+  "Afropop",
+  "Country",
+  "Folk",
+  "Gospel",
+  "Jazz",
+  "Pop",
+  "R&B",
+  "Reggae",
+  "Rock",
+
+  "Soul",
+];
 
 export default function App() {
   const navigation = useNavigation();
@@ -12,16 +33,29 @@ export default function App() {
       <HomeNavigation activeRouteName="Trending" />
       <ScrollView>
         <View style={styles.genre}>
-          <Text style={{ fontSize: 25, color: "green" }}>Trending</Text>
-
-          <Text>
-            <Text
-              style={{ fontSize: 20, color: "green", fontWeight: "bold" }}
-              onPress={() => navigation.navigate("PlayerScreen")}
-            >
-              Top 50
-            </Text>
+          <Text style={{ fontSize: 25, color: "green", marginLeft: 5 }}>
+            Trending Music{" "}
+            <Ionicons name="trending-up-outline" size={24} color="green" />
           </Text>
+
+          <View
+            style={{
+              flexDirection: "row",
+              flexWrap: "wrap",
+              marginTop: 20,
+              rowGap: 10,
+            }}
+          >
+            {trendingList.map((image, index) => {
+              return (
+                <GenreContainer
+                  key={index}
+                  image={image}
+                  text={trendingText[index]}
+                />
+              );
+            })}
+          </View>
         </View>
       </ScrollView>
       <StatusBar style="auto" />

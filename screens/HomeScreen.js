@@ -5,6 +5,12 @@ import GenreContainer from "../components/GenreContainer";
 import HomeNavigation from "../components/HomeNavigation";
 import GenreBox from "../components/GenreBox";
 
+const browseImages = require.context("../assets/browse", true);
+const browseImagesList = browseImages.keys().map(browseImages);
+
+const genreImages = require.context("../assets/genre", true);
+const genreImagesList = genreImages.keys().map(genreImages);
+
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
@@ -13,35 +19,21 @@ export default function HomeScreen() {
         <View style={styles.section}>
           <Text style={styles.headerStyle}>Your Top Genres</Text>
 
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            style={{ marginTop: 5 }}
+          <View
+            style={{ marginTop: 5, flexWrap: "wrap", flexDirection: "row" }}
           >
-            <GenreBox name="Hip Hop" />
-            <GenreBox name="Pop" color="yellow" />
-            <GenreBox name="Rock" color="grey" />
-            <GenreBox name="Jazz" color="lightblue" />
-            <GenreBox name="Bollywood" color="pink" />
-          </ScrollView>
+            {genreImagesList.map((image, index) => (
+              <GenreContainer key={index} image={image} />
+            ))}
+          </View>
         </View>
 
         <Text style={[styles.headerStyle, { marginTop: 40 }]}>Browse More</Text>
 
-        <View
-          style={{
-            flexDirection: "row",
-            flexWrap: "wrap",
-            marginLeft: 5,
-            marginTop: 10,
-          }}
-        >
-          <GenreContainer name="Pop Fusion" color="lightgreen" />
-          <GenreContainer name="Classical" color="lightgrey" />
-          <GenreContainer name="Country" color="brown" />
-          <GenreContainer name="Indie" color="purple" />
-          <GenreContainer name="Reggae" color="orange" />
-          <GenreContainer name="Rap" color="lightgreen" />
+        <View style={{ flexDirection: "row", flexWrap: "wrap", marginLeft: 5 }}>
+          {browseImagesList.map((image, index) => (
+            <GenreContainer key={index} image={image} />
+          ))}
         </View>
       </ScrollView>
       <StatusBar style="auto" />

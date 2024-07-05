@@ -1,16 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 
-const placeholderImage = require("../assets/adaptive-icon.png");
-
-const GenreBox = ({ name, image = placeholderImage, color = "red" }) => {
+const GenreBox = ({ image, text }) => {
   const navigator = useNavigation();
 
   return (
     <Pressable onPress={() => navigator.navigate("PlayerScreen")}>
       <View
         style={{
-          backgroundColor: color,
           width: 150,
           height: 150,
           marginHorizontal: 5,
@@ -18,7 +15,7 @@ const GenreBox = ({ name, image = placeholderImage, color = "red" }) => {
           borderRadius: 10,
         }}
       >
-        <Text style={{ fontSize: 20, padding: 10 }}>{name}</Text>
+        <Image source={image} style={{ borderRadius: 10 }} />
       </View>
     </Pressable>
   );

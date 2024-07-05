@@ -1,8 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, Pressable } from "react-native";
+import { View, Image, Text, Pressable } from "react-native";
 import { Dimensions } from "react-native";
-
-const placeholderImage = require("../assets/adaptive-icon.png");
 
 const responsiveWidth = (percentage) => {
   const screenWidth = Dimensions.get("window").width;
@@ -14,21 +12,32 @@ const responsiveHeight = (percentage) => {
   return (percentage * screenHeight) / 100;
 };
 
-const GenreContainer = ({ name, image = placeholderImage, color = "red" }) => {
+const GenreContainer = ({ image, text }) => {
   const navigator = useNavigation();
   return (
     <Pressable onPress={() => navigator.navigate("PlayerScreen")}>
       <View
         style={{
-          backgroundColor: color,
           width: responsiveWidth(45),
-          height: responsiveHeight(20),
           marginHorizontal: 5,
-          marginVertical: 5,
-          borderRadius: 10,
         }}
       >
-        <Text style={{ fontSize: 20, padding: 10 }}>{name}</Text>
+        <Image
+          source={image}
+          style={{
+            borderRadius: 10,
+            width: responsiveWidth(46),
+            marginVertical: 5,
+          }}
+        />
+        <Text
+          style={{
+            fontSize: 18,
+            marginLeft: 5,
+          }}
+        >
+          {text}
+        </Text>
       </View>
     </Pressable>
   );

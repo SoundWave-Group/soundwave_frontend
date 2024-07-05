@@ -1,8 +1,6 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 
-const placeholderArtiste = require("../assets/singer4.jpg");
-
-const Artiste = ({ name, image = { placeholderArtiste } }) => {
+const Artiste = ({ name, image }) => {
   return (
     <View style={{ marginHorizontal: 5 }}>
       <View style={{ alignItems: "center" }}>
@@ -10,6 +8,8 @@ const Artiste = ({ name, image = { placeholderArtiste } }) => {
         <Text
           style={{
             color: "green",
+            fontSize: 16,
+            marginTop: 2,
           }}
         >
           {name}

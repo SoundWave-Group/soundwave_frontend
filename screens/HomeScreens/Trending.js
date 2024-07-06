@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
 
 import HomeNavigation from "../../components/HomeNavigation";
 import { useNavigation } from "@react-navigation/native";
-import GenreBox from "../../components/GenreBox";
 import GenreContainer from "../../components/GenreContainer";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -11,7 +10,6 @@ const trending = require.context("../../assets/trending", true);
 const trendingList = trending.keys().map(trending);
 
 const trendingText = [
-  // afropop, r&b, gospel, rock, jazz, country, pop, reggae, soul, folk
   "Afropop",
   "Country",
   "Folk",
@@ -21,7 +19,6 @@ const trendingText = [
   "R&B",
   "Reggae",
   "Rock",
-
   "Soul",
 ];
 

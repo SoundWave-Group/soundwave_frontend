@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
 
 import HomeNavigation from "../../components/HomeNavigation";
 import GenreContainer from "../../components/GenreContainer";
-import GenreBox from "../../components/GenreBox";
 import Artiste from "../../components/Artiste";
 
 const recentlyPlayed = require.context("../../assets/recents", true);

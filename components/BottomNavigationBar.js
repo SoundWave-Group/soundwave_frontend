@@ -23,7 +23,7 @@ const BottomNavigationBar = () => {
         options={{
           tabBarLabel: "Home",
           headerShown: false,
-          tabBarLabelStyle: { color: "green" },
+          tabBarLabelStyle: { color: "white" },
           tabBarIcon: ({ focused }) =>
             focused ? (
               <Ionicons name="home" size={24} color="#0A4A3B" />

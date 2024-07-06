@@ -48,7 +48,7 @@ const ShazamScreen = () => {
               <Pressable
                 onPress={() => {
                   startAnimation();
-                  Alert.alert("Shazam nigga");
+                  Alert.alert("SHAZAM !");
                 }}
               >
                 <Ionicons name="musical-notes" size={70} color="white" />
@@ -57,8 +57,8 @@ const ShazamScreen = () => {
           </View>
         </Animated.View>
       </TapGestureHandler>
-      <Text style={{ fontSize: 15, marginTop: 40, color: "green" }}>
-        Tap the Button Above to Identify A Song
+      <Text style={{ fontSize: 18, marginTop: 40, color: "green" }}>
+        Tap to Identify A Song
       </Text>
     </View>
   );

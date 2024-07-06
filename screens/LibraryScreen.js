@@ -6,7 +6,7 @@ const LibraryScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.content}>
-        <Text style={{ fontSize: 25, margin: 20 }}>Your Library</Text>
+        <Text style={{ fontSize: 25, margin: 10 }}>Your Library</Text>
 
         <View
           style={{

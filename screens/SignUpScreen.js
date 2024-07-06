@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -28,7 +29,7 @@ export default function SignUp() {
           SoundWave
         </Text>
       </View>
-      <View style={{ marginTop: 50 }}>
+      <View style={{ marginTop: 10 }}>
         <TextInput style={styles.inputBox} placeholder="Full Name" />
         <TextInput style={styles.inputBox} placeholder="Username" />
         <TextInput
@@ -59,7 +60,27 @@ export default function SignUp() {
             borderRadius: 10,
           }}
         >
-          <Text style={{ fontSize: 20, textAlign: "center" }}>REGISTER</Text>
+          <Text style={{ fontSize: 20, textAlign: "center" }}>SIGN UP9</Text>
+        </Pressable>
+
+        <Pressable
+          onPress={() => Alert.alert("Google Signup")}
+          style={{
+            marginTop: 10,
+            borderWidth: 1,
+            borderColor: "green",
+            paddingLeft: 50,
+            paddingRight: 50,
+            width: 200,
+            marginLeft: "auto",
+            marginRight: "auto",
+            padding: 10,
+            borderRadius: 10,
+          }}
+        >
+          <Text style={{ marginHorizontal: "auto" }}>
+            <Ionicons name="logo-google" size={24} color="green" />
+          </Text>
         </Pressable>
 
         <Text style={{ marginTop: 50, fontSize: 18 }}>

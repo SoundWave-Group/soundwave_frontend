@@ -12,7 +12,7 @@ const LikedTracks = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           marginTop: 60,
-          marginHorizontal: 25,
+          marginHorizontal: 10,
         }}
       >
         <View>

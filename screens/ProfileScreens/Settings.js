@@ -221,6 +221,7 @@ const styles = StyleSheet.create({
   toggler: {
     alignItems: "center",
     justifyContent: "space-between",
+    marginHorizontal: 0,
     flexDirection: "row",
     marginBottom: 10,
   },

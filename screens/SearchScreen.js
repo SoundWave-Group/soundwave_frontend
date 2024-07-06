@@ -12,6 +12,12 @@ import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import GenreContainer from "../components/GenreContainer";
 
+const browseImages = require.context("../assets/browse", true);
+const browseImagesList = browseImages.keys().map(browseImages);
+
+const genreImages = require.context("../assets/genre", true);
+const genreImagesList = genreImages.keys().map(genreImages);
+
 const SearchScreen = () => {
   const navigation = useNavigation();
   return (
@@ -60,16 +66,12 @@ const SearchScreen = () => {
             marginLeft: 5,
           }}
         >
-          <GenreContainer name="Hip Hop" />
-          <GenreContainer name="Pop" color="yellow" />
-          <GenreContainer name="Rock" color="grey" />
-          <GenreContainer name="Jazz" color="lightblue" />
-          <GenreContainer name="Bollywood" color="pink" />
-          <GenreContainer name="Pop Fusion" color="lightgreen" />
-          <GenreContainer name="Classical" color="lightgrey" />
-          <GenreContainer name="Country" color="brown" />
-          <GenreContainer name="Indie" color="purple" />
-          <GenreContainer name="Reggae" color="orange" />
+          {browseImagesList.map((image, index) => (
+            <GenreContainer key={index} image={image} />
+          ))}
+          {genreImagesList.map((image, index) => (
+            <GenreContainer key={index} image={image} />
+          ))}
         </View>
       </ScrollView>
 

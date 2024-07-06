@@ -18,7 +18,7 @@ const Uploads = () => {
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          marginHorizontal: 25,
+          marginHorizontal: 10,
         }}
       >
         <View>

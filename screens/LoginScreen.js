@@ -8,6 +8,7 @@ import {
   Image,
   TextInput,
   Pressable,
+  Alert,
 } from "react-native";
 
 const SoundwaveLogo = require("../assets/Soundwave-Logo.png");
@@ -68,6 +69,25 @@ export default function LoginScreen() {
           }}
         >
           <Text style={{ fontSize: 20, textAlign: "center" }}>LOG IN</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => Alert.alert("Google Login")}
+          style={{
+            marginTop: 10,
+            borderWidth: 1,
+            borderColor: "green",
+            paddingLeft: 50,
+            paddingRight: 50,
+            width: 200,
+            marginLeft: "auto",
+            marginRight: "auto",
+            padding: 10,
+            borderRadius: 10,
+          }}
+        >
+          <Text style={{ marginHorizontal: "auto" }}>
+            <Ionicons name="logo-google" size={24} color="green" />
+          </Text>
         </Pressable>
 
         <View style={{ alignItems: "center" }}>

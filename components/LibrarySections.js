@@ -13,7 +13,6 @@ const LibrarySections = ({ name, link }) => {
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
-            marginHorizontal: 10,
           }}
         >
           <Text style={{ fontSize: 25, marginVertical: 10, color: "green" }}>

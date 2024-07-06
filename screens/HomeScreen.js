@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
 
 import GenreContainer from "../components/GenreContainer";
 import HomeNavigation from "../components/HomeNavigation";
-import GenreBox from "../components/GenreBox";
 
 const browseImages = require.context("../assets/browse", true);
 const browseImagesList = browseImages.keys().map(browseImages);
@@ -17,10 +16,12 @@ export default function HomeScreen() {
       <HomeNavigation activeRouteName="MainScreen" />
       <ScrollView>
         <View style={styles.section}>
-          <Text style={styles.headerStyle}>Your Top Genres</Text>
+          <Text style={[styles.headerStyle, { marginBottom: 10 }]}>
+            Your Top Genres
+          </Text>
 
           <View
-            style={{ marginTop: 5, flexWrap: "wrap", flexDirection: "row" }}
+            style={{ marginLeft: 5, flexWrap: "wrap", flexDirection: "row" }}
           >
             {genreImagesList.map((image, index) => (
               <GenreContainer key={index} image={image} />
@@ -28,7 +29,9 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        <Text style={[styles.headerStyle, { marginTop: 40 }]}>Browse More</Text>
+        <Text style={[styles.headerStyle, { marginTop: 40, marginBottom: 10 }]}>
+          Browse More
+        </Text>
 
         <View style={{ flexDirection: "row", flexWrap: "wrap", marginLeft: 5 }}>
           {browseImagesList.map((image, index) => (

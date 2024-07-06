@@ -27,7 +27,7 @@ const GenreContainer = ({ image, text }) => {
           style={{
             borderRadius: 10,
             width: responsiveWidth(46),
-            marginVertical: 5,
+            marginVertical: -2,
           }}
         />
         <Text

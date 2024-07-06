@@ -23,11 +23,11 @@ const Account = () => {
         <View style={styles.content}>
           <View style={styles.field}>
             <Text style={styles.headText}>Username:</Text>
-            <Text style={styles.paragraphText}>@username</Text>
+            <Text style={styles.paragraphText}>@hodd</Text>
           </View>
           <View style={styles.field}>
             <Text style={styles.headText}>Email:</Text>
-            <Text style={styles.paragraphText}>name@domain.com</Text>
+            <Text style={styles.paragraphText}>hodd@stk.knust.edu.gh</Text>
           </View>
           <View style={styles.buttonBox}>
             <Button
@@ -82,8 +82,8 @@ const styles = StyleSheet.create({
     borderRadius: "10px",
   },
   buttonBox: {
-    marginVertical: 1,
     flexDirection: "row",
+    justifyContent: "space-around",
     alignItems: "center",
   },
   buttonText: {

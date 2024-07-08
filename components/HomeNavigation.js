@@ -7,17 +7,17 @@ const HomeNavigation = ({ activeRouteName }) => {
       <View style={{ marginLeft: 10, flexDirection: "row" }}>
         <ColoredButton
           name="Genre"
-          color={activeRouteName === "MainScreen" ? "green" : "lightgreen"}
-          link="HomeScreen"
+          color={activeRouteName === "MainScreen" ? "#0C5745" : "#CCEAE3"}
+          link="Home"
         />
         <ColoredButton
           name="New Music"
-          color={activeRouteName === "NewMusic" ? "green" : "lightgreen"}
+          color={activeRouteName === "NewMusic" ? "#0C5745" : "#CCEAE3"}
           link="NewMusic"
         />
         <ColoredButton
           name="Trending"
-          color={activeRouteName === "Trending" ? "green" : "lightgreen"}
+          color={activeRouteName === "Trending" ? "#0C5745" : "#CCEAE3"}
           link="Trending"
         />
       </View>
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     marginBottom: "auto",
     backgroundColor: "transparent",
     borderBottomWidth: 1,
-    borderColor: "lightgreen",
+    borderColor: "#CCEAE3",
   },
 });
 

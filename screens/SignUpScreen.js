@@ -8,6 +8,7 @@ import {
   Image,
   TextInput,
   Pressable,
+  Alert,
 } from "react-native";
 
 const SoundwaveLogo = require("../assets/Soundwave-Logo.png");
@@ -30,17 +31,17 @@ export default function SignUp() {
         </Text>
       </View>
       <View style={{ marginTop: 10 }}>
-        <TextInput style={styles.inputBox} placeholder="Full Name" />
-        <TextInput style={styles.inputBox} placeholder="Username" />
+        <TextInput style={styles.inputBox} placeholder="Full Name *" />
+        <TextInput style={styles.inputBox} placeholder="Username *" />
         <TextInput
           style={styles.inputBox}
           secureTextEntry={true}
-          placeholder="Password"
+          placeholder="Password *"
         />
         <TextInput
           style={styles.inputBox}
           secureTextEntry={true}
-          placeholder="Confirm Password"
+          placeholder="Confirm Password *"
         />
         <TextInput style={styles.inputBox} placeholder="Country" />
       </View>
@@ -50,7 +51,7 @@ export default function SignUp() {
           onPress={() => navigation.navigate("MainScreen")}
           style={{
             marginTop: 50,
-            backgroundColor: "lightgreen",
+            backgroundColor: "#CCEAE3",
             paddingLeft: 50,
             paddingRight: 50,
             width: 200,
@@ -60,7 +61,7 @@ export default function SignUp() {
             borderRadius: 10,
           }}
         >
-          <Text style={{ fontSize: 20, textAlign: "center" }}>SIGN UP9</Text>
+          <Text style={{ fontSize: 20, textAlign: "center" }}>SIGN UP</Text>
         </Pressable>
 
         <Pressable
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     borderStyle: "solid",
-    backgroundColor: "rgb(193, 247, 201)",
+    backgroundColor: "#CCEAE3",
     padding: 10,
     paddingTop: 20,
     borderRadius: 5,

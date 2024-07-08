@@ -11,6 +11,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import GenreContainer from "../components/GenreContainer";
+import Vibes from "../components/Vibes";
+import MiniPlayer from "../components/MiniPlayer";
 
 const browseImages = require.context("../assets/browse", true);
 const browseImagesList = browseImages.keys().map(browseImages);
@@ -38,7 +40,7 @@ const SearchScreen = () => {
         </Pressable>
         <Pressable
           onPress={() => {
-            navigation.navigate("DownloadScreen");
+            navigation.navigate("Download");
           }}
         >
           <Ionicons name="cloud-download" size={24} color="black" />
@@ -59,22 +61,28 @@ const SearchScreen = () => {
       />
       <Text style={{ fontSize: 25, margin: 10 }}>Vibes</Text>
       <ScrollView>
-        <View
-          style={{
-            flexDirection: "row",
-            flexWrap: "wrap",
-            marginLeft: 5,
-          }}
-        >
-          {browseImagesList.map((image, index) => (
-            <GenreContainer key={index} image={image} />
-          ))}
-          {genreImagesList.map((image, index) => (
-            <GenreContainer key={index} image={image} />
-          ))}
+        <View style={{ flexDirection: "row" }}>
+          <View
+            style={{
+              marginLeft: 5,
+            }}
+          >
+            <Vibes name={"vibes"} height={25} />
+            <Vibes name={"vibes"} height={25} />
+            <Vibes name={"vibes"} height={25} />
+            <Vibes name={"vibes"} height={25} />
+          </View>
+          <View>
+            <Vibes name={"vibes"} height={18.5} />
+            <Vibes name={"vibes"} height={20} />
+            <Vibes name={"vibes"} height={20} />
+            <Vibes name={"vibes"} height={20} />
+            <Vibes name={"vibes"} height={20} />
+          </View>
         </View>
       </ScrollView>
 
+      <MiniPlayer />
       <StatusBar style="auto" />
     </SafeAreaView>
   );

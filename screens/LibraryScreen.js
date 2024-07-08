@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, StatusBar, SafeAreaView } from "react-native";
 import LibrarySections from "../components/LibrarySections";
+import MiniPlayer from "../components/MiniPlayer";
 
 const LibraryScreen = () => {
   return (
@@ -23,6 +24,8 @@ const LibraryScreen = () => {
           <LibrarySections name="Your Uploads" link="Uploads" />
         </View>
       </SafeAreaView>
+      <MiniPlayer />
+
       <StatusBar style="auto" />
     </SafeAreaView>
   );

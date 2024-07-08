@@ -17,13 +17,13 @@ const BoxContainer = () => {
           onPress={() => navigation.navigate("LoginScreen")}
           style={{
             borderStyle: "solid",
-            borderColor: "lightgreen",
+            borderColor: "#39C0D4",
             borderWidth: 5,
             paddingLeft: 30,
             paddingRight: 30,
             padding: 5,
             borderRadius: 50,
-            backgroundColor: "lightgreen",
+            backgroundColor: "#3BE4BB",
           }}
         >
           <Text style={{ fontSize: 25, color: "black" }}>Get Started</Text>
@@ -35,7 +35,7 @@ const BoxContainer = () => {
 
 const styles = StyleSheet.create({
   boxContainer: {
-    backgroundColor: "black",
+    backgroundColor: "#000000",
     alignItems: "center",
     marginTop: "auto",
     marginBottom: -50,

@@ -58,7 +58,7 @@ export default function LoginScreen() {
           onPress={() => navigation.navigate("MainScreen")}
           style={{
             marginTop: 50,
-            backgroundColor: "lightgreen",
+            backgroundColor: "#CCEAE3",
             paddingLeft: 50,
             paddingRight: 50,
             width: 200,
@@ -100,10 +100,7 @@ export default function LoginScreen() {
             }}
           >
             Don't have an account?
-            <Pressable
-              onPress={() => navigation.navigate("SignUpScreen")}
-              style={{ marginTop: -2.5 }}
-            >
+            <Pressable onPress={() => navigation.navigate("SignUpScreen")}>
               <Text
                 style={{
                   color: "green",
@@ -135,7 +132,7 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     borderStyle: "solid",
-    backgroundColor: "rgb(193, 247, 201)",
+    backgroundColor: "#CCEAE3",
     padding: 10,
     paddingTop: 20,
     borderRadius: 5,

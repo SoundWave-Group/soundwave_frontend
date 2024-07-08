@@ -10,6 +10,7 @@ import {
   Alert,
 } from "react-native";
 import { TapGestureHandler, State } from "react-native-gesture-handler";
+import SongRecognition from "../components/SongRecognition";
 
 const ShazamScreen = () => {
   const scale = useRef(new Animated.Value(1)).current;
@@ -48,7 +49,6 @@ const ShazamScreen = () => {
               <Pressable
                 onPress={() => {
                   startAnimation();
-                  Alert.alert("SHAZAM !");
                 }}
               >
                 <Ionicons name="musical-notes" size={70} color="white" />
@@ -60,6 +60,7 @@ const ShazamScreen = () => {
       <Text style={{ fontSize: 18, marginTop: 40, color: "green" }}>
         Tap to Identify A Song
       </Text>
+      <SongRecognition />
     </View>
   );
 };

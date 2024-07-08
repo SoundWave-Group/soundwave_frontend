@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
 
 import GenreContainer from "../components/GenreContainer";
 import HomeNavigation from "../components/HomeNavigation";
+import MiniPlayer from "../components/MiniPlayer";
 
 const browseImages = require.context("../assets/browse", true);
 const browseImagesList = browseImages.keys().map(browseImages);
@@ -39,6 +40,8 @@ export default function HomeScreen() {
           ))}
         </View>
       </ScrollView>
+      <MiniPlayer />
+
       <StatusBar style="auto" />
     </SafeAreaView>
   );

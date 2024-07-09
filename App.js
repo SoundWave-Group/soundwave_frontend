@@ -38,9 +38,8 @@ import Analytics from "./screens/ProfileScreens/Analytics";
 import SearchScreen from "./screens/SearchScreen";
 import DownloadScreen from "./screens/ProfileScreens/DownloadScreen";
 import PlayerScreen from "./screens/PlayerScreen";
-import ShazamScreen from "./screens/_ShazamScreen";
+import ShazamScreen from "./screens/ShazamScreen";
 
-// Create navigators
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 

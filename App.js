@@ -11,7 +11,6 @@ import {
   FontAwesome5,
 } from "@expo/vector-icons";
 
-// Import your screens here
 import Splash from "./screens/Splash";
 import LandingScreen from "./screens/LandingScreen";
 import LoginScreen from "./screens/LoginScreen";

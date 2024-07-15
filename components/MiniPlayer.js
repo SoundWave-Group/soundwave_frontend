@@ -18,7 +18,16 @@ const MiniPlayer = () => {
   };
 
   return (
-    <Pressable onPress={() => navigation.navigate("PlayerScreen")}>
+    <Pressable
+      onPress={() =>
+        navigation.navigate("PlayerScreen", {
+          artist: item.artist,
+          title: item.title,
+          albumArt: item.albumArt,
+          link: item.link,
+        })
+      }
+    >
       <View style={styles.container}>
         <View style={{ flexDirection: "row" }}>
           <Pressable onPress={togglePlayPause}>
@@ -29,8 +38,8 @@ const MiniPlayer = () => {
             />
           </Pressable>
           <View style={{ marginLeft: 10 }}>
-            <Text style={{ fontWeight: 600 }}>We Can't Be Friends</Text>
-            <Text>Ariana Grande</Text>
+            <Text style={{ fontWeight: 600 }}>R & Drill</Text>
+            <Text>B Young</Text>
           </View>
         </View>
         <Pressable onPress={toggleLiked}>

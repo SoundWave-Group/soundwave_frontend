@@ -1,20 +1,29 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  SafeAreaView,
+  Pressable,
+} from "react-native";
 
 import HomeNavigation from "../../components/HomeNavigation";
+import GenreBox from "../../components/GenreBox";
 import GenreContainer from "../../components/GenreContainer";
 import Artiste from "../../components/Artiste";
 
 const recentlyPlayed = require.context("../../assets/recents", true);
-const recentlyPlayedList = recentlyPlayed.keys().map(recentlyPlayed);
 
 const mixes = require.context("../../assets/mixes", true);
 const mixesList = mixes.keys().map(mixes);
 
-import data from "../../utils/songData";
-const artistesData = data.artistes;
+import data from "../../utils/data";
+import { useNavigation } from "@react-navigation/native";
 
 export default function App() {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.container}>
       <HomeNavigation activeRouteName="NewMusic" />
@@ -33,8 +42,19 @@ export default function App() {
             <View
               style={{ flexDirection: "row", flexWrap: "wrap", marginLeft: 5 }}
             >
-              {recentlyPlayedList.map((image, index) => (
-                <GenreContainer key={index} image={image} />
+              {data[3].recents.map((recents, index) => (
+                <Pressable
+                  key={index}
+                  onPress={() =>
+                    navigation.navigate("SongListScreen", {
+                      name: recents.name,
+                      songs: recents.songs,
+                    })
+                  }
+                  style={styles.genreContainer}
+                >
+                  <GenreBox artisteName={recents.name} image={recents.photo} />
+                </Pressable>
               ))}
             </View>
           </ScrollView>
@@ -56,8 +76,19 @@ export default function App() {
               showsHorizontalScrollIndicator={false}
               style={{ flexDirection: "row", gap: 10, marginTop: 20 }}
             >
-              {artistesData.map((index, artisteName, image) => (
-                <Artiste key={index} image={image} artisteName={artisteName} />
+              {data[0].artistes.map((artiste, index) => (
+                <Pressable
+                  key={index}
+                  onPress={() =>
+                    navigation.navigate("SongListScreen", {
+                      name: artiste.name,
+                      songs: artiste.songs,
+                    })
+                  }
+                  style={styles.genreContainer}
+                >
+                  <Artiste artisteName={artiste.name} image={artiste.photo} />
+                </Pressable>
               ))}
             </ScrollView>
           </View>
@@ -78,8 +109,19 @@ export default function App() {
             showsHorizontalScrollIndicator={false}
             style={{ marginTop: 5 }}
           >
-            {mixesList.map((image, index) => (
-              <GenreContainer key={index} image={image} />
+            {data[4].mixes.map((mix, index) => (
+              <Pressable
+                key={index}
+                onPress={() =>
+                  navigation.navigate("SongListScreen", {
+                    name: mix.name,
+                    songs: mix.songs,
+                  })
+                }
+                style={styles.genreContainer}
+              >
+                <GenreBox image={mix.photo} />
+              </Pressable>
             ))}
           </ScrollView>
         </View>
@@ -93,7 +135,6 @@ const styles = StyleSheet.create({
   genre: {
     flex: 1,
     paddingTop: 20,
-    marginLeft: 5,
   },
   browse: {
     flex: 1,

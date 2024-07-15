@@ -11,14 +11,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import GenreContainer from "../components/GenreContainer";
-import Vibes from "../components/Vibes";
-import MiniPlayer from "../components/MiniPlayer";
 
-const browseImages = require.context("../assets/browse", true);
-const browseImagesList = browseImages.keys().map(browseImages);
-
-const genreImages = require.context("../assets/genre", true);
-const genreImagesList = genreImages.keys().map(genreImages);
+import data from "../utils/data";
 
 const SearchScreen = () => {
   const navigation = useNavigation();
@@ -65,24 +59,42 @@ const SearchScreen = () => {
           <View
             style={{
               marginLeft: 5,
+              flexDirection: "row",
+              flexWrap: "wrap",
             }}
           >
-            <Vibes name={"vibes"} height={25} />
-            <Vibes name={"vibes"} height={25} />
-            <Vibes name={"vibes"} height={25} />
-            <Vibes name={"vibes"} height={25} />
-          </View>
-          <View>
-            <Vibes name={"vibes"} height={18.5} />
-            <Vibes name={"vibes"} height={20} />
-            <Vibes name={"vibes"} height={20} />
-            <Vibes name={"vibes"} height={20} />
-            <Vibes name={"vibes"} height={20} />
+            {data[1].browse.map((genre, index) => (
+              <Pressable
+                key={index}
+                onPress={() =>
+                  navigation.navigate("SongListScreen", {
+                    genre: genre.name,
+                    songs: genre.songs,
+                  })
+                }
+                style={styles.genreContainer}
+              >
+                <GenreContainer image={genre.photo} />
+              </Pressable>
+            ))}
+            {data[2].genre.map((genre, index) => (
+              <Pressable
+                key={index}
+                onPress={() =>
+                  navigation.navigate("SongListScreen", {
+                    genre: genre.name,
+                    songs: genre.songs,
+                  })
+                }
+                style={styles.genreContainer}
+              >
+                <GenreContainer image={genre.photo} />
+              </Pressable>
+            ))}
           </View>
         </View>
       </ScrollView>
 
-      <MiniPlayer />
       <StatusBar style="auto" />
     </SafeAreaView>
   );

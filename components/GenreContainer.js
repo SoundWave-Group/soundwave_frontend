@@ -15,31 +15,31 @@ const responsiveHeight = (percentage) => {
 const GenreContainer = ({ image, text }) => {
   const navigator = useNavigation();
   return (
-    <Pressable onPress={() => navigator.navigate("PlayerScreen")}>
-      <View
+    // <Pressable onPress={() => navigator.navigate("PlayerScreen")}>
+    <View
+      style={{
+        width: responsiveWidth(45),
+        marginHorizontal: 5,
+      }}
+    >
+      <Image
+        source={image}
         style={{
-          width: responsiveWidth(45),
-          marginHorizontal: 5,
+          borderRadius: 10,
+          width: responsiveWidth(46),
+          marginVertical: -2,
+        }}
+      />
+      <Text
+        style={{
+          fontSize: 18,
+          marginLeft: 5,
         }}
       >
-        <Image
-          source={image}
-          style={{
-            borderRadius: 10,
-            width: responsiveWidth(46),
-            marginVertical: -2,
-          }}
-        />
-        <Text
-          style={{
-            fontSize: 18,
-            marginLeft: 5,
-          }}
-        >
-          {text}
-        </Text>
-      </View>
-    </Pressable>
+        {text}
+      </Text>
+    </View>
+    // </Pressable>
   );
 };
 

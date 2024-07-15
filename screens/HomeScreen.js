@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import data from "../utils/songData";
+import data from "../utils/data";
 import GenreContainer from "../components/GenreContainer";
 import HomeNavigation from "../components/HomeNavigation";
 import MiniPlayer from "../components/MiniPlayer";
@@ -28,17 +28,45 @@ export default function HomeScreen() {
           </Text>
           <View
             style={{ marginLeft: 5, flexWrap: "wrap", flexDirection: "row" }}
-          ></View>
+          >
+            {data[2].genre.map((genre, index) => (
+              <Pressable
+                key={index}
+                onPress={() =>
+                  navigation.navigate("SongListScreen", {
+                    genre: genre.name,
+                    songs: genre.songs,
+                  })
+                }
+                style={styles.genreContainer}
+              >
+                <GenreContainer image={genre.photo} />
+              </Pressable>
+            ))}
+          </View>
         </View>
 
         <Text style={[styles.headerStyle, { marginTop: 40, marginBottom: 10 }]}>
           Browse More
         </Text>
-        <View
-          style={{ flexDirection: "row", flexWrap: "wrap", marginLeft: 5 }}
-        ></View>
+        <View style={{ flexDirection: "row", flexWrap: "wrap", marginLeft: 5 }}>
+          {data[1].browse.map((genre, index) => (
+            <Pressable
+              key={index}
+              onPress={() =>
+                navigation.navigate("SongListScreen", {
+                  genre: genre.name,
+                  songs: genre.songs,
+                })
+              }
+              style={styles.genreContainer}
+            >
+              <GenreContainer image={genre.photo} />
+            </Pressable>
+          ))}
+        </View>
       </ScrollView>
-      <MiniPlayer />
+      {/* <MiniPlayer /> */}
       <StatusBar style="auto" />
     </SafeAreaView>
   );

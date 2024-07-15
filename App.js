@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -10,7 +10,6 @@ import {
   FontAwesome,
   FontAwesome5,
 } from "@expo/vector-icons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Splash from "./screens/Splash";
 import LandingScreen from "./screens/LandingScreen";
@@ -39,6 +38,7 @@ import SearchScreen from "./screens/SearchScreen";
 import DownloadScreen from "./screens/ProfileScreens/DownloadScreen";
 import PlayerScreen from "./screens/PlayerScreen";
 import ShazamScreen from "./screens/ShazamScreen";
+import SongListScreen from "./screens/SongListScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -259,28 +259,9 @@ const BottomNavigationBar = () => {
 };
 
 export default function App() {
-  const [initialRoute, setInitialRoute] = useState("SplashScreen");
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const checkUserDetails = async () => {
-      const userDetails = await AsyncStorage.getItem("userDetails");
-      if (userDetails) {
-        setInitialRoute("MainScreen");
-      }
-      setLoading(false);
-    };
-
-    checkUserDetails();
-  }, []);
-
-  if (loading) {
-    return null; // Or return a loading spinner component
-  }
-
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={initialRoute}>
+      <Stack.Navigator initialRouteName="SplashScreen">
         <Stack.Screen
           name="SplashScreen"
           component={Splash}
@@ -312,6 +293,14 @@ export default function App() {
           options={{
             headerShown: false,
             ...TransitionPresets.ModalSlideFromBottomIOS,
+          }}
+        />
+        <Stack.Screen
+          name="SongListScreen"
+          component={SongListScreen}
+          options={{
+            headerTitle: "Songs",
+            headerBackTitleVisible: false,
           }}
         />
       </Stack.Navigator>

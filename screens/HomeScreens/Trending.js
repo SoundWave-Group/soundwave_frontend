@@ -1,9 +1,15 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  SafeAreaView,
+  Pressable,
+} from "react-native";
 
 import HomeNavigation from "../../components/HomeNavigation";
 import { useNavigation } from "@react-navigation/native";
-import GenreContainer from "../../components/GenreContainer";
 import { Ionicons } from "@expo/vector-icons";
 
 const trending = require.context("../../assets/trending", true);
@@ -21,6 +27,10 @@ const trendingText = [
   "Rock",
   "Soul",
 ];
+
+import data from "../../utils/data";
+import GenreBox from "../../components/GenreBox";
+import GenreContainer from "../../components/GenreContainer";
 
 export default function App() {
   const navigation = useNavigation();
@@ -43,15 +53,20 @@ export default function App() {
               rowGap: 10,
             }}
           >
-            {trendingList.map((image, index) => {
-              return (
-                <GenreContainer
-                  key={index}
-                  image={image}
-                  text={trendingText[index]}
-                />
-              );
-            })}
+            {data[5].trending.map((trending, index) => (
+              <Pressable
+                key={index}
+                onPress={() =>
+                  navigation.navigate("SongListScreen", {
+                    name: trending.name,
+                    songs: trending.songs,
+                  })
+                }
+                style={styles.genreContainer}
+              >
+                <GenreContainer text={trending.name} image={trending.photo} />
+              </Pressable>
+            ))}
           </View>
         </View>
       </ScrollView>

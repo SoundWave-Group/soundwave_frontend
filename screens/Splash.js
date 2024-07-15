@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import LandingScreen from "../screens/LandingScreen";
 

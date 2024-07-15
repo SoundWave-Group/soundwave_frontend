@@ -24,7 +24,6 @@ const LibraryScreen = () => {
           <LibrarySections name="Your Uploads" link="Uploads" />
         </View>
       </SafeAreaView>
-      <MiniPlayer />
 
       <StatusBar style="auto" />
     </SafeAreaView>

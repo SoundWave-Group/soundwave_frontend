@@ -6,6 +6,8 @@ import {
   Image,
   SafeAreaView,
   ActivityIndicator,
+  Alert,
+  Modal,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
@@ -18,6 +20,10 @@ const ProfileScreen = () => {
 
   const [userDetails, setUserDetails] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const [newFullName, setNewFullName] = useState("");
+  const [newBio, setNewBio] = useState("");
+  const [newLocation, setNewLocation] = useState("");
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -38,6 +44,70 @@ const ProfileScreen = () => {
 
     fetchUserDetails();
   }, []);
+
+  const handleChangeDetails = async () => {
+    const username = userDetails.userProfile.username;
+
+    <Modal visible={true} animationType="slide" transparent={true}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <View
+          style={{ backgroundColor: "white", padding: 20, borderRadius: 10 }}
+        >
+          <Text style={{ fontSize: 20, color: "green" }}>Edit Profile</Text>
+          <TextInput
+            placeholder="Full Name"
+            value={newFullName}
+            onChangeText={setNewFullName}
+            style={styles.input}
+          />
+          <TextInput
+            placeholder="Bio"
+            value={newBio}
+            onChangeText={setNewBio}
+            style={styles.input}
+          />
+          <TextInput
+            placeholder="Location"
+            value={newLocation}
+            onChangeText={setNewLocation}
+            style={styles.input}
+          />
+          <Pressable onPress={handleEditProfile}>
+            <Text style={{ color: "green", fontSize: 20 }}>Save</Text>
+          </Pressable>
+        </View>
+      </View>
+    </Modal>;
+
+    const body = {
+      username,
+      newBio,
+      newFullName,
+      newLocation,
+    };
+
+    const response = await fetch(
+      `https://soundwave-56af.onrender.com/api/user-profile/edit/${username}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      setUserDetails(data);
+      await AsyncStorage.setItem(
+        "userDetails",
+        JSON.stringify(userDetails.userProfile)
+      );
+    }
+
+    console.log("User details updated", response);
+  };
 
   if (loading) {
     return (
@@ -64,7 +134,12 @@ const ProfileScreen = () => {
           marginHorizontal: 25,
         }}
       >
-        <Text></Text>
+        <Pressable onPress={() => navigation.goBack()}>
+          <View>
+            <Ionicons name="chevron-back" color="green" size={25} />
+          </View>
+        </Pressable>
+
         <Text
           style={{
             fontSize: 20,
@@ -92,31 +167,20 @@ const ProfileScreen = () => {
               marginVertical: 10,
             }}
           />
-
-          <View style={{ marginHorizontal: "auto" }}>
-            <Text
-              style={{
-                marginHorizontal: "auto",
-                borderBottomWidth: 1,
-                color: "green",
-              }}
-            >
-              Bio:
-            </Text>
-            <Text style={{ fontSize: 18 }}>{userDetails.userProfile.bio}</Text>
-          </View>
         </View>
       </View>
 
       <View
         style={{ margin: 20, gap: 15, marginTop: 50, flexDirection: "row" }}
       >
-        <View style={{ gap: 5 }}>
+        <View style={{ gap: 20 }}>
           <Text style={styles.text}>Name:</Text>
           <Text style={styles.text}>Username:</Text>
           <Text style={styles.text}>Email:</Text>
+          <Text style={styles.text}>Bio:</Text>
+          <Text style={styles.text}>Location:</Text>
         </View>
-        <View style={{ gap: 5, marginHorizontal: "auto" }}>
+        <View style={{ gap: 20, marginHorizontal: "auto" }}>
           <Text style={styles.textSecondary}>
             {userDetails.userProfile.fullName}
           </Text>
@@ -126,7 +190,28 @@ const ProfileScreen = () => {
           <Text style={styles.textSecondary}>
             {userDetails.userProfile.email}
           </Text>
+          <Text style={styles.textSecondary}>
+            {userDetails.userProfile.bio}
+          </Text>
+          <Text style={styles.textSecondary}>
+            {userDetails.userProfile.location}
+          </Text>
         </View>
+      </View>
+      <View
+        style={{
+          marginHorizontal: "auto",
+          backgroundColor: "lightgreen",
+          paddingHorizontal: 20,
+          paddingVertical: 10,
+          borderRadius: 10,
+          marginTop: "auto",
+          marginBottom: 20,
+        }}
+      >
+        <Pressable onPress={handleChangeDetails}>
+          <Text style={{ fontSize: 20 }}>Edit Profile</Text>
+        </Pressable>
       </View>
 
       <StatusBar style="auto" />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -6,12 +6,39 @@ import {
   StatusBar,
   Pressable,
   TextInput,
+  Alert,
+  FlatList,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { requestPermissionsAsync } from "expo-av/build/Audio";
 
 const Playlists = () => {
   const navigation = useNavigation();
+
+  const [playlist, setPlaylists] = useState(null);
+
+  const handleCreatePlaylist = () => {
+    const playlistName = Alert.prompt(
+      "Create New Playlist",
+      "Enter Playlist Name"
+    );
+  };
+
+  const fetchPlaylists = async () => {
+    const response = await fetch(
+      "https://soundwave-56af.onrender.com/api/playlists"
+    );
+
+    if (response) {
+      setPlaylists(JSON.stringify(response));
+    }
+  };
+
+  useEffect(() => {
+    fetchPlaylists();
+  }, []);
+
   return (
     <View style={styles.container}>
       <View
@@ -47,7 +74,6 @@ const Playlists = () => {
               borderWidth: 0.5,
               paddingHorizontal: 10,
               marginHorizontal: 5,
-
               marginVertical: 10,
               height: 40,
               borderRadius: 10,
@@ -58,17 +84,16 @@ const Playlists = () => {
           <Ionicons name="shuffle" size={30} />
         </View>
 
-        <Text style={{ fontSize: 25 }}>Create a playlist </Text>
-
         <Pressable
           style={{
-            backgroundColor: "lightgreen",
+            backgroundColor: "aquamarine",
             padding: 10,
             width: 100,
-            height: 100,
+            height: 50,
             borderRadius: 10,
             marginTop: 20,
           }}
+          onPress={handleCreatePlaylist}
         >
           <Ionicons
             name="add-circle"
@@ -76,6 +101,20 @@ const Playlists = () => {
             style={{ margin: "auto", color: "white" }}
           />
         </Pressable>
+
+        <View style={{ marginTop: 20 }}>
+          {!playlist ? (
+            <Text style={{ fontSize: 25 }}>Create a playlist </Text>
+          ) : (
+            <FlatList
+              data={playlist}
+              renderItem={({ item }) => (
+                <Text style={{ fontSize: 20 }}>{item}</Text>
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          )}
+        </View>
       </View>
 
       <StatusBar style="auto" />

@@ -6,11 +6,23 @@ import {
   StyleSheet,
   Image,
   Pressable,
+  Modal,
+  ActivityIndicator,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Slider } from "@miblanchard/react-native-slider";
 import { Audio } from "expo-av";
+
+const LoadingModal = ({ visible }) => {
+  return (
+    <Modal transparent={true} animationType="fade" visible={visible}>
+      <View style={styles.modalBackground}>
+        <ActivityIndicator size="large" color="lightgreen" />
+      </View>
+    </Modal>
+  );
+};
 
 const PlayerScreen = () => {
   const navigation = useNavigation();
@@ -23,15 +35,24 @@ const PlayerScreen = () => {
   const [songIndex, setSongIndex] = useState(0);
   const [songData, setSongData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchSongData = async () => {
-      const response = await fetch(
-        "https://soundcloud-clone-api.vercel.app/tracks"
-      );
-      const data = await response.json();
-      setSongData(data.tracks);
-      setLoading(false);
+      try {
+        const response = await fetch(
+          "https://soundwave-56af.onrender.com/api/tracks"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch song data");
+        }
+        const data = await response.json();
+        setSongData(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchSongData();
@@ -40,13 +61,17 @@ const PlayerScreen = () => {
   useEffect(() => {
     const loadAudio = async () => {
       if (songData.length === 0) return; // Ensure songData is loaded before attempting to load audio
-      const { sound: newSound } = await Audio.Sound.createAsync(
-        { uri: songData[songIndex].link },
-        { shouldPlay: false }
-      );
-      setSound(newSound);
-      const status = await newSound.getStatusAsync();
-      setDuration(status.durationMillis / 1000); // Convert milliseconds to seconds
+      try {
+        const { sound: newSound } = await Audio.Sound.createAsync(
+          { uri: songData[songIndex].link },
+          { shouldPlay: false }
+        );
+        setSound(newSound);
+        const status = await newSound.getStatusAsync();
+        setDuration(status.durationMillis / 1000); // Convert milliseconds to seconds
+      } catch (err) {
+        setError("Failed to load audio");
+      }
     };
 
     loadAudio();
@@ -56,9 +81,13 @@ const PlayerScreen = () => {
     let interval = null;
 
     const updatePosition = async () => {
-      if (sound && isPlaying) {
-        const status = await sound.getStatusAsync();
-        setCurrentPosition(status.positionMillis / 1000);
+      try {
+        if (sound && isPlaying) {
+          const status = await sound.getStatusAsync();
+          setCurrentPosition(status.positionMillis / 1000);
+        }
+      } catch (err) {
+        setError("Failed to update position");
       }
     };
 
@@ -73,31 +102,43 @@ const PlayerScreen = () => {
 
   const togglePlayPause = async () => {
     if (sound) {
-      if (isPlaying) {
-        await sound.pauseAsync();
-      } else {
-        await sound.playAsync();
+      try {
+        if (isPlaying) {
+          await sound.pauseAsync();
+        } else {
+          await sound.playAsync();
+        }
+        setIsPlaying(!isPlaying);
+      } catch (err) {
+        setError("Failed to toggle play/pause");
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
   const handleNext = async () => {
-    const nextIndex = (songIndex + 1) % songData.length;
-    setSongIndex(nextIndex);
-    if (sound) {
-      await sound.unloadAsync();
+    try {
+      const nextIndex = (songIndex + 1) % songData.length;
+      setSongIndex(nextIndex);
+      if (sound) {
+        await sound.unloadAsync();
+      }
+      setIsPlaying(false); // Stop playback before loading new audio
+    } catch (err) {
+      setError("Failed to load next song");
     }
-    setIsPlaying(false); // Stop playback before loading new audio
   };
 
   const handlePrevious = async () => {
-    const prevIndex = (songIndex - 1 + songData.length) % songData.length;
-    setSongIndex(prevIndex);
-    if (sound) {
-      await sound.unloadAsync();
+    try {
+      const prevIndex = (songIndex - 1 + songData.length) % songData.length;
+      setSongIndex(prevIndex);
+      if (sound) {
+        await sound.unloadAsync();
+      }
+      setIsPlaying(false); // Stop playback before loading new audio
+    } catch (err) {
+      setError("Failed to load previous song");
     }
-    setIsPlaying(false); // Stop playback before loading new audio
   };
 
   const toggleShuffle = () => {
@@ -116,11 +157,7 @@ const PlayerScreen = () => {
   };
 
   if (loading) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <Text>Loading...</Text>
-      </SafeAreaView>
-    );
+    return <LoadingModal visible={loading} />;
   }
 
   return (
@@ -153,10 +190,19 @@ const PlayerScreen = () => {
               maximumValue={duration}
               thumbTintColor="lightblue"
               trackStyle={{ backgroundColor: "lightblue" }}
-              style={{
-                alignSelf: "center",
-                backgroundColor: "red",
-              }}
+              onSlidingComplete={
+                // play next song
+                async (value) => {
+                  if (value === duration) {
+                    if (isRepeat) {
+                      await sound.setPositionAsync(0);
+                    } else {
+                      handleNext();
+                    }
+                  }
+                }
+              }
+              width={300}
             />
             <View style={styles.timeContainer}>
               <Text>{formatTime(currentPosition)}</Text>
@@ -230,6 +276,7 @@ const styles = StyleSheet.create({
   timeContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
+    width: 300,
   },
   buttonContainer: {
     flexDirection: "row",
@@ -240,6 +287,12 @@ const styles = StyleSheet.create({
   containerSecondary: {
     justifyContent: "center",
     alignItems: "center",
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgb(50, 153, 168)",
   },
 });
 

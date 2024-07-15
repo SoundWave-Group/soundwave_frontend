@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -10,6 +10,7 @@ import {
   FontAwesome,
   FontAwesome5,
 } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Splash from "./screens/Splash";
 import LandingScreen from "./screens/LandingScreen";
@@ -258,9 +259,28 @@ const BottomNavigationBar = () => {
 };
 
 export default function App() {
+  const [initialRoute, setInitialRoute] = useState("SplashScreen");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkUserDetails = async () => {
+      const userDetails = await AsyncStorage.getItem("userDetails");
+      if (userDetails) {
+        setInitialRoute("MainScreen");
+      }
+      setLoading(false);
+    };
+
+    checkUserDetails();
+  }, []);
+
+  if (loading) {
+    return null; // Or return a loading spinner component
+  }
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SplashScreen">
+      <Stack.Navigator initialRouteName={initialRoute}>
         <Stack.Screen
           name="SplashScreen"
           component={Splash}

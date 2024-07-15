@@ -9,10 +9,11 @@ import {
   Share,
 } from "react-native";
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { StackRouter, useNavigation } from "@react-navigation/native";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import Button from "../../components/Button";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const openURL = (url) => {
   Linking.openURL(url).catch((err) =>
@@ -174,11 +175,13 @@ const Settings = () => {
             <FontAwesome5 name="angle-right" size={24} color="black" />
           </View>
         </View>
+
         <Button
           title="Sign Out"
           buttonStyle={styles.signOut}
           textStyle={styles.signOutText}
-          pressed={() => {
+          pressed={async () => {
+            await AsyncStorage.clear();
             navigation.navigate("SplashScreen");
           }}
         />

@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation, SafeAreaView } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -9,12 +10,81 @@ import {
   TextInput,
   Pressable,
   Alert,
+  Modal,
+  ActivityIndicator,
 } from "react-native";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SoundwaveLogo = require("../assets/Soundwave-Logo.png");
 
 export default function LoginScreen() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const navigation = useNavigation();
+
+  const handleLogin = async () => {
+    if (!username || !password) {
+      Alert.alert("Error", "Please fill in all the fields");
+      return;
+    }
+
+    const data = {
+      username,
+      password,
+    };
+
+    try {
+      setLoading(true);
+      const response = await fetch(
+        "https://soundwave-56af.onrender.com/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (response.ok) {
+        const getUser = await fetch(
+          `https://soundwave-56af.onrender.com/api/user-profile/${username}`
+        );
+        const userData = await getUser.json(); // Await here
+        await AsyncStorage.setItem("userDetails", JSON.stringify(userData));
+        console.log(userData);
+        setLoading(false);
+        Alert.alert("Success", "Logged in successfully");
+        navigation.navigate("MainScreen");
+      } else {
+        setLoading(false);
+        const errorData = await response.json();
+        Alert.alert("Error", errorData.message || "Something went wrong");
+      }
+    } catch (error) {
+      setLoading(false);
+      Alert.alert("Error", "Failed to log in. Please try again later.");
+      console.log(error);
+    }
+  };
+
+  const LoadingModal = ({ visible }) => {
+    return (
+      <Modal transparent={true} animationType="fade" visible={visible}>
+        <View style={styles.modalBackground}>
+          <ActivityIndicator size="large" color="green" />
+        </View>
+      </Modal>
+    );
+  };
+
+  if (loading) {
+    return <LoadingModal visible={loading} />;
+  }
+
   return (
     <View style={styles.container}>
       <View>
@@ -31,14 +101,18 @@ export default function LoginScreen() {
         </Text>
       </View>
       <View style={{ marginTop: 50 }}>
-        <TextInput style={styles.inputBox} placeholder="Username" />
         <TextInput
-          style={[
-            styles.inputBox,
-            { flexDirection: "row", justifyContent: "space-between" },
-          ]}
+          style={styles.inputBox}
+          placeholder="Username or Email"
+          value={username}
+          onChangeText={setUsername}
+        />
+        <TextInput
+          style={[styles.inputBox, { marginTop: 10 }]}
           secureTextEntry={true}
           placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
         />
 
         <Text
@@ -55,7 +129,7 @@ export default function LoginScreen() {
 
       <View>
         <Pressable
-          onPress={() => navigation.navigate("MainScreen")}
+          onPress={handleLogin}
           style={{
             marginTop: 50,
             backgroundColor: "#CCEAE3",
@@ -71,7 +145,7 @@ export default function LoginScreen() {
           <Text style={{ fontSize: 20, textAlign: "center" }}>LOG IN</Text>
         </Pressable>
         <Pressable
-          onPress={() => Alert.alert("Google Login")}
+          onPress={() => navigation.navigate("MainScreen")}
           style={{
             marginTop: 10,
             borderWidth: 1,
@@ -90,33 +164,32 @@ export default function LoginScreen() {
           </Text>
         </Pressable>
 
-        <View style={{ alignItems: "center" }}>
-          <Text
-            style={{
-              marginTop: 60,
-              justifyContent: "center",
-              alignItems: "center",
-              fontSize: 18,
-            }}
-          >
+        <View
+          style={{
+            marginTop: 50,
+            flexDirection: "row",
+          }}
+        >
+          <Text style={{ fontSize: 18, marginHorizontal: 5 }}>
             Don't have an account?
-            <Pressable onPress={() => navigation.navigate("SignUpScreen")}>
-              <Text
-                style={{
-                  color: "green",
-                  fontSize: 18,
-                  marginHorizontal: 5,
-                }}
-              >
-                Sign Up
-              </Text>
-            </Pressable>
           </Text>
+          <Pressable onPress={() => navigation.navigate("SignUpScreen")}>
+            <Text style={{ fontSize: 18, color: "green" }}>Sign Up</Text>
+          </Pressable>
         </View>
 
-        <Text style={{ marginTop: 150, fontSize: 15, textAlign: "center" }}>
-          Need Help?
-        </Text>
+        <Pressable
+          style={{ marginTop: 50 }}
+          onPress={() => {
+            Alert.alert(
+              "SoundWave is a Clone of the SoundCloud Music App as a Group Project Work \n\n Group 35 - Computer Science '26"
+            );
+          }}
+        >
+          <Text style={{ fontSize: 15, textAlign: "center", marginTop: 120 }}>
+            Need Help?
+          </Text>
+        </Pressable>
       </View>
       <StatusBar style="auto" />
     </View>
@@ -138,5 +211,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: 300,
     margin: 10,
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgb(50, 153, 168)",
   },
 });

@@ -1,0 +1,11 @@
+{
+  "songs": [
+    {
+      "artist": "Various Artists",
+      "title": "R&B Classics",
+      "albumArt": "photo_url",
+      "genre": "R&B",
+      "link": "song_url"
+    }
+  ]
+}

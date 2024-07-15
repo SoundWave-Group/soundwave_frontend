@@ -11,9 +11,8 @@ const recentlyPlayedList = recentlyPlayed.keys().map(recentlyPlayed);
 const mixes = require.context("../../assets/mixes", true);
 const mixesList = mixes.keys().map(mixes);
 
-const artistes = require.context("../../assets/artistes", true);
-const artistesList = artistes.keys().map(artistes);
-const artistesName = ["Burna Boy", "Dave", "Isaiah Robin", "Tyla"];
+import data from "../../utils/songData";
+const artistesData = data.artistes;
 
 export default function App() {
   return (
@@ -57,8 +56,8 @@ export default function App() {
               showsHorizontalScrollIndicator={false}
               style={{ flexDirection: "row", gap: 10, marginTop: 20 }}
             >
-              {artistesList.map((image, index) => (
-                <Artiste key={index} image={image} name={artistesName[index]} />
+              {artistesData.map((index, artisteName, image) => (
+                <Artiste key={index} image={image} artisteName={artisteName} />
               ))}
             </ScrollView>
           </View>

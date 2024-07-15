@@ -5,13 +5,56 @@ import {
   Pressable,
   Image,
   SafeAreaView,
+  ActivityIndicator,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
+
+  const [userDetails, setUserDetails] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        setLoading(true);
+        const userData = await AsyncStorage.getItem("userDetails");
+        console.log(userData);
+
+        if (userData) {
+          setUserDetails(JSON.parse(userData));
+        }
+      } catch (error) {
+        console.error("Failed to load user details", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserDetails();
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={styles.loaderContainer}>
+        <ActivityIndicator size="large" color="green" />
+      </View>
+    );
+  }
+
+  if (!userDetails) {
+    return (
+      <View style={styles.loaderContainer}>
+        <Text>No user details available</Text>
+      </View>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -21,10 +64,10 @@ const ProfileScreen = () => {
           marginHorizontal: 25,
         }}
       >
+        <Text></Text>
         <Text
           style={{
             fontSize: 20,
-            marginHorizontal: "auto",
             color: "green",
           }}
         >
@@ -38,21 +81,30 @@ const ProfileScreen = () => {
       </View>
 
       <View>
-        <View style={{ margin: "auto" }}>
+        <View style={{ marginHorizontal: "auto" }}>
           <Image
-            source={require("../assets/adaptive-icon.png")}
+            source={require("../assets/artistes/Dave.png")}
             style={{
               width: 100,
               height: 100,
-              borderWidth: 2,
               borderRadius: 100,
               margin: "auto",
               marginVertical: 10,
             }}
           />
-          <Text style={{ fontSize: 15, color: "green" }}>
-            Edit Profile Image
-          </Text>
+
+          <View style={{ marginHorizontal: "auto" }}>
+            <Text
+              style={{
+                marginHorizontal: "auto",
+                borderBottomWidth: 1,
+                color: "green",
+              }}
+            >
+              Bio:
+            </Text>
+            <Text style={{ fontSize: 18 }}>{userDetails.userProfile.bio}</Text>
+          </View>
         </View>
       </View>
 
@@ -63,13 +115,17 @@ const ProfileScreen = () => {
           <Text style={styles.text}>Name:</Text>
           <Text style={styles.text}>Username:</Text>
           <Text style={styles.text}>Email:</Text>
-          <Text style={styles.text}>Bio:</Text>
         </View>
-        <View style={{ gap: 5 }}>
-          <Text style={styles.textSecondary}>Awarikaro Rudolph Hodds</Text>
-          <Text style={styles.textSecondary}>@hodd</Text>
-          <Text style={styles.textSecondary}>hodd@st.knust.edu.gh</Text>
-          <Text style={styles.textSecondary}>I am batman</Text>
+        <View style={{ gap: 5, marginHorizontal: "auto" }}>
+          <Text style={styles.textSecondary}>
+            {userDetails.userProfile.fullName}
+          </Text>
+          <Text style={styles.textSecondary}>
+            {userDetails.userProfile.username}
+          </Text>
+          <Text style={styles.textSecondary}>
+            {userDetails.userProfile.email}
+          </Text>
         </View>
       </View>
 
@@ -84,11 +140,16 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   text: {
-    fontSize: 20,
+    fontSize: 18,
     color: "green",
   },
   textSecondary: {
-    fontSize: 20,
+    fontSize: 18,
+  },
+  loaderContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

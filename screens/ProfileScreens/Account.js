@@ -1,11 +1,100 @@
-import { StyleSheet, Text, View, SafeAreaView, Pressable } from "react-native";
-import React from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Pressable,
+  ActivityIndicator,
+  Alert,
+} from "react-native";
+import React, { useState, useEffect } from "react";
 import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import Button from "../../components/Button";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Account = () => {
   const navigation = useNavigation();
+  const [userDetails, setUserDetails] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        setLoading(true);
+        const userData = await AsyncStorage.getItem("userDetails");
+
+        if (userData) {
+          setUserDetails(JSON.parse(userData));
+        }
+      } catch (error) {
+        console.error("Failed to load user details", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserDetails();
+  }, []);
+
+  const handleDeleteAccount = () => {
+    if (!userDetails) return;
+
+    Alert.alert(
+      "DELETE ACCOUNT",
+      "Are you sure you want to delete your account?",
+      [
+        {
+          text: "Yes",
+          onPress: async () => {
+            const userId = userDetails.userProfile._id;
+
+            try {
+              const response = await fetch(
+                `https://soundwave-56af.onrender.com/api/delete-user/${userId}`,
+                {
+                  method: "DELETE",
+                }
+              );
+
+              if (response.ok) {
+                await AsyncStorage.clear();
+                Alert.alert("Success", "Account Deleted Successfully");
+                navigation.navigate("LandingScreen");
+              } else {
+                const errorData = await response.json();
+                Alert.alert(
+                  "Error",
+                  errorData.message || "Failed to delete account"
+                );
+              }
+            } catch (error) {
+              Alert.alert(
+                "Error",
+                "An error occurred while deleting the account. Please try again later."
+              );
+              console.error("Delete account error:", error);
+            }
+          },
+        },
+        {
+          text: "No",
+          onPress: () => console.log("No"),
+        },
+      ]
+    );
+  };
+
+  const handleBioChange = () => {};
+
+  if (loading) {
+    return (
+      <View style={styles.loaderContainer}>
+        <ActivityIndicator size="large" color="green" />
+      </View>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
@@ -21,25 +110,39 @@ const Account = () => {
           <Text style={styles.text}>Account</Text>
         </View>
         <View style={styles.content}>
-          <View style={styles.field}>
-            <Text style={styles.headText}>Username:</Text>
-            <Text style={styles.paragraphText}>@hodd</Text>
-          </View>
-          <View style={styles.field}>
-            <Text style={styles.headText}>Email:</Text>
-            <Text style={styles.paragraphText}>hodd@stk.knust.edu.gh</Text>
-          </View>
-          <View style={styles.buttonBox}>
-            <Button
-              title="Delete account"
-              pressed={() => {
-                alert("Can't do that yet");
-              }}
-              buttonStyle={styles.button}
-              textStyle={styles.buttonText}
-            />
-            <FontAwesome5 name="angle-right" size={24} color="red" />
-          </View>
+          {userDetails ? (
+            <>
+              <View style={styles.field}>
+                <Text style={styles.headText}>Full Name:</Text>
+                <Text style={styles.paragraphText}>
+                  {userDetails.userProfile.fullName}
+                </Text>
+              </View>
+              <View style={styles.field}>
+                <Text style={styles.headText}>Username:</Text>
+                <Text style={styles.paragraphText}>
+                  {userDetails.userProfile.username}
+                </Text>
+              </View>
+              <View style={styles.field}>
+                <Text style={styles.headText}>Email:</Text>
+                <Text style={styles.paragraphText}>
+                  {userDetails.userProfile.email}
+                </Text>
+              </View>
+              <View style={styles.buttonBox}>
+                <Button
+                  title="Delete account"
+                  pressed={handleDeleteAccount}
+                  buttonStyle={styles.button}
+                  textStyle={styles.buttonText}
+                />
+                <FontAwesome5 name="angle-right" size={24} color="red" />
+              </View>
+            </>
+          ) : (
+            <Text>No user details available</Text>
+          )}
         </View>
       </View>
     </SafeAreaView>
@@ -75,11 +178,11 @@ const styles = StyleSheet.create({
   button: {
     height: 50,
     width: 360,
-    alignItems: "Left",
+    alignItems: "flex-start",
     justifyContent: "center",
     fontSize: 20,
     fontWeight: "700",
-    borderRadius: "10px",
+    borderRadius: 10,
   },
   buttonBox: {
     flexDirection: "row",
@@ -105,5 +208,10 @@ const styles = StyleSheet.create({
   field: {
     height: 60,
     marginVertical: 5,
+  },
+  loaderContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

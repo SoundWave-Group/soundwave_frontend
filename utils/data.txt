@@ -1,0 +1,40 @@
+Data:
+    Artistes:
+        Burna Boy
+        Dave
+        Isiah Robin
+        Tyla
+
+    Browse:
+        Buzzing Pop
+        Music Charts
+        Pop Fusion
+        RELEASED
+        Daily Drops
+        Made For You
+
+    Genre:
+        Indie
+        K Pop
+        Pop
+        R&B
+
+    Mixes:
+        Chill Mix
+        Upbeat Mix
+
+    Recents: 
+        Afro Gospel Hits
+        You Are Great
+
+    Trending:
+        Afropop
+        Country
+        Folk
+        Gospel
+        Jazz
+        Pop
+        R&B
+        Reggae
+        Rock
+        Soul

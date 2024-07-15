@@ -1,17 +1,23 @@
+import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  SafeAreaView,
+  Pressable,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
+import data from "../utils/songData";
 import GenreContainer from "../components/GenreContainer";
 import HomeNavigation from "../components/HomeNavigation";
 import MiniPlayer from "../components/MiniPlayer";
 
-const browseImages = require.context("../assets/browse", true);
-const browseImagesList = browseImages.keys().map(browseImages);
-
-const genreImages = require.context("../assets/genre", true);
-const genreImagesList = genreImages.keys().map(genreImages);
-
 export default function HomeScreen() {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.container}>
       <HomeNavigation activeRouteName="MainScreen" />
@@ -20,28 +26,19 @@ export default function HomeScreen() {
           <Text style={[styles.headerStyle, { marginBottom: 10 }]}>
             Your Top Genres
           </Text>
-
           <View
             style={{ marginLeft: 5, flexWrap: "wrap", flexDirection: "row" }}
-          >
-            {genreImagesList.map((image, index) => (
-              <GenreContainer key={index} image={image} />
-            ))}
-          </View>
+          ></View>
         </View>
 
         <Text style={[styles.headerStyle, { marginTop: 40, marginBottom: 10 }]}>
           Browse More
         </Text>
-
-        <View style={{ flexDirection: "row", flexWrap: "wrap", marginLeft: 5 }}>
-          {browseImagesList.map((image, index) => (
-            <GenreContainer key={index} image={image} />
-          ))}
-        </View>
+        <View
+          style={{ flexDirection: "row", flexWrap: "wrap", marginLeft: 5 }}
+        ></View>
       </ScrollView>
       <MiniPlayer />
-
       <StatusBar style="auto" />
     </SafeAreaView>
   );

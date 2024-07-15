@@ -1,10 +1,13 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 
-const Artiste = ({ name, image }) => {
+const Artiste = ({ artisteName, image }) => {
+  const navigation = useNavigation();
   return (
     <View style={{ marginHorizontal: 5 }}>
-      <View style={{ alignItems: "center" }}>
+      <View style={{ alignItems: "center", borderWidth: 1 }}>
         <Image source={image} style={styles.imageBox} />
+
         <Text
           style={{
             color: "green",
@@ -12,7 +15,7 @@ const Artiste = ({ name, image }) => {
             marginTop: 2,
           }}
         >
-          {name}
+          {artisteName}
         </Text>
       </View>
     </View>

@@ -33,7 +33,8 @@ const GenreContainer = ({ image, text }) => {
       <Text
         style={{
           fontSize: 18,
-          marginLeft: 5,
+          marginTop: 5,
+          color: "green",
         }}
       >
         {text}

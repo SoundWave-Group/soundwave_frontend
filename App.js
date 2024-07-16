@@ -299,8 +299,7 @@ export default function App() {
           name="SongListScreen"
           component={SongListScreen}
           options={{
-            headerTitle: "Songs",
-            headerBackTitleVisible: false,
+            headerShown: false,
           }}
         />
       </Stack.Navigator>

@@ -15,6 +15,7 @@ import {
 } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 const SoundwaveLogo = require("../assets/Soundwave-Logo.png");
 
@@ -31,46 +32,64 @@ export default function LoginScreen() {
       return;
     }
 
-    const data = {
-      username,
-      password,
-    };
+    const data = { username, password };
 
     try {
       setLoading(true);
-      const response = await fetch(
+
+      const response = await axios.post(
         "https://soundwave-56af.onrender.com/api/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
+        data
       );
 
-      if (response.ok) {
-        const getUser = await fetch(
-          `https://soundwave-56af.onrender.com/api/user-profile/${username}`
-        );
-        const userData = await getUser.json(); // Await here
-        await AsyncStorage.setItem("userDetails", JSON.stringify(userData));
-        console.log(userData);
-        setLoading(false);
-        Alert.alert("Success", "Logged in successfully");
-        navigation.navigate("MainScreen");
+      if (response.status === 200) {
+        try {
+          const getUserResponse = await axios.get(
+            `https://soundwave-56af.onrender.com/api/user-profile/${username}`
+          );
+
+          const userData = getUserResponse.data;
+          await AsyncStorage.setItem("userDetails", JSON.stringify(userData));
+          console.log(userData);
+
+          setLoading(false);
+          Alert.alert("Success", "Logged in successfully");
+          navigation.navigate("MainScreen");
+        } catch (error) {
+          setLoading(false);
+          console.error("Error fetching user profile:", error);
+          Alert.alert(
+            "Error",
+            "Failed to fetch user profile. Please try again later."
+          );
+        }
       } else {
         setLoading(false);
-        const errorData = await response.json();
-        Alert.alert("Error", errorData.message || "Something went wrong");
+        Alert.alert("Error", response.data.message || "Something went wrong");
       }
     } catch (error) {
       setLoading(false);
-      Alert.alert("Error", "Failed to log in. Please try again later.");
-      console.log(error);
+      if (error.response) {
+        // Server responded with a status other than 200 range
+        console.error("Error response:", error.response);
+        Alert.alert(
+          "Error",
+          error.response.data.message || "An error occurred. Please try again."
+        );
+      } else if (error.request) {
+        // Request was made but no response received
+        console.error("Error request:", error.request);
+        Alert.alert(
+          "Error",
+          "No response from server. Please check your internet connection."
+        );
+      } else {
+        // Something else caused an error
+        console.error("Error message:", error.message);
+        Alert.alert("Error", "An error occurred. Please try again.");
+      }
     }
   };
-
   const LoadingModal = ({ visible }) => {
     return (
       <Modal transparent={true} animationType="fade" visible={visible}>
@@ -114,17 +133,6 @@ export default function LoginScreen() {
           value={password}
           onChangeText={setPassword}
         />
-
-        <Text
-          style={{
-            textAlign: "center",
-            marginTop: 10,
-            fontSize: 17,
-            color: "grey",
-          }}
-        >
-          Forgot your Password?
-        </Text>
       </View>
 
       <View>
@@ -143,25 +151,6 @@ export default function LoginScreen() {
           }}
         >
           <Text style={{ fontSize: 20, textAlign: "center" }}>LOG IN</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => navigation.navigate("MainScreen")}
-          style={{
-            marginTop: 10,
-            borderWidth: 1,
-            borderColor: "green",
-            paddingLeft: 50,
-            paddingRight: 50,
-            width: 200,
-            marginLeft: "auto",
-            marginRight: "auto",
-            padding: 10,
-            borderRadius: 10,
-          }}
-        >
-          <Text style={{ marginHorizontal: "auto" }}>
-            <Ionicons name="logo-google" size={24} color="green" />
-          </Text>
         </Pressable>
 
         <View
@@ -187,7 +176,7 @@ export default function LoginScreen() {
           }}
         >
           <Text style={{ fontSize: 15, textAlign: "center", marginTop: 120 }}>
-            Need Help?
+            About App
           </Text>
         </Pressable>
       </View>

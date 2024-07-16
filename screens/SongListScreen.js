@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import {
@@ -7,6 +8,7 @@ import {
   Image,
   StyleSheet,
   Pressable,
+  SafeAreaView,
 } from "react-native";
 
 const SongListScreen = ({ route }) => {
@@ -35,14 +37,32 @@ const SongListScreen = ({ route }) => {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={[styles.container, { marginTop: 10 }]}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginLeft: 10,
+          marginBottom: 20,
+        }}
+      >
+        <Pressable
+          onPress={() => {
+            navigation.goBack();
+          }}
+        >
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </Pressable>
+        <Text>{}</Text>
+      </View>
+
       <Text style={styles.genreTitle}>{genre}</Text>
       <FlatList
         data={songs}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -50,6 +70,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
+    margin: 10,
     backgroundColor: "#fff",
   },
   genreTitle: {

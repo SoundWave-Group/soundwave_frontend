@@ -50,6 +50,7 @@ const Albums = () => {
             borderRadius: 10,
             marginTop: 20,
           }}
+          onPress={() => navigation.navigate("SearchTab")}
         >
           <Text style={{ fontSize: 15, margin: "auto", color: "white" }}>
             Search for Albums

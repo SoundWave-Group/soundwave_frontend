@@ -46,7 +46,7 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        <Text style={[styles.headerStyle, { marginTop: 40, marginBottom: 10 }]}>
+        <Text style={[styles.headerStyle, { marginTop: 10, marginBottom: 10 }]}>
           Browse More
         </Text>
         <View style={{ flexDirection: "row", flexWrap: "wrap", marginLeft: 5 }}>

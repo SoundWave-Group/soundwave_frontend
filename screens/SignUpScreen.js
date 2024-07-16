@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
-import { Picker, PickerIOS } from "@react-native-picker/picker";
 import {
   StyleSheet,
   Text,
@@ -15,6 +14,7 @@ import {
   Modal,
   ActivityIndicator,
 } from "react-native";
+import axios from "axios";
 
 const SoundwaveLogo = require("../assets/Soundwave-Logo.png");
 
@@ -26,6 +26,7 @@ export default function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [country, setCountry] = useState("");
   const [loading, setLoading] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const handleSignUp = async () => {
     const data = {
@@ -45,47 +46,51 @@ export default function SignUp() {
       !confirmPassword ||
       !country
     ) {
-      Alert.alert("Please Fill all Details");
+      Alert.alert("Please fill all details");
       return;
     }
 
     try {
       setLoading(true);
-      const response = await fetch(
+
+      const response = await axios.post(
         "https://soundwave-56af.onrender.com/api/auth/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
+        data
       );
 
-      console.log(data);
+      console.log(response);
 
-      if (response.ok) {
+      if (response.status === 200) {
         setLoading(false);
         Alert.alert("Success", "Account Created Successfully");
         navigation.navigate("LoginScreen");
       } else {
         setLoading(false);
-        Alert.alert("Error", "Account not Created");
+        Alert.alert("Error", response.data.message || "Something went wrong");
       }
     } catch (error) {
       setLoading(false);
-      console.error(error);
-      Alert.alert(
-        "Error",
-        "An error occurred. Please try again later. [catch block]"
-      );
+      if (error.response) {
+        // Server responded with a status other than 200 range
+        console.error("Error response:", error.response);
+        Alert.alert(
+          "Error",
+          error.response.data.message || "An error occurred. Please try again."
+        );
+      } else if (error.request) {
+        // Request was made but no response received
+        console.error("Error request:", error.request);
+        Alert.alert(
+          "Error",
+          "No response from server. Please check your internet connection."
+        );
+      } else {
+        // Something else caused an error
+        console.error("Error message:", error.message);
+        Alert.alert("Error", "An error occurred. Please try again.");
+      }
     }
   };
-
-  const handleGoogleSignUp = async () => {
-    navigator.navigate("MainScreen");
-  };
-
   const LoadingModal = ({ visible }) => {
     return (
       <Modal transparent={true} animationType="fade" visible={visible}>
@@ -135,13 +140,15 @@ export default function SignUp() {
           value={email}
           onChangeText={setEmail}
         />
-        <TextInput
-          style={styles.inputBox}
-          secureTextEntry={true}
-          placeholder="Password *"
-          value={password}
-          onChangeText={setPassword}
-        />
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.inputBox}
+            secureTextEntry={true}
+            placeholder="Password *"
+            value={password}
+            onChangeText={setPassword}
+          />
+        </View>
         <TextInput
           style={styles.inputBox}
           secureTextEntry={true}
@@ -175,27 +182,6 @@ export default function SignUp() {
           <Text style={{ fontSize: 20, textAlign: "center" }}>SIGN UP</Text>
         </Pressable>
 
-        {/* Google SignUp */}
-        <Pressable
-          onPress={handleGoogleSignUp}
-          style={{
-            marginTop: 10,
-            borderWidth: 1,
-            borderColor: "green",
-            paddingLeft: 50,
-            paddingRight: 50,
-            width: 200,
-            marginLeft: "auto",
-            marginRight: "auto",
-            padding: 10,
-            borderRadius: 10,
-          }}
-        >
-          <Text style={{ marginHorizontal: "auto" }}>
-            <Ionicons name="logo-google" size={24} color="green" />
-          </Text>
-        </Pressable>
-
         <View
           style={{
             marginTop: 50,
@@ -218,7 +204,7 @@ export default function SignUp() {
             );
           }}
         >
-          <Text style={{ fontSize: 15, textAlign: "center" }}>Need Help?</Text>
+          <Text style={{ fontSize: 15, textAlign: "center" }}>About App</Text>
         </Pressable>
       </View>
       <StatusBar style="auto" />
@@ -234,11 +220,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 20,
   },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
   inputBox: {
     borderStyle: "solid",
     backgroundColor: "#CCEAE3",
     padding: 10,
-    paddingTop: 15,
+    paddingTop: 20,
     borderRadius: 5,
     width: 300,
     margin: 10,

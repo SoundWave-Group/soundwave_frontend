@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
   Text,
@@ -35,9 +35,77 @@ export default function PlayerScreen({ route }) {
   const [isShuffle, setIsShuffle] = useState(false);
   const [isRepeat, setIsRepeat] = useState(false);
   const [songIndex, setSongIndex] = useState(0);
-  const [songData, setSongData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const loadSound = useCallback(async () => {
+    if (sound) {
+      await sound.unloadAsync();
+      setSound(null);
+    }
+
+    const { sound: newSound, status } = await Audio.Sound.createAsync(
+      { uri: link },
+      { shouldPlay: true },
+      onPlaybackStatusUpdate
+    );
+
+    setSound(newSound);
+    setDuration(status.durationMillis);
+    setIsPlaying(status.isPlaying);
+  }, [link]);
+
+  useEffect(() => {
+    loadSound();
+
+    return () => {
+      if (sound) {
+        sound.unloadAsync();
+      }
+    };
+  }, [loadSound]);
+
+  const onPlaybackStatusUpdate = (status) => {
+    if (status.isLoaded) {
+      setCurrentPosition(status.positionMillis);
+      setDuration(status.durationMillis);
+      setIsPlaying(status.isPlaying);
+    }
+  };
+
+  const handlePlayPause = async () => {
+    if (sound) {
+      if (isPlaying) {
+        await sound.pauseAsync();
+      } else {
+        await sound.playAsync();
+      }
+    }
+  };
+
+  const handleForward = async () => {
+    if (sound) {
+      let newPosition = currentPosition + 10000; // forward by 10 seconds
+      if (newPosition > duration) newPosition = duration;
+      await sound.setPositionAsync(newPosition);
+    }
+  };
+
+  const handleBackward = async () => {
+    if (sound) {
+      let newPosition = currentPosition - 10000; // backward by 10 seconds
+      if (newPosition < 0) newPosition = 0;
+      await sound.setPositionAsync(newPosition);
+    }
+  };
+
+  const handleShuffle = () => {
+    setIsShuffle((prev) => !prev);
+  };
+
+  const handleRepeat = () => {
+    setIsRepeat((prev) => !prev);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -55,39 +123,46 @@ export default function PlayerScreen({ route }) {
             <Text style={styles.songTitle}>{title}</Text>
             <Text style={styles.songArtist}>{artist}</Text>
             <Slider
-              value={0}
+              value={currentPosition}
               minimumValue={0}
-              maximumValue={10}
+              maximumValue={duration}
               thumbTintColor="lightblue"
               trackStyle={{ backgroundColor: "lightblue" }}
               width={300}
+              onValueChange={async (value) => {
+                if (sound) {
+                  await sound.setPositionAsync(value[0]);
+                }
+              }}
             />
             <View style={styles.timeContainer}>
-              <Text>0:00</Text>
-              <Text>4:00</Text>
+              <Text>
+                {new Date(currentPosition).toISOString().substr(14, 5)}
+              </Text>
+              <Text>{new Date(duration).toISOString().substr(14, 5)}</Text>
             </View>
             <View style={styles.buttonContainer}>
-              <Pressable>
+              <Pressable onPress={handleShuffle}>
                 <Ionicons
                   name="shuffle"
                   size={36}
                   color={isShuffle ? "white" : "black"}
                 />
               </Pressable>
-              <Pressable>
+              <Pressable onPress={handleBackward}>
                 <Ionicons name="play-back" size={36} color="black" />
               </Pressable>
-              <Pressable>
+              <Pressable onPress={handlePlayPause}>
                 <Ionicons
                   name={isPlaying ? "pause" : "play"}
                   size={36}
                   color="black"
                 />
               </Pressable>
-              <Pressable>
+              <Pressable onPress={handleForward}>
                 <Ionicons name="play-forward" size={36} color="black" />
               </Pressable>
-              <Pressable>
+              <Pressable onPress={handleRepeat}>
                 <Ionicons
                   name="repeat"
                   size={36}

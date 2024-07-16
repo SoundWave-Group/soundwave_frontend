@@ -36,8 +36,29 @@ const SongListScreen = ({ route }) => {
     </Pressable>
   );
 
+  const renderHeader = ({ item }) => {
+    <View
+      style={{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginLeft: 10,
+        marginBottom: 20,
+      }}
+    >
+      <Pressable
+        onPress={() => {
+          navigation.goBack();
+        }}
+      >
+        <Ionicons name="arrow-back" size={24} color="black" />
+      </Pressable>
+      <Text style={{ fontSize: 20 }}>Songs</Text>
+      <Text></Text>
+    </View>;
+  };
+
   return (
-    <SafeAreaView style={[styles.container, { marginTop: 10 }]}>
+    <SafeAreaView style={styles.container}>
       <View
         style={{
           flexDirection: "row",
@@ -53,7 +74,8 @@ const SongListScreen = ({ route }) => {
         >
           <Ionicons name="arrow-back" size={24} color="black" />
         </Pressable>
-        <Text>{}</Text>
+        <Text style={{ fontSize: 20 }}>Songs</Text>
+        <Text></Text>
       </View>
 
       <Text style={styles.genreTitle}>{genre}</Text>
@@ -69,8 +91,6 @@ const SongListScreen = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
-    margin: 10,
     backgroundColor: "#fff",
   },
   genreTitle: {

@@ -15,7 +15,7 @@ const LibrarySections = ({ name, link }) => {
             alignItems: "center",
           }}
         >
-          <Text style={{ fontSize: 25, marginVertical: 10, color: "green" }}>
+          <Text style={{ fontSize: 25, marginVertical: 10, fontWeight: "500" }}>
             {name}
           </Text>
           <Ionicons name="chevron-forward" size={24} color="black" />

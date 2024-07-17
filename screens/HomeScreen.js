@@ -66,7 +66,6 @@ export default function HomeScreen() {
           ))}
         </View>
       </ScrollView>
-      {/* <MiniPlayer /> */}
       <StatusBar style="auto" />
     </SafeAreaView>
   );

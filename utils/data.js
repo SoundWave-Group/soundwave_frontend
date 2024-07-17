@@ -9,17 +9,18 @@ const data = [
           {
             artist: "Burna Boy",
             title: "City Boys",
-            albumArt: require("../assets/singer4.jpg"),
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/CityBoysBurnaBoy.jpg",
             genre: "Hip Hop",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/CityBoysBurnaBoy.mp3",
           },
           {
             artist: "Burna Boy & Ed Sheeran",
             title: "For My Hand",
             albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/ForMyHandBurnaBoyEdSheeran.jpg",
             genre: "Hip Hop",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/ForMyHandBurnaBoyEdSheeran.mp3",
           },
         ],
       },
@@ -30,26 +31,26 @@ const data = [
         songs: [
           {
             artist: "Dave",
-            title: "My 28th Birthday",
+            title: "Starlight",
             albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/StarlightDave.jpg",
             genre: "Hip Hop",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/StarlightDave.mp3",
           },
         ],
       },
       {
         id: 3,
-        name: "Isiah Robin",
+        name: "Isaiah Robin",
         photo: require("../assets/artistes/IsaiahRobin.png"),
         songs: [
           {
-            artist: "Isiah Robin",
-            title: "Glory",
+            artist: "Isaiah Robin",
+            title: "No More Witches",
             albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/NoMoreWitchesIsaiahRobin.jpg",
             genre: "R&B",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/NoMoreWitchesIsaiahRobin.mp3",
           },
         ],
       },
@@ -62,9 +63,9 @@ const data = [
             artist: "Tyla",
             title: "To Last",
             albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/WaterTyla.jpg",
             genre: "Pop",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/WaterTyla.mp3",
           },
         ],
       },
@@ -560,8 +561,145 @@ const data = [
       },
     ],
   },
+  {
+    vibes: [
+      {
+        id: 1,
+        name: "Hip Hop & Rap",
+        photo: require("../assets/vibes/HipHopRap.png"),
+        songs: [
+          {
+            id: 1,
+            artist: "Kenrick Lamar",
+            title: "Not Like Us",
+            albumArt: "null",
+            genre: "Hip Hop & Rap",
+            link: "https://null.mp3",
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: "Electronic",
+        photo: require("../assets/vibes/Electronic.png"),
+        songs: [
+          {
+            id: 1,
+            artist: "Daft Punk",
+            title: "One More Time",
+            albumArt: "null",
+            genre: "Electronic",
+            link: "https://null.mp3",
+          },
+        ],
+      },
+      {
+        id: 3,
+        name: "R & B",
+        photo: require("../assets/vibes/Chill.png"),
+        songs: [
+          {
+            id: 1,
+            artist: "SZA",
+            title: "Good Days",
+            albumArt: "null",
+            genre: "R & B",
+            link: "https://null.mp3",
+          },
+        ],
+      },
+      {
+        id: 4,
+        name: "Party",
+        photo: require("../assets/vibes/Party.png"),
+        songs: [
+          {
+            id: 1,
+            artist: "Cardi B",
+            title: "Up",
+            albumArt: "null",
+            genre: "Party",
+            link: "https://null.mp3",
+          },
+        ],
+      },
+      {
+        id: 5,
+        name: "Workout",
+        photo: require("../assets/vibes/Workout.png"),
+        songs: [
+          {
+            id: 1,
+            artist: "Kanye West",
+            title: "Stronger",
+            albumArt: "null",
+            genre: "Workout",
+            link: "https://null.mp3",
+          },
+        ],
+      },
+      {
+        id: 6,
+        name: "Soul",
+        photo: require("../assets/vibes/Soul.png"),
+        songs: [
+          {
+            id: 1,
+            artist: "Frank Ocean",
+            title: "Pink + White",
+            albumArt: "null",
+            genre: "Chill",
+            link: "https://null.mp3",
+          },
+        ],
+      },
+      {
+        id: 7,
+        name: "Country",
+        photo: require("../assets/vibes/Acoustic.png"),
+        songs: [
+          {
+            id: 1,
+            artist: "Johnny Cash",
+            title: "I Walk the Line",
+            albumArt: "null",
+            genre: "Country",
+            link: "https://null.mp3",
+          },
+        ],
+      },
+      {
+        id: 8,
+        name: "Rock",
+        photo: require("../assets/vibes/Rock.png"),
+        songs: [
+          {
+            id: 1,
+            artist: "The Rolling Stones",
+            title: "Paint It Black",
+            albumArt: "null",
+            genre: "Rock",
+            link: "https://null.mp3",
+          },
+        ],
+      },
+      {
+        id: 9,
+        name: "Study",
+        photo: require("../assets/vibes/Study.png"),
+        songs: [
+          {
+            id: 1,
+            artist: "Lo-fi",
+            title: "Lo-fi Beats",
+            albumArt: "null",
+            genre: "Study",
+            link: "https://null.mp3",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export default data;
-
-console.log(data[2]);

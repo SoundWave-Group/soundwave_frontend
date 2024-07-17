@@ -50,10 +50,7 @@ export default function LoginScreen() {
 
           const userData = getUserResponse.data;
           await AsyncStorage.setItem("userDetails", JSON.stringify(userData));
-          console.log(userData);
-
           setLoading(false);
-          Alert.alert("Success", "Logged in successfully");
           navigation.navigate("MainScreen");
         } catch (error) {
           setLoading(false);
@@ -205,6 +202,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgb(50, 153, 168)",
+    backgroundColor: "aquamarine",
   },
 });

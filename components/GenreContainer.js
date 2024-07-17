@@ -15,7 +15,6 @@ const responsiveHeight = (percentage) => {
 const GenreContainer = ({ image, text }) => {
   const navigator = useNavigation();
   return (
-    // <Pressable onPress={() => navigator.navigate("PlayerScreen")}>
     <View
       style={{
         width: responsiveWidth(45),
@@ -30,6 +29,7 @@ const GenreContainer = ({ image, text }) => {
           marginVertical: -2,
         }}
       />
+
       <Text
         style={{
           fontSize: 18,
@@ -40,7 +40,6 @@ const GenreContainer = ({ image, text }) => {
         {text}
       </Text>
     </View>
-    // </Pressable>
   );
 };
 

@@ -171,7 +171,7 @@ const ProfileScreen = () => {
       </View>
 
       <View
-        style={{ margin: 20, gap: 15, marginTop: 50, flexDirection: "row" }}
+        style={{ margin: 20, gap: 15, marginTop: 20, flexDirection: "row" }}
       >
         <View style={{ gap: 20 }}>
           <Text style={styles.text}>Name:</Text>

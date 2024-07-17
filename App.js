@@ -39,6 +39,7 @@ import DownloadScreen from "./screens/ProfileScreens/DownloadScreen";
 import PlayerScreen from "./screens/PlayerScreen";
 import ShazamScreen from "./screens/ShazamScreen";
 import SongListScreen from "./screens/SongListScreen";
+import VideoScreen from "./screens/VideoScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -202,17 +203,17 @@ const BottomNavigationBar = () => {
         }}
       />
       <Tab.Screen
-        name="ShazamTab"
-        component={ShazamScreen}
+        name="VideoTab"
+        component={VideoScreen}
         options={{
-          tabBarLabel: "Shazam",
+          tabBarLabel: "Video",
           headerShown: false,
           tabBarLabelStyle: { color: "white" },
           tabBarIcon: ({ focused }) =>
             focused ? (
-              <MaterialIcons name="podcasts" size={24} color="#0A4A3B" />
+              <MaterialIcons name="video-library" size={24} color="#0A4A3B" />
             ) : (
-              <MaterialIcons name="podcasts" size={24} color="#0A4A3B" />
+              <MaterialIcons name="video-library" size={24} color="#0A4A3B" />
             ),
         }}
       />

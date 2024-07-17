@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -5,17 +6,25 @@ import {
   TextInput,
   Pressable,
   SafeAreaView,
+  StatusBar,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
-import GenreContainer from "../components/GenreContainer";
-
 import data from "../utils/data";
+import GenreContainer from "../components/GenreContainer";
 
 const SearchScreen = () => {
   const navigation = useNavigation();
+
+  const [searchItem, setSearchItem] = useState("");
+  const [search, setSearch] = useState(false);
+
+  const handleSearch = (text) => {
+    setSearchItem(text);
+    setSearch(text.length > 0);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -51,49 +60,56 @@ const SearchScreen = () => {
           borderRadius: 10,
           borderColor: "green",
         }}
+        onChangeText={handleSearch}
+        value={searchItem}
         placeholder="Songs, Artist & More"
       />
+
       <Text style={{ fontSize: 25, margin: 10 }}>Vibes</Text>
-      <ScrollView>
-        <View style={{ flexDirection: "row" }}>
-          <View
-            style={{
-              marginLeft: 5,
-              flexDirection: "row",
-              flexWrap: "wrap",
-            }}
-          >
-            {data[1].browse.map((genre, index) => (
+
+      {search ? (
+        <ScrollView>
+          <View style={styles.gridContainer}>
+            {data[6].vibes
+              .filter((vibes) =>
+                vibes.name.toLowerCase().includes(searchItem.toLowerCase())
+              )
+              .map((vibes, index) => (
+                <Pressable
+                  key={index}
+                  onPress={() =>
+                    navigation.navigate("SongListScreen", {
+                      genre: vibes.name,
+                      songs: vibes.songs,
+                    })
+                  }
+                  style={styles.genrePressable}
+                >
+                  <GenreContainer image={vibes.photo} text={vibes.name} />
+                </Pressable>
+              ))}
+          </View>
+        </ScrollView>
+      ) : (
+        <ScrollView>
+          <View style={styles.gridContainer}>
+            {data[6].vibes.map((vibes, index) => (
               <Pressable
                 key={index}
                 onPress={() =>
                   navigation.navigate("SongListScreen", {
-                    genre: genre.name,
-                    songs: genre.songs,
+                    genre: vibes.name,
+                    songs: vibes.songs,
                   })
                 }
-                style={styles.genreContainer}
+                style={styles.genrePressable}
               >
-                <GenreContainer image={genre.photo} />
-              </Pressable>
-            ))}
-            {data[2].genre.map((genre, index) => (
-              <Pressable
-                key={index}
-                onPress={() =>
-                  navigation.navigate("SongListScreen", {
-                    genre: genre.name,
-                    songs: genre.songs,
-                  })
-                }
-                style={styles.genreContainer}
-              >
-                <GenreContainer image={genre.photo} />
+                <GenreContainer image={vibes.photo} text={vibes.name} />
               </Pressable>
             ))}
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      )}
 
       <StatusBar style="auto" />
     </SafeAreaView>
@@ -104,6 +120,18 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     flex: 1,
+  },
+  gridContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    marginHorizontal: 5,
+    marginTop: 10,
+  },
+  genrePressable: {
+    width: "48%",
+    aspectRatio: 1,
+    marginBottom: 10,
   },
 });
 

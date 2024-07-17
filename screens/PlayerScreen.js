@@ -6,23 +6,11 @@ import {
   StyleSheet,
   Image,
   Pressable,
-  Modal,
-  ActivityIndicator,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Slider } from "@miblanchard/react-native-slider";
 import { Audio } from "expo-av";
-
-const LoadingModal = ({ visible }) => {
-  return (
-    <Modal transparent={true} animationType="fade" visible={visible}>
-      <View style={styles.modalBackground}>
-        <ActivityIndicator size="large" color="lightgreen" />
-      </View>
-    </Modal>
-  );
-};
 
 export default function PlayerScreen({ route }) {
   const { artist, title, albumArt, link } = route.params;
@@ -32,11 +20,6 @@ export default function PlayerScreen({ route }) {
   const [currentPosition, setCurrentPosition] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isShuffle, setIsShuffle] = useState(false);
-  const [isRepeat, setIsRepeat] = useState(false);
-  const [songIndex, setSongIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   const loadSound = useCallback(async () => {
     if (sound) {
@@ -99,18 +82,21 @@ export default function PlayerScreen({ route }) {
     }
   };
 
-  const handleShuffle = () => {
-    setIsShuffle((prev) => !prev);
-  };
-
-  const handleRepeat = () => {
-    setIsRepeat((prev) => !prev);
+  const formatTime = (millis) => {
+    const minutes = Math.floor(millis / 60000);
+    const seconds = ((millis % 60000) / 1000).toFixed(0);
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ margin: 20, justifyContent: "flex-start" }}>
-        <Pressable onPress={() => navigation.goBack()}>
+        <Pressable
+          onPress={() => {
+            sound.unloadAsync();
+            navigation.goBack();
+          }}
+        >
           <Ionicons name="chevron-down" size={24} color="black" />
         </Pressable>
       </View>
@@ -136,21 +122,12 @@ export default function PlayerScreen({ route }) {
               }}
             />
             <View style={styles.timeContainer}>
-              <Text>
-                {new Date(currentPosition).toISOString().substr(14, 5)}
-              </Text>
-              <Text>{new Date(duration).toISOString().substr(14, 5)}</Text>
+              <Text>{formatTime(currentPosition)}</Text>
+              <Text>{formatTime(duration)}</Text>
             </View>
             <View style={styles.buttonContainer}>
-              <Pressable onPress={handleShuffle}>
-                <Ionicons
-                  name="shuffle"
-                  size={36}
-                  color={isShuffle ? "white" : "black"}
-                />
-              </Pressable>
               <Pressable onPress={handleBackward}>
-                <Ionicons name="play-back" size={36} color="black" />
+                <MaterialIcons name="replay-10" size={36} color="black" />
               </Pressable>
               <Pressable onPress={handlePlayPause}>
                 <Ionicons
@@ -160,14 +137,7 @@ export default function PlayerScreen({ route }) {
                 />
               </Pressable>
               <Pressable onPress={handleForward}>
-                <Ionicons name="play-forward" size={36} color="black" />
-              </Pressable>
-              <Pressable onPress={handleRepeat}>
-                <Ionicons
-                  name="repeat"
-                  size={36}
-                  color={isRepeat ? "white" : "black"}
-                />
+                <MaterialIcons name="forward-10" size={36} color="black" />
               </Pressable>
             </View>
           </View>
@@ -220,11 +190,5 @@ const styles = StyleSheet.create({
   containerSecondary: {
     justifyContent: "center",
     alignItems: "center",
-  },
-  modalBackground: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgb(50, 153, 168)",
   },
 });

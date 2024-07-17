@@ -10,13 +10,7 @@ import {
 
 import HomeNavigation from "../../components/HomeNavigation";
 import GenreBox from "../../components/GenreBox";
-import GenreContainer from "../../components/GenreContainer";
 import Artiste from "../../components/Artiste";
-
-const recentlyPlayed = require.context("../../assets/recents", true);
-
-const mixes = require.context("../../assets/mixes", true);
-const mixesList = mixes.keys().map(mixes);
 
 import data from "../../utils/data";
 import { useNavigation } from "@react-navigation/native";
@@ -81,7 +75,7 @@ export default function App() {
                   key={index}
                   onPress={() =>
                     navigation.navigate("SongListScreen", {
-                      name: artiste.name,
+                      genre: artiste.name,
                       songs: artiste.songs,
                     })
                   }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -10,6 +10,8 @@ import {
   FontAwesome,
   FontAwesome5,
 } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { View, ActivityIndicator } from "react-native";
 
 import Splash from "./screens/Splash";
 import LandingScreen from "./screens/LandingScreen";
@@ -260,9 +262,39 @@ const BottomNavigationBar = () => {
 };
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const userDetails = await AsyncStorage.getItem("userDetails");
+        if (userDetails) {
+          setIsLoggedIn(true);
+        }
+      } catch (error) {
+        console.error("Error checking login status:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkLoginStatus();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color="#0A4A3B" />
+      </View>
+    );
+  }
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SplashScreen">
+      <Stack.Navigator
+        initialRouteName={isLoggedIn ? "MainScreen" : "SplashScreen"}
+      >
         <Stack.Screen
           name="SplashScreen"
           component={Splash}
@@ -271,37 +303,49 @@ export default function App() {
         <Stack.Screen
           name="LandingScreen"
           component={LandingScreen}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+            ...TransitionPresets.FadeFromBottomAndroid,
+          }}
         />
         <Stack.Screen
           name="LoginScreen"
           component={LoginScreen}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+            ...TransitionPresets.FadeFromBottomAndroid,
+          }}
         />
         <Stack.Screen
           name="SignUpScreen"
           component={SignUpScreen}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+            ...TransitionPresets.FadeFromBottomAndroid,
+          }}
         />
         <Stack.Screen
           name="MainScreen"
           component={BottomNavigationBar}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+            ...TransitionPresets.FadeFromBottomAndroid,
+          }}
         />
         <Stack.Screen
           name="PlayerScreen"
           component={PlayerScreen}
-          options={{
-            headerShown: false,
-            ...TransitionPresets.ModalSlideFromBottomIOS,
-          }}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ShazamScreen"
+          component={ShazamScreen}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="SongListScreen"
           component={SongListScreen}
-          options={{
-            headerShown: false,
-          }}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

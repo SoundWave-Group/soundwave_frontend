@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Dimensions } from "react-native";
 import VideoComponent from "../components/VideoComponent";
 import { ScrollView } from "react-native-gesture-handler";
+import { Video, Audio } from "expo-av";
 
 const responsiveWidth = (percentage) => {
   const screenWidth = Dimensions.get("window").width;
@@ -30,9 +31,14 @@ const VideoScreen = () => {
       </Text>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <VideoComponent />
-        <VideoComponent />
-        <VideoComponent />
+        <VideoComponent
+          source={require("../assets/video.mp4")}
+          title={"Video"}
+        />
+        <VideoComponent
+          source={require("../assets/video.mp4")}
+          title={"Videos"}
+        />
       </ScrollView>
     </SafeAreaView>
   );

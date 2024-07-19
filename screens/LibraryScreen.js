@@ -10,7 +10,7 @@ const LibraryScreen = () => {
         <Text
           style={{
             fontSize: 25,
-            margin: 10,
+            marginLeft: 20,
             color: "#OC5745",
             fontWeight: "600",
           }}
@@ -21,7 +21,7 @@ const LibraryScreen = () => {
         <View
           style={{
             marginVertical: 50,
-            marginHorizontal: 10,
+            marginHorizontal: 20,
             justifyContent: "center",
           }}
         >

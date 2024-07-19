@@ -28,6 +28,7 @@ const VibesContainer = ({ image, text }) => {
         style={{
           fontSize: 18,
           marginTop: 5,
+          marginLeft: 5,
           color: "green",
         }}
       >

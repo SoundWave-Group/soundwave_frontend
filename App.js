@@ -9,6 +9,7 @@ import {
   MaterialCommunityIcons,
   FontAwesome,
   FontAwesome5,
+  FontAwesome6,
 } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { View, ActivityIndicator } from "react-native";
@@ -51,17 +52,17 @@ const HomeStack = () => (
     <Stack.Screen
       name="Home"
       component={HomeScreen}
-      options={{ headerShown: false }}
+      options={{ headerShown: false, animationEnabled: false }}
     />
     <Stack.Screen
       name="NewMusic"
       component={NewMusic}
-      options={{ headerShown: false }}
+      options={{ headerShown: false, animationEnabled: false }}
     />
     <Stack.Screen
       name="Trending"
       component={Trending}
-      options={{ headerShown: false }}
+      options={{ headerShown: false, animationEnabled: false }}
     />
   </Stack.Navigator>
 );
@@ -213,9 +214,13 @@ const BottomNavigationBar = () => {
           tabBarLabelStyle: { color: "white" },
           tabBarIcon: ({ focused }) =>
             focused ? (
-              <MaterialIcons name="video-library" size={24} color="#0A4A3B" />
+              <MaterialCommunityIcons name="video" size={24} color="#0A4A3B" />
             ) : (
-              <MaterialIcons name="video-library" size={24} color="#0A4A3B" />
+              <MaterialCommunityIcons
+                name="video-outline"
+                size={24}
+                color="#0A4A3B"
+              />
             ),
         }}
       />

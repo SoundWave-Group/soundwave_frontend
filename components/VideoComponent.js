@@ -10,7 +10,7 @@ const VideoComponent = ({ source, title }) => {
         useNativeControls
         resizeMode="contain"
       />
-      <Text style={{ fontSize: 18, marginTop: 5 }}>{title}</Text>
+      <Text style={{ fontSize: 20, margin: 5 }}>{title}</Text>
     </View>
   );
 };

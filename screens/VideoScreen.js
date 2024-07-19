@@ -1,54 +1,80 @@
-import { Ionicons } from "@expo/vector-icons";
-import { StyleSheet, Text, View, SafeAreaView, Pressable } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { Dimensions } from "react-native";
-import VideoComponent from "../components/VideoComponent";
-import { ScrollView } from "react-native-gesture-handler";
-import { Video, Audio } from "expo-av";
+import React, { useRef, useState, useEffect } from "react";
+import { View, Dimensions, FlatList, StyleSheet } from "react-native";
+import { Video } from "expo-av";
+import { useIsFocused } from "@react-navigation/native";
+import { current } from "@reduxjs/toolkit";
 
-const responsiveWidth = (percentage) => {
-  const screenWidth = Dimensions.get("window").width;
-  return (percentage * screenWidth) / 100;
-};
+const { height } = Dimensions.get("window");
 
-const responsiveHeight = (percentage) => {
-  const screenHeight = Dimensions.get("window").height;
-  return (percentage * screenHeight) / 100;
-};
+const videos = [
+  { id: "1", uri: "https://www.w3schools.com/html/mov_bbb.mp4" },
+  { id: "2", uri: "https://www.w3schools.com/html/movie.mp4" },
+  { id: "3", uri: "https://www.w3schools.com/html/mov_bbb.mp4" },
+  // Add more video URIs as needed
+];
 
 const VideoScreen = () => {
-  const navigation = useNavigation();
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text
-        style={{
-          fontSize: 25,
-          color: "#OC5745",
-          fontWeight: "600",
-        }}
-      >
-        Videos
-      </Text>
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const videoRef = useRef(null);
+  const isFocused = useIsFocused();
 
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <VideoComponent
-          source={require("../assets/video.mp4")}
-          title={"Video"}
-        />
-        <VideoComponent
-          source={require("../assets/video.mp4")}
-          title={"Videos"}
-        />
-      </ScrollView>
-    </SafeAreaView>
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isFocused) {
+        videoRef.current.playAsync();
+      } else {
+        videoRef.current.pauseAsync();
+      }
+    }
+  }, [isFocused]);
+
+  const renderItem = ({ item, index }) => (
+    <View style={styles.videoContainer}>
+      <Video
+        ref={(ref) => {
+          if (index === currentIndex) videoRef.current = ref;
+        }}
+        source={{ uri: item.uri }}
+        style={styles.video}
+        resizeMode="cover"
+        isLooping
+        shouldPlay={currentIndex === index}
+      />
+    </View>
+  );
+
+  return (
+    <View>
+      <FlatList
+        data={videos}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        pagingEnabled
+        onScroll={(e) => {
+          const index = Math.round(e.nativeEvent.contentOffset.y / height);
+          if (index !== currentIndex) {
+            setCurrentIndex(index);
+          }
+        }}
+        showsVerticalScrollIndicator={false}
+        decelerationRate="fast" // Adjusting scrolling speed for smoother snap
+        snapToInterval={height} // Snap to each item
+        snapToAlignment="start" // Align to the start of the item
+      />
+    </View>
   );
 };
 
-export default VideoScreen;
-
 const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
+  videoContainer: {
+    height,
     justifyContent: "center",
+    alignItems: "center",
+  },
+  video: {
+    width: "100%",
+    height: "100%",
   },
 });
+
+export default VideoScreen;

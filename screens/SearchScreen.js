@@ -12,7 +12,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import data from "../utils/data";
-import GenreContainer from "../components/GenreContainer";
 import VibesContainer from "../components/VibesContainer";
 
 const SearchScreen = () => {
@@ -56,7 +55,7 @@ const SearchScreen = () => {
           borderWidth: 0.5,
           marginHorizontal: "auto",
           paddingHorizontal: 10,
-          margin: 10,
+          marginTop: 10,
           height: 40,
           borderRadius: 10,
           borderColor: "green",
@@ -65,8 +64,6 @@ const SearchScreen = () => {
         value={searchItem}
         placeholder="Songs, Artist & More"
       />
-
-      <Text style={{ fontSize: 25, margin: 10 }}>Vibes</Text>
 
       {search ? (
         <ScrollView>
@@ -93,6 +90,8 @@ const SearchScreen = () => {
         </ScrollView>
       ) : (
         <ScrollView>
+          <Text style={{ fontSize: 25, margin: 10 }}>Vibes</Text>
+
           <View style={styles.gridContainer}>
             {data[6].vibes.map((vibes, index) => (
               <Pressable
@@ -125,14 +124,12 @@ const styles = StyleSheet.create({
   gridContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-around",
-    marginHorizontal: 5,
+    marginLeft: 10,
     marginTop: 10,
   },
   genrePressable: {
-    width: "48%",
-    aspectRatio: 1,
-    marginBottom: 10,
+    width: "50%",
+    marginBottom: 20,
   },
 });
 

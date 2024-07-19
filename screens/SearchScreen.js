@@ -13,6 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import data from "../utils/data";
 import GenreContainer from "../components/GenreContainer";
+import VibesContainer from "../components/VibesContainer";
 
 const SearchScreen = () => {
   const navigation = useNavigation();
@@ -85,7 +86,7 @@ const SearchScreen = () => {
                   }
                   style={styles.genrePressable}
                 >
-                  <GenreContainer image={vibes.photo} text={vibes.name} />
+                  <VibesContainer image={vibes.photo} text={vibes.name} />
                 </Pressable>
               ))}
           </View>
@@ -104,7 +105,7 @@ const SearchScreen = () => {
                 }
                 style={styles.genrePressable}
               >
-                <GenreContainer image={vibes.photo} text={vibes.name} />
+                <VibesContainer image={vibes.photo} text={vibes.name} />
               </Pressable>
             ))}
           </View>
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
   gridContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     marginHorizontal: 5,
     marginTop: 10,
   },

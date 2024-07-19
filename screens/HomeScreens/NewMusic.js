@@ -41,7 +41,7 @@ export default function App() {
                   key={index}
                   onPress={() =>
                     navigation.navigate("SongListScreen", {
-                      name: recents.name,
+                      genre: recents.name,
                       songs: recents.songs,
                     })
                   }
@@ -108,7 +108,7 @@ export default function App() {
                 key={index}
                 onPress={() =>
                   navigation.navigate("SongListScreen", {
-                    name: mix.name,
+                    genre: mix.name,
                     songs: mix.songs,
                   })
                 }

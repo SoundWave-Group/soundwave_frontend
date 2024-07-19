@@ -58,7 +58,7 @@ export default function App() {
                 key={index}
                 onPress={() =>
                   navigation.navigate("SongListScreen", {
-                    name: trending.name,
+                    genre: trending.name,
                     songs: trending.songs,
                   })
                 }

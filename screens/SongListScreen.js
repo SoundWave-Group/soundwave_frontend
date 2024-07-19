@@ -43,7 +43,7 @@ const SongListScreen = ({ route }) => {
           flexDirection: "row",
           justifyContent: "space-between",
           marginLeft: 10,
-          marginBottom: 20,
+          marginBottom: 10,
         }}
       >
         <Pressable
@@ -53,10 +53,9 @@ const SongListScreen = ({ route }) => {
         >
           <Ionicons name="arrow-back" size={24} color="black" />
         </Pressable>
-        <Text></Text>
       </View>
 
-      <Text style={styles.genreTitle}>{genre}</Text>
+      <Text style={[styles.genreTitle, { marginBottom: 30 }]}>{genre}</Text>
       <FlatList
         data={songs}
         renderItem={renderItem}

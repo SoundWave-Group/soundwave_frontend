@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import {
   View,
   Text,
   StyleSheet,
   Dimensions,
-  AppState,
   SafeAreaView,
   FlatList,
 } from "react-native";
 import { Video } from "expo-av";
+import { useFocusEffect } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
@@ -20,37 +20,38 @@ const videos = [
 
 const VideoScreen = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const videoRef = useRef(null);
-  const appState = useRef(AppState.currentState);
-  const flatListRef = useRef(null);
+  const videoRefs = useRef([]);
+
+  const pauseAllVideos = () => {
+    videoRefs.current.forEach((video) => {
+      if (video) {
+        video.pauseAsync();
+      }
+    });
+  };
+
+  const playCurrentVideo = (index) => {
+    const video = videoRefs.current[index];
+    if (video) {
+      video.playAsync();
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      playCurrentVideo(currentIndex);
+      return () => pauseAllVideos();
+    }, [currentIndex])
+  );
 
   useEffect(() => {
-    const subscription = AppState.addEventListener(
-      "change",
-      handleAppStateChange
-    );
-    return () => {
-      subscription.remove();
-    };
+    return () => pauseAllVideos(); // Ensure all videos are paused on unmount
   }, []);
-
-  const handleAppStateChange = (nextAppState) => {
-    if (
-      appState.current.match(/inactive|background/) &&
-      nextAppState === "active"
-    ) {
-      // App has come to the foreground
-    } else {
-      // App has gone to the background or is inactive
-      videoRef.current.pauseAsync();
-    }
-    appState.current = nextAppState;
-  };
 
   const renderItem = ({ item, index }) => (
     <View style={styles.videoContainer}>
       <Video
-        ref={videoRef}
+        ref={(ref) => (videoRefs.current[index] = ref)}
         source={{ uri: item.uri }}
         style={styles.video}
         resizeMode="cover"
@@ -64,7 +65,6 @@ const VideoScreen = () => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.heading}>Videos</Text>
       <FlatList
-        ref={flatListRef}
         data={videos}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
@@ -76,15 +76,16 @@ const VideoScreen = () => {
         onMomentumScrollEnd={(event) => {
           const index = Math.floor(event.nativeEvent.contentOffset.x / width);
           if (index !== currentIndex) {
+            pauseAllVideos();
             setCurrentIndex(index);
+            playCurrentVideo(index);
           }
         }}
         showsHorizontalScrollIndicator={false}
       />
-      <Text style={{ color: "white" }}>
-        {currentIndex + 1} / {videos.length}
+      <Text style={{ color: "white", marginTop: 20, fontSize: 20 }}>
+        Swipe {" =>"}
       </Text>
-      <Text style={{ color: "white", marginTop: 20, fontSize: 20 }}>Swipe</Text>
     </SafeAreaView>
   );
 };
@@ -100,15 +101,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: "white",
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 20,
   },
   videoContainer: {
     width: width * 0.8,
-    margin: 10,
-    marginHorizontal: 50,
+    marginHorizontal: width * 0.1,
     height: height * 0.7,
-    borderColor: "lightgreen",
-    borderWidth: 2,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 22,

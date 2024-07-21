@@ -51,8 +51,10 @@ const SearchScreen = () => {
             height: 40,
             borderRadius: 10,
             borderColor: "green",
+            color: "green",
+            marginBottom: 10,
           }}
-          placeholderTextColor={"lightgreen"}
+          placeholderTextColor={"green"}
           onChangeText={handleSearch}
           value={searchItem}
           placeholder="Songs, Artist & More"
@@ -113,7 +115,7 @@ const SearchScreen = () => {
         </ScrollView>
       )}
 
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
     </SafeAreaView>
   );
 };

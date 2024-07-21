@@ -15,109 +15,100 @@ import data from "../utils/data";
 import GenreContainer from "../components/GenreContainer";
 import HomeNavigation from "../components/HomeNavigation";
 import HeroComponent from "../components/HeroComponent";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import GenreBox from "../components/GenreBox";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
 
-  const fetchHeroData = () => {
-    // select a random genre and show
-    const randomIndex = Math.floor(Math.random() * data.length);
-    return data[2].genre[randomIndex];
-  };
+  const heroData = data[6].vibes[5];
 
   return (
     <SafeAreaView style={styles.container}>
       <HomeNavigation activeRouteName="MainScreen" />
       <ScrollView>
-        <View>
-          <Text style={[styles.headerStyle]}>Featured</Text>
-          <View style={{ margin: 20 }}>
-            {
-              // <TouchableOpacity
-              //   onPress={() =>
-              //     navigation.navigate("SongListScreen", {
-              //       genre: fetchHeroData().name,
-              //       songs: fetchHeroData().songs,
-              //     })
-              //   }
-              // >
-              <HeroComponent
-                image={require("../assets/singer3.jpg")}
-                text={"hello world"}
-              />
-              // </TouchableOpacity>
-            }
-          </View>
-        </View>
-        <View>
-          <Text style={[styles.headerStyle, { marginBottom: 10 }]}>
-            Made For You
-          </Text>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            style={{ marginTop: 5 }}
-          >
-            {data[4].mixes.map((mix, index) => (
-              <Pressable
-                key={index}
-                onPress={() =>
-                  navigation.navigate("SongListScreen", {
-                    genre: mix.name,
-                    songs: mix.songs,
-                  })
-                }
-                style={styles.genreContainer}
-              >
-                <GenreBox image={mix.photo} />
-              </Pressable>
-            ))}
-          </ScrollView>
-        </View>
         <View style={styles.section}>
-          <Text style={[styles.headerStyle, { marginBottom: 10 }]}>
-            Your Top Genres
-          </Text>
-          <View
-            style={{ marginLeft: 5, flexWrap: "wrap", flexDirection: "row" }}
-          >
-            {data[2].genre.map((genre, index) => (
-              <Pressable
-                key={index}
-                onPress={() =>
-                  navigation.navigate("SongListScreen", {
-                    genre: genre.name,
-                    songs: genre.songs,
-                  })
-                }
-                style={styles.genreContainer}
-              >
-                <GenreContainer image={genre.photo} />
-              </Pressable>
-            ))}
-          </View>
-        </View>
-
-        <Text style={[styles.headerStyle, { marginTop: 10, marginBottom: 10 }]}>
-          Browse More
-        </Text>
-        <View style={{ flexDirection: "row", flexWrap: "wrap", marginLeft: 5 }}>
-          {data[1].browse.map((genre, index) => (
-            <Pressable
-              key={index}
-              onPress={() =>
-                navigation.navigate("SongListScreen", {
-                  genre: genre.name,
-                  songs: genre.songs,
-                })
+          <Text style={styles.headerStyle}>Featured</Text>
+          <View style={styles.subSection}>
+            <View>
+              {
+                <Pressable
+                  onPress={() =>
+                    navigation.navigate("SongListScreen", {
+                      genre: heroData.name,
+                      songs: heroData.songs,
+                    })
+                  }
+                >
+                  <HeroComponent image={heroData.photo} />
+                </Pressable>
               }
-              style={styles.genreContainer}
+              <Text
+                style={[
+                  styles.text,
+                  { marginTop: -10, fontSize: 18, fontWeight: 400 },
+                ]}
+              >
+                {heroData.name}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.section}>
+            <Text style={styles.headerStyle}>Made for You</Text>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={{ marginTop: 10 }}
             >
-              <GenreContainer image={genre.photo} />
-            </Pressable>
-          ))}
+              {
+                // GenreContainer
+                data[4].mixes.map((genre, index) => (
+                  <GenreContainer key={index} image={genre.photo} />
+                ))
+              }
+            </ScrollView>
+          </View>
+          <View style={styles.section}>
+            <Text style={styles.headerStyle}>Genres</Text>
+            <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
+              {
+                // GenreBox
+                data[2].genre.map((genre, index) => (
+                  <Pressable
+                    key={index}
+                    onPress={() =>
+                      navigation.navigate("SongListScreen", {
+                        genre: genre.name,
+                        songs: genre.songs,
+                      })
+                    }
+                  >
+                    <GenreContainer image={genre.photo} />
+                  </Pressable>
+                ))
+              }
+            </View>
+          </View>
+          <View style={styles.section}>
+            <Text style={styles.headerStyle}>Moods</Text>
+            <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
+              {
+                // GenreBox
+                data[1].browse.map((genre, index) => (
+                  <Pressable
+                    key={index}
+                    onPress={() =>
+                      navigation.navigate("SongListScreen", {
+                        genre: genre.name,
+                        songs: genre.songs,
+                      })
+                    }
+                  >
+                    <GenreContainer image={genre.photo} />
+                  </Pressable>
+                ))
+              }
+            </View>
+          </View>
         </View>
       </ScrollView>
       <StatusBar style="light" />
@@ -128,15 +119,25 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   section: {
     flex: 1,
-    marginTop: 30,
+    marginTop: 20,
   },
   headerStyle: {
     fontSize: 25,
     color: "green",
     marginLeft: 10,
+    marginVertical: 10,
+  },
+  subSection: {
+    marginLeft: 10,
   },
   container: {
     flex: 1,
     backgroundColor: "black",
+  },
+  text: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+    marginTop: 20,
   },
 });

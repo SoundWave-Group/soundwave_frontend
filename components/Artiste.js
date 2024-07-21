@@ -8,9 +8,10 @@ const Artiste = ({ artisteName, image }) => {
 
         <Text
           style={{
-            color: "green",
+            color: "white",
             fontSize: 16,
-            marginTop: 2,
+            fontWeight: "500",
+            marginTop: 5,
           }}
         >
           {artisteName}

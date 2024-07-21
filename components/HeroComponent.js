@@ -1,5 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
-import { View, Image, Text, TouchableOpacity } from "react-native";
+import { View, Image, Text } from "react-native";
 import { Dimensions } from "react-native";
 
 const responsiveWidth = (percentage) => {
@@ -13,7 +12,6 @@ const responsiveHeight = (percentage) => {
 };
 
 const HeroComponent = ({ image, text }) => {
-  const navigator = useNavigation();
   return (
     <View
       style={{
@@ -24,9 +22,7 @@ const HeroComponent = ({ image, text }) => {
       <Image
         source={image}
         style={{
-          borderRadius: 10,
-          borderColor: "green",
-          borderWidth: 1,
+          borderRadius: 20,
           width: responsiveWidth(90),
           height: responsiveHeight(45),
         }}

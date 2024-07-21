@@ -7,6 +7,7 @@ import {
   ScrollView,
   SafeAreaView,
   Pressable,
+  TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -19,23 +20,12 @@ import GenreBox from "../components/GenreBox";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
-  const [userDetails, setUserDetails] = useState(null);
 
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        const userData = await AsyncStorage.getItem("userDetails");
-
-        if (userData) {
-          setUserDetails(JSON.parse(userData));
-        }
-      } catch (error) {
-        console.error("Failed to load user details", error);
-      }
-    };
-
-    fetchUserDetails();
-  }, []);
+  const fetchHeroData = () => {
+    // select a random genre and show
+    const randomIndex = Math.floor(Math.random() * data.length);
+    return data[2].genre[randomIndex];
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -44,15 +34,26 @@ export default function HomeScreen() {
         <View>
           <Text style={[styles.headerStyle]}>Featured</Text>
           <View style={{ margin: 20 }}>
-            <HeroComponent
-              image={require("../assets/singer3.jpg")}
-              text={"hot songs right now!"}
-            />
+            {
+              // <TouchableOpacity
+              //   onPress={() =>
+              //     navigation.navigate("SongListScreen", {
+              //       genre: fetchHeroData().name,
+              //       songs: fetchHeroData().songs,
+              //     })
+              //   }
+              // >
+              <HeroComponent
+                image={require("../assets/singer3.jpg")}
+                text={"hello world"}
+              />
+              // </TouchableOpacity>
+            }
           </View>
         </View>
         <View>
           <Text style={[styles.headerStyle, { marginBottom: 10 }]}>
-            Made For {userDetails.userProfile.fullName.split(" ")[0]}
+            Made For You
           </Text>
           <ScrollView
             horizontal
@@ -119,7 +120,7 @@ export default function HomeScreen() {
           ))}
         </View>
       </ScrollView>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </SafeAreaView>
   );
 }

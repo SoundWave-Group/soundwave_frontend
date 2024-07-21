@@ -15,51 +15,33 @@ const responsiveHeight = (percentage) => {
 const HeroComponent = ({ image, text }) => {
   const navigator = useNavigation();
   return (
-    <TouchableOpacity
-      onPress={() =>
-        navigator.navigate("SongListScreen", {
-          genre: "song screen",
-          songs: [
-            {
-              id: 1,
-              artist: "Kenrick Lamar",
-              title: "Not Like Us",
-              albumArt: "null",
-              genre: "Hip Hop & Rap",
-              link: "https://null.mp3",
-            },
-          ],
-        })
-      }
+    <View
+      style={{
+        width: responsiveWidth(45),
+        heigh: responsiveHeight(45),
+      }}
     >
-      <View
+      <Image
+        source={image}
         style={{
-          width: responsiveWidth(45),
-          heigh: responsiveHeight(45),
+          borderRadius: 10,
+          borderColor: "green",
+          borderWidth: 1,
+          width: responsiveWidth(90),
+          height: responsiveHeight(45),
+        }}
+      />
+
+      <Text
+        style={{
+          fontSize: 18,
+          marginTop: 5,
+          color: "white",
         }}
       >
-        <Image
-          source={image}
-          style={{
-            borderRadius: 10,
-            borderColor: "green",
-            borderWidth: 1,
-            width: responsiveWidth(90),
-            height: responsiveHeight(45),
-          }}
-        />
-
-        <Text
-          style={{
-            fontSize: 18,
-            marginTop: 5,
-            color: "white",
-          }}
-        >
-          {text}
-        </Text>
-      </View>
-    </TouchableOpacity>
+        {text}
+      </Text>
+    </View>
   );
 };
 

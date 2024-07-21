@@ -8,6 +8,8 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   Modal,
+  TextInput,
+  Button,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
@@ -21,17 +23,15 @@ const ProfileScreen = () => {
   const [userDetails, setUserDetails] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const [newFullName, setNewFullName] = useState("");
-  const [newBio, setNewBio] = useState("");
-  const [newLocation, setNewLocation] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+  const [currentField, setCurrentField] = useState("");
+  const [newDetail, setNewDetail] = useState("");
 
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
         setLoading(true);
         const userData = await AsyncStorage.getItem("userDetails");
-        console.log(userData);
-
         if (userData) {
           setUserDetails(JSON.parse(userData));
         }
@@ -45,68 +45,36 @@ const ProfileScreen = () => {
     fetchUserDetails();
   }, []);
 
-  const handleChangeDetails = async () => {
-    const username = userDetails.userProfile.username;
+  const handleEditPress = (field) => {
+    setCurrentField(field);
+    setModalVisible(true);
+  };
 
-    <Modal visible={true} animationType="slide" transparent={true}>
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <View
-          style={{ backgroundColor: "white", padding: 20, borderRadius: 10 }}
-        >
-          <Text style={{ fontSize: 20, color: "green" }}>Edit Profile</Text>
-          <TextInput
-            placeholder="Full Name"
-            value={newFullName}
-            onChangeText={setNewFullName}
-            style={styles.input}
-          />
-          <TextInput
-            placeholder="Bio"
-            value={newBio}
-            onChangeText={setNewBio}
-            style={styles.input}
-          />
-          <TextInput
-            placeholder="Location"
-            value={newLocation}
-            onChangeText={setNewLocation}
-            style={styles.input}
-          />
-          <Pressable onPress={handleEditProfile}>
-            <Text style={{ color: "green", fontSize: 20 }}>Save</Text>
-          </Pressable>
-        </View>
-      </View>
-    </Modal>;
+  const handleSaveDetails = async () => {
+    try {
+      const updatedDetails = {
+        ...userDetails,
+        userProfile: {
+          ...userDetails.userProfile,
+          [currentField]: newDetail,
+        },
+      };
+      setUserDetails(updatedDetails);
+      await AsyncStorage.setItem("userDetails", JSON.stringify(updatedDetails));
 
-    const body = {
-      username,
-      newBio,
-      newFullName,
-      newLocation,
-    };
-
-    const response = await fetch(
-      `https://soundwave-56af.onrender.com/api/user-profile/edit/${username}`,
-      {
+      const apiUrl = `https://soundwave-56af.onrender.com/api/user-profile/edit/${userDetails.id}`;
+      await fetch(apiUrl, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(body),
-      }
-    );
+        body: JSON.stringify(updatedDetails.userProfile),
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      setUserDetails(data);
-      await AsyncStorage.setItem(
-        "userDetails",
-        JSON.stringify(userDetails.userProfile)
-      );
+      setModalVisible(false);
+    } catch (error) {
+      console.error("Failed to save user details", error);
     }
-
-    console.log("User details updated", response);
   };
 
   if (loading) {
@@ -164,33 +132,45 @@ const ProfileScreen = () => {
               height: 100,
               borderRadius: 30,
               margin: "auto",
-              marginVertical: 10,
+              marginVertical: 20,
             }}
           />
         </View>
       </View>
 
       <View style={{ marginTop: 20 }}>
-        <View style={{ marginHorizontal: 20, gap: 20 }}>
-          <TouchableOpacity style={styles.textContainer}>
+        <View style={{ marginHorizontal: 20, gap: 10 }}>
+          <TouchableOpacity
+            style={styles.textContainer}
+            onPress={() => handleEditPress("fullName")}
+          >
             <Text style={styles.text}>NAME</Text>
             <Text style={styles.textSecondary}>
               {userDetails.userProfile.fullName}
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.textContainer}>
+          <TouchableOpacity
+            style={styles.textContainer}
+            onPress={() => handleEditPress("username")}
+          >
             <Text style={styles.text}>USERNAME</Text>
             <Text style={styles.textSecondary}>
               {userDetails.userProfile.username}
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.textContainer}>
+          <TouchableOpacity
+            style={styles.textContainer}
+            onPress={() => handleEditPress("email")}
+          >
             <Text style={styles.text}>EMAIL</Text>
             <Text style={styles.textSecondary}>
               {userDetails.userProfile.email}
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.textContainer}>
+          <TouchableOpacity
+            style={styles.textContainer}
+            onPress={() => handleEditPress("bio")}
+          >
             <Text style={styles.text}>BIO</Text>
             <Text style={styles.textSecondary}>
               {userDetails.userProfile.bio}
@@ -207,9 +187,42 @@ const ProfileScreen = () => {
         }}
       >
         <Text style={{ color: "#252525" }}>
-          tap on the any detail above to edit
+          Tap on any detail above to edit
         </Text>
       </View>
+
+      <Modal
+        transparent={true}
+        visible={modalVisible}
+        animationType="slide"
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalTitle}>Edit {currentField}</Text>
+            <TextInput
+              style={styles.modalInput}
+              placeholder={`Enter new ${currentField}`}
+              value={newDetail}
+              onChangeText={setNewDetail}
+              placeholderTextColor={"grey"}
+              color={"white"}
+            />
+            <View style={{ flexDirection: "row" }}>
+              <Button
+                title="Save"
+                onPress={handleSaveDetails}
+                color="lightgreen"
+              />
+              <Button
+                title="Cancel"
+                onPress={() => setModalVisible(false)}
+                color="red"
+              />
+            </View>
+          </View>
+        </View>
+      </Modal>
 
       <StatusBar style="auto" />
     </SafeAreaView>
@@ -226,7 +239,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     padding: 20,
-    borderRadius: 20,
+    borderRadius: 10,
     backgroundColor: "#101010",
   },
   text: {
@@ -242,6 +255,32 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalView: {
+    width: "80%",
+    backgroundColor: "#101010",
+    borderRadius: 10,
+    padding: 20,
+    alignItems: "center",
+  },
+  modalTitle: {
+    fontSize: 20,
+    color: "white",
+    marginBottom: 20,
+  },
+  modalInput: {
+    width: "100%",
+    borderWidth: 1,
+    borderColor: "lightgreen",
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 20,
   },
 });
 

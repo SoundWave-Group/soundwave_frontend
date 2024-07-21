@@ -3,13 +3,14 @@ import {
   Text,
   View,
   SafeAreaView,
+  ScrollView,
   Pressable,
   Switch,
   Linking,
   Share,
 } from "react-native";
 import React, { useState } from "react";
-import { StackRouter, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import Button from "../../components/Button";
@@ -52,24 +53,24 @@ const Settings = () => {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Pressable onPress={() => navigation.goBack()}>
-            <AntDesign
-              name="left"
-              size={24}
-              color="#0A4A3B"
-              style={styles.back}
-            />
-          </Pressable>
-          <Feather
-            name="settings"
+      <View style={styles.header}>
+        <Pressable onPress={() => navigation.goBack()}>
+          <AntDesign
+            name="left"
             size={24}
             color="#0A4A3B"
-            style={styles.settingsBtn}
+            style={styles.back}
           />
-          <Text style={styles.text}>Settings</Text>
-        </View>
+        </Pressable>
+        <Feather
+          name="settings"
+          size={24}
+          color="#0A4A3B"
+          style={styles.settingsBtn}
+        />
+        <Text style={styles.text}>Settings</Text>
+      </View>
+      <ScrollView style={styles.container}>
         <View style={styles.content}>
           <View style={styles.toggler}>
             <Text style={styles.autoBtn}>Autoplay related tracks</Text>
@@ -90,7 +91,6 @@ const Settings = () => {
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
             />
-            <FontAwesome5 name="angle-right" size={24} color="white" />
           </View>
           <View style={styles.buttonBox}>
             <Button
@@ -101,7 +101,6 @@ const Settings = () => {
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
             />
-            <FontAwesome5 name="angle-right" size={24} color="white" />
           </View>
           <View style={styles.buttonBox}>
             <Button
@@ -112,7 +111,6 @@ const Settings = () => {
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
             />
-            <FontAwesome5 name="angle-right" size={24} color="white" />
           </View>
           <View style={styles.buttonBox}>
             <Button
@@ -123,7 +121,6 @@ const Settings = () => {
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
             />
-            <FontAwesome5 name="angle-right" size={24} color="white" />
           </View>
           <View style={styles.buttonBox}>
             <Button
@@ -134,7 +131,6 @@ const Settings = () => {
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
             />
-            <FontAwesome5 name="angle-right" size={24} color="white" />
           </View>
           <View style={styles.buttonBox}>
             <Button
@@ -145,7 +141,6 @@ const Settings = () => {
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
             />
-            <FontAwesome5 name="angle-right" size={24} color="white" />
           </View>
           <View style={styles.buttonBox}>
             <Button
@@ -172,7 +167,6 @@ const Settings = () => {
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
             />
-            <FontAwesome5 name="angle-right" size={24} color="white" />
           </View>
         </View>
 
@@ -185,7 +179,7 @@ const Settings = () => {
             navigation.navigate("SplashScreen");
           }}
         />
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -204,11 +198,8 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    padding: 20,
-    paddingBottom: 10,
+    marginHorizontal: 20,
     flexDirection: "row",
-    borderBottomWidth: 1,
-    borderBottomColor: "rgba(0, 0, 0, 0.1)",
   },
   back: {
     marginRight: 100,
@@ -219,7 +210,6 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     padding: 10,
-    marginRight: 20,
   },
   toggler: {
     alignItems: "center",
@@ -227,6 +217,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 0,
     flexDirection: "row",
     marginBottom: 10,
+    padding: 15,
   },
   button: {
     color: "white",
@@ -236,18 +227,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     fontSize: 20,
     fontWeight: "700",
-    borderRadius: "10px",
   },
   buttonBox: {
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "space-around",
-    marginLeft: 10,
+    marginHorizontal: 10,
+    backgroundColor: "#101010",
+    paddingVertical: 5,
+    margin: 5,
+    paddingHorizontal: 10,
+    borderRadius: 10,
   },
   buttonText: {
     color: "white",
+    marginHorizontal: 10,
     fontSize: 20,
     fontWeight: "400",
+    padding: 10,
   },
   autoBtn: {
     color: "white",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -13,15 +13,68 @@ import { useNavigation } from "@react-navigation/native";
 import data from "../utils/data";
 import GenreContainer from "../components/GenreContainer";
 import HomeNavigation from "../components/HomeNavigation";
-import MiniPlayer from "../components/MiniPlayer";
+import HeroComponent from "../components/HeroComponent";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import GenreBox from "../components/GenreBox";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
+  const [userDetails, setUserDetails] = useState(null);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const userData = await AsyncStorage.getItem("userDetails");
+
+        if (userData) {
+          setUserDetails(JSON.parse(userData));
+        }
+      } catch (error) {
+        console.error("Failed to load user details", error);
+      }
+    };
+
+    fetchUserDetails();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <HomeNavigation activeRouteName="MainScreen" />
       <ScrollView>
+        <View>
+          <Text style={[styles.headerStyle]}>Featured</Text>
+          <View style={{ margin: 20 }}>
+            <HeroComponent
+              image={require("../assets/singer3.jpg")}
+              text={"hot songs right now!"}
+            />
+          </View>
+        </View>
+        <View>
+          <Text style={[styles.headerStyle, { marginBottom: 10 }]}>
+            Made For {userDetails.userProfile.fullName.split(" ")[0]}
+          </Text>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{ marginTop: 5 }}
+          >
+            {data[4].mixes.map((mix, index) => (
+              <Pressable
+                key={index}
+                onPress={() =>
+                  navigation.navigate("SongListScreen", {
+                    genre: mix.name,
+                    songs: mix.songs,
+                  })
+                }
+                style={styles.genreContainer}
+              >
+                <GenreBox image={mix.photo} />
+              </Pressable>
+            ))}
+          </ScrollView>
+        </View>
         <View style={styles.section}>
           <Text style={[styles.headerStyle, { marginBottom: 10 }]}>
             Your Top Genres
@@ -83,5 +136,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    backgroundColor: "black",
   },
 });

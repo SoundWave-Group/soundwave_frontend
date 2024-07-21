@@ -22,14 +22,15 @@ const Uploads = () => {
         }}
       >
         <View>
-          <Pressable onPress={() => navigation.navigate("LibraryScreen")}>
-            <Ionicons name="chevron-back" size={25} />
+          <Pressable onPress={() => navigation.goBack()}>
+            <Ionicons name="chevron-back" size={25} color={"white"} />
           </Pressable>
         </View>
         <Text
           style={{
             fontSize: 20,
             marginHorizontal: "auto",
+            color: "white",
           }}
         >
           Albums
@@ -37,8 +38,8 @@ const Uploads = () => {
       </View>
 
       <View style={{ margin: 20 }}>
-        <Text style={{ fontSize: 25 }}>No Uploads Yet</Text>
-        <Text style={{ fontSize: 20, marginTop: 10 }}>
+        <Text style={{ fontSize: 25, color: "white" }}>No Uploads Yet</Text>
+        <Text style={{ fontSize: 20, marginTop: 10, color: "white" }}>
           Your Uploads will appear here.
         </Text>
 
@@ -65,7 +66,7 @@ const Uploads = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
   },
   content: {
     flex: 1,

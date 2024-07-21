@@ -16,13 +16,14 @@ const DownloadScreen = () => {
       >
         <View>
           <Pressable onPress={() => navigation.goBack()}>
-            <Ionicons name="chevron-back" size={25} />
+            <Ionicons name="chevron-back" size={25} color={"white"} />
           </Pressable>
         </View>
         <Text
           style={{
             fontSize: 20,
             marginHorizontal: "auto",
+            color: "white",
           }}
         >
           Downloads
@@ -30,7 +31,9 @@ const DownloadScreen = () => {
       </View>
 
       <View style={{ marginTop: 10, marginLeft: 10 }}>
-        <Text style={{ fontSize: 25, margin: 5 }}>No downloads yet... </Text>
+        <Text style={{ fontSize: 25, margin: 5, color: "white" }}>
+          No downloads yet...{" "}
+        </Text>
       </View>
 
       <StatusBar style="auto" />
@@ -41,7 +44,7 @@ const DownloadScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
   },
   content: {
     flex: 1,

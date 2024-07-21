@@ -11,7 +11,7 @@ const LibraryScreen = () => {
           style={{
             fontSize: 25,
             marginLeft: 20,
-            color: "#OC5745",
+            color: "white",
             fontWeight: "600",
           }}
         >
@@ -25,12 +25,20 @@ const LibraryScreen = () => {
             justifyContent: "center",
           }}
         >
-          <LibrarySections name="Liked Tracks" link="LikedTracks" />
-          <LibrarySections name="Playlists" link="Playlists" />
-          <LibrarySections name="Albums" link="Albums" />
-          <LibrarySections name="Following" link="Following" />
-          <LibrarySections name="Stream" link="Stream" />
-          <LibrarySections name="Your Uploads" link="Uploads" />
+          <LibrarySections
+            name="Liked Tracks"
+            link="LikedTracks"
+            icon={"heart"}
+          />
+          <LibrarySections
+            name="Playlists"
+            link="Playlists"
+            icon={"folder-plus"}
+          />
+          <LibrarySections name="Albums" link="Albums" icon={"folder-plus"} />
+          <LibrarySections name="Following" link="Following" icon={"plus"} />
+          <LibrarySections name="Stream" link="Stream" icon={"broadcast"} />
+          <LibrarySections name="Your Uploads" link="Uploads" icon={"upload"} />
         </View>
       </SafeAreaView>
 
@@ -42,7 +50,7 @@ const LibraryScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
   },
   content: {
     flex: 1,

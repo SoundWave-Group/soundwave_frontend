@@ -31,6 +31,7 @@ const SearchScreen = () => {
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
+          alignItems: "center",
           marginHorizontal: 20,
         }}
       >
@@ -39,31 +40,32 @@ const SearchScreen = () => {
             navigation.goBack();
           }}
         >
-          <Ionicons name="arrow-back" size={24} color="black" />
+          <Ionicons name="arrow-back" size={24} color="white" />
         </Pressable>
+        <TextInput
+          style={{
+            width: "80%",
+            borderWidth: 0.5,
+            marginHorizontal: "auto",
+            paddingHorizontal: 10,
+            height: 40,
+            borderRadius: 10,
+            borderColor: "green",
+          }}
+          placeholderTextColor={"lightgreen"}
+          onChangeText={handleSearch}
+          value={searchItem}
+          placeholder="Songs, Artist & More"
+        />
+
         <Pressable
           onPress={() => {
             navigation.navigate("Download");
           }}
         >
-          <Ionicons name="cloud-download" size={24} color="black" />
+          <Ionicons name="cloud-download" size={24} color="white" />
         </Pressable>
       </View>
-      <TextInput
-        style={{
-          width: "95%",
-          borderWidth: 0.5,
-          marginHorizontal: "auto",
-          paddingHorizontal: 10,
-          marginTop: 10,
-          height: 40,
-          borderRadius: 10,
-          borderColor: "green",
-        }}
-        onChangeText={handleSearch}
-        value={searchItem}
-        placeholder="Songs, Artist & More"
-      />
 
       {search ? (
         <ScrollView>
@@ -111,21 +113,20 @@ const SearchScreen = () => {
         </ScrollView>
       )}
 
-      <StatusBar style="auto" />
+      <StatusBar style="dark" />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
+    backgroundColor: "black",
     flex: 1,
   },
   gridContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
     marginLeft: 10,
-    marginTop: 10,
   },
   genrePressable: {
     width: "50%",

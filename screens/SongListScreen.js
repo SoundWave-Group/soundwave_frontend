@@ -42,7 +42,7 @@ const SongListScreen = ({ route }) => {
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          marginLeft: 10,
+          marginHorizontal: 20,
           marginBottom: 10,
         }}
       >
@@ -51,11 +51,11 @@ const SongListScreen = ({ route }) => {
             navigation.goBack();
           }}
         >
-          <Ionicons name="arrow-back" size={24} color="black" />
+          <Ionicons name="arrow-back" size={24} color="white" />
         </Pressable>
+        <Text style={[styles.genreTitle, { marginBottom: 30 }]}>{genre}</Text>
       </View>
 
-      <Text style={[styles.genreTitle, { marginBottom: 30 }]}>{genre}</Text>
       <FlatList
         data={songs}
         renderItem={renderItem}
@@ -68,7 +68,7 @@ const SongListScreen = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "black",
   },
   genreTitle: {
     fontSize: 24,
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderBottomWidth: 1,
     borderBottomColor: "gray",
+    color: "white",
   },
   songContainer: {
     flexDirection: "row",
@@ -99,6 +100,7 @@ const styles = StyleSheet.create({
   songTitle: {
     fontSize: 18,
     fontWeight: "bold",
+    color: "white",
   },
   artistName: {
     fontSize: 16,

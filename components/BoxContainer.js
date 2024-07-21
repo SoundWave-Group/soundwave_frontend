@@ -18,7 +18,7 @@ const BoxContainer = () => {
           style={{
             borderStyle: "solid",
             borderColor: "#39C0D4",
-            borderWidth: 5,
+            borderWidth: 2,
             paddingLeft: 30,
             paddingRight: 30,
             padding: 5,
@@ -35,7 +35,7 @@ const BoxContainer = () => {
 
 const styles = StyleSheet.create({
   boxContainer: {
-    backgroundColor: "#000000",
+    backgroundColor: "black",
     alignItems: "center",
     marginTop: "auto",
     marginBottom: -50,

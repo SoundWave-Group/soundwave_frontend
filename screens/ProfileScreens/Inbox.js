@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, SafeAreaView, Pressable, Switch } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Pressable,
+  Switch,
+} from "react-native";
 import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -33,7 +40,10 @@ const Inbox = () => {
               value={isEnabled}
             />
           </View>
-          <Text style={styles.faded}>If your turn this off, only people you follow will be able to send you messages</Text>
+          <Text style={styles.faded}>
+            If your turn this off, only people you follow will be able to send
+            you messages
+          </Text>
         </View>
       </View>
     </SafeAreaView>
@@ -45,14 +55,14 @@ export default Inbox;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
   },
   content: {
     flex: 1,
     padding: 20,
   },
   text: {
-    color: "#0A4A3B",
+    color: "white",
     fontSize: 20,
     fontWeight: "600",
     width: "85%",
@@ -67,12 +77,12 @@ const styles = StyleSheet.create({
     borderBottomColor: "rgba(0, 0, 0, 0.1)",
   },
   autoBtn: {
-    color: "black",
+    color: "white",
     fontSize: 16,
     fontWeight: "600",
   },
   faded: {
-    color: "rgba(0,0,0,0.2)",
+    color: "grey",
     fontSize: 15,
     fontWeight: "400",
   },

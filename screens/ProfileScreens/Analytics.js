@@ -66,10 +66,10 @@ export default Analytics;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
   },
   text: {
-    color: "#0A4A3B",
+    color: "white",
     fontSize: 20,
     fontWeight: "600",
     width: "85%",
@@ -81,20 +81,20 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     flexDirection: "row",
     borderBottomWidth: 1,
-    borderBottomColor: "rgba(0, 0, 0, 0.1)",
+    borderBottomColor: "grey",
   },
   content: {
     flex: 1,
     padding: 20,
   },
   headText: {
-    color: "black",
+    color: "white",
     fontSize: 15,
     fontWeight: "600",
     marginTop: 5,
   },
   paragraphText: {
-    color: "rgba(0, 0, 0, 0.3)",
+    color: "grey",
     fontSize: 15,
     fontWeight: "400",
     paddingVertical: 30,

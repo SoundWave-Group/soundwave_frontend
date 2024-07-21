@@ -137,7 +137,6 @@ const Account = () => {
                   buttonStyle={styles.button}
                   textStyle={styles.buttonText}
                 />
-                <FontAwesome5 name="angle-right" size={24} color="red" />
               </View>
             </>
           ) : (
@@ -154,7 +153,7 @@ export default Account;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
   },
   content: {
     flex: 1,
@@ -186,28 +185,36 @@ const styles = StyleSheet.create({
   },
   buttonBox: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "center",
     alignItems: "center",
+    borderRadius: 10,
+    marginTop: 20,
+    backgroundColor: "#ff4256",
   },
   buttonText: {
-    color: "red",
-    fontSize: 16,
+    color: "white",
+    fontSize: 18,
     fontWeight: "400",
+    marginHorizontal: 20,
   },
   headText: {
-    color: "black",
+    color: "grey",
     fontSize: 18,
     fontWeight: "600",
     marginTop: 5,
   },
   paragraphText: {
-    color: "black",
+    color: "white",
     fontSize: 16,
     fontWeight: "400",
+    marginVertical: 2,
   },
   field: {
-    height: 60,
     marginVertical: 5,
+    backgroundColor: "#101010",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 10,
   },
   loaderContainer: {
     flex: 1,

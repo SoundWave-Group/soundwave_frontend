@@ -39,7 +39,7 @@ export default Advertising;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
   },
   text: {
     color: "#0A4A3B",

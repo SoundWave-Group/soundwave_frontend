@@ -90,7 +90,7 @@ const Settings = () => {
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
             />
-            <FontAwesome5 name="angle-right" size={24} color="black" />
+            <FontAwesome5 name="angle-right" size={24} color="white" />
           </View>
           <View style={styles.buttonBox}>
             <Button
@@ -101,7 +101,7 @@ const Settings = () => {
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
             />
-            <FontAwesome5 name="angle-right" size={24} color="black" />
+            <FontAwesome5 name="angle-right" size={24} color="white" />
           </View>
           <View style={styles.buttonBox}>
             <Button
@@ -112,7 +112,7 @@ const Settings = () => {
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
             />
-            <FontAwesome5 name="angle-right" size={24} color="black" />
+            <FontAwesome5 name="angle-right" size={24} color="white" />
           </View>
           <View style={styles.buttonBox}>
             <Button
@@ -123,7 +123,7 @@ const Settings = () => {
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
             />
-            <FontAwesome5 name="angle-right" size={24} color="black" />
+            <FontAwesome5 name="angle-right" size={24} color="white" />
           </View>
           <View style={styles.buttonBox}>
             <Button
@@ -134,7 +134,7 @@ const Settings = () => {
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
             />
-            <FontAwesome5 name="angle-right" size={24} color="black" />
+            <FontAwesome5 name="angle-right" size={24} color="white" />
           </View>
           <View style={styles.buttonBox}>
             <Button
@@ -145,7 +145,7 @@ const Settings = () => {
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
             />
-            <FontAwesome5 name="angle-right" size={24} color="black" />
+            <FontAwesome5 name="angle-right" size={24} color="white" />
           </View>
           <View style={styles.buttonBox}>
             <Button
@@ -172,7 +172,7 @@ const Settings = () => {
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
             />
-            <FontAwesome5 name="angle-right" size={24} color="black" />
+            <FontAwesome5 name="angle-right" size={24} color="white" />
           </View>
         </View>
 
@@ -195,7 +195,7 @@ export default Settings;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
   },
   text: {
     color: "#0A4A3B",
@@ -245,12 +245,12 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   buttonText: {
-    color: "black",
+    color: "white",
     fontSize: 20,
     fontWeight: "400",
   },
   autoBtn: {
-    color: "black",
+    color: "white",
     fontSize: 20,
     marginLeft: 5,
     fontWeight: "400",

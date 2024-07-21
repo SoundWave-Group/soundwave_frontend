@@ -6,7 +6,7 @@ import {
   Image,
   SafeAreaView,
   ActivityIndicator,
-  Alert,
+  TouchableOpacity,
   Modal,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
@@ -158,11 +158,11 @@ const ProfileScreen = () => {
       <View>
         <View style={{ marginHorizontal: "auto" }}>
           <Image
-            source={require("../assets/artistes/Dave.png")}
+            source={require("../assets/singer1.jpg")}
             style={{
               width: 100,
               height: 100,
-              borderRadius: 100,
+              borderRadius: 30,
               margin: "auto",
               marginVertical: 10,
             }}
@@ -170,48 +170,45 @@ const ProfileScreen = () => {
         </View>
       </View>
 
-      <View
-        style={{ margin: 20, gap: 15, marginTop: 20, flexDirection: "row" }}
-      >
-        <View style={{ gap: 20 }}>
-          <Text style={styles.text}>Name:</Text>
-          <Text style={styles.text}>Username:</Text>
-          <Text style={styles.text}>Email:</Text>
-          <Text style={styles.text}>Bio:</Text>
-          <Text style={styles.text}>Location:</Text>
-        </View>
-        <View style={{ gap: 20, marginHorizontal: "auto" }}>
-          <Text style={styles.textSecondary}>
-            {userDetails.userProfile.fullName}
-          </Text>
-          <Text style={styles.textSecondary}>
-            {userDetails.userProfile.username}
-          </Text>
-          <Text style={styles.textSecondary}>
-            {userDetails.userProfile.email}
-          </Text>
-          <Text style={styles.textSecondary}>
-            {userDetails.userProfile.bio}
-          </Text>
-          <Text style={styles.textSecondary}>
-            {userDetails.userProfile.location}
-          </Text>
+      <View style={{ marginTop: 20 }}>
+        <View style={{ marginHorizontal: 20, gap: 20 }}>
+          <TouchableOpacity style={styles.textContainer}>
+            <Text style={styles.text}>NAME</Text>
+            <Text style={styles.textSecondary}>
+              {userDetails.userProfile.fullName}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.textContainer}>
+            <Text style={styles.text}>USERNAME</Text>
+            <Text style={styles.textSecondary}>
+              {userDetails.userProfile.username}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.textContainer}>
+            <Text style={styles.text}>EMAIL</Text>
+            <Text style={styles.textSecondary}>
+              {userDetails.userProfile.email}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.textContainer}>
+            <Text style={styles.text}>BIO</Text>
+            <Text style={styles.textSecondary}>
+              {userDetails.userProfile.bio}
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
+
       <View
         style={{
           marginHorizontal: "auto",
-          backgroundColor: "lightgreen",
-          paddingHorizontal: 20,
-          paddingVertical: 10,
-          borderRadius: 10,
           marginTop: "auto",
           marginBottom: 20,
         }}
       >
-        <Pressable onPress={handleChangeDetails}>
-          <Text style={{ fontSize: 20 }}>Edit Profile</Text>
-        </Pressable>
+        <Text style={{ color: "#252525" }}>
+          tap on the any detail above to edit
+        </Text>
       </View>
 
       <StatusBar style="auto" />
@@ -222,7 +219,15 @@ const ProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
+  },
+  textContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 20,
+    borderRadius: 20,
+    backgroundColor: "#101010",
   },
   text: {
     fontSize: 18,
@@ -230,6 +235,8 @@ const styles = StyleSheet.create({
   },
   textSecondary: {
     fontSize: 18,
+    color: "white",
+    marginLeft: 20,
   },
   loaderContainer: {
     flex: 1,

@@ -16,14 +16,15 @@ const Stream = () => {
         }}
       >
         <View>
-          <Pressable onPress={() => navigation.navigate("LibraryScreen")}>
-            <Ionicons name="chevron-back" size={25} />
+          <Pressable onPress={() => navigation.goBack()}>
+            <Ionicons name="chevron-back" size={25} color={"white"} />
           </Pressable>
         </View>
         <Text
           style={{
             fontSize: 20,
             marginHorizontal: "auto",
+            color: "white",
           }}
         >
           Stream
@@ -31,7 +32,9 @@ const Stream = () => {
       </View>
 
       <View style={{ margin: 20 }}>
-        <Text style={{ fontSize: 20 }}>You can stream your music here </Text>
+        <Text style={{ fontSize: 20, color: "white" }}>
+          You can stream your music here{" "}
+        </Text>
 
         <Pressable
           style={{
@@ -56,7 +59,7 @@ const Stream = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
   },
   content: {
     flex: 1,

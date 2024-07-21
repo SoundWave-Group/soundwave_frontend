@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { requestPermissionsAsync } from "expo-av/build/Audio";
 
 const Playlists = () => {
   const navigation = useNavigation();
@@ -50,14 +49,15 @@ const Playlists = () => {
         }}
       >
         <View>
-          <Pressable onPress={() => navigation.navigate("LibraryScreen")}>
-            <Ionicons name="chevron-back" size={25} />
+          <Pressable onPress={() => navigation.goBack()}>
+            <Ionicons name="chevron-back" size={25} color={"white"} />
           </Pressable>
         </View>
         <Text
           style={{
             fontSize: 20,
             marginHorizontal: "auto",
+            color: "white",
           }}
         >
           Playlists
@@ -65,7 +65,9 @@ const Playlists = () => {
       </View>
 
       <View style={{ marginTop: 10, marginLeft: 10 }}>
-        <Text style={{ fontSize: 25, marginLeft: 5 }}>Playlists</Text>
+        <Text style={{ fontSize: 25, marginLeft: 5, color: "white" }}>
+          Playlists
+        </Text>
 
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <TextInput
@@ -80,13 +82,14 @@ const Playlists = () => {
               borderColor: "green",
             }}
             placeholder="Songs, Artist & More"
+            placeholderTextColor="lightgreen"
           />
-          <Ionicons name="shuffle" size={30} />
+          <Ionicons name="shuffle" size={30} color={"white"} />
         </View>
 
         <Pressable
           style={{
-            backgroundColor: "aquamarine",
+            backgroundColor: "green",
             padding: 10,
             width: 100,
             height: 50,
@@ -125,7 +128,7 @@ const Playlists = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
   },
   content: {
     flex: 1,

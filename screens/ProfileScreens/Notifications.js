@@ -34,7 +34,7 @@ export default Notifications;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
   },
   text: {
     color: "#0A4A3B",
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "rgba(0, 0, 0, 0.1)",
   },
   faded: {
-    color: "rgba(0,0,0,0.3)",
+    color: "white",
     fontSize: 15,
     fontWeight: "400",
   },

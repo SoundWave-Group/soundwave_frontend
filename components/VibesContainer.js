@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { View, Image, Text, Pressable } from "react-native";
+import { View, Image, Text, Pressable, StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
 
 const responsiveWidth = (percentage) => {
@@ -14,28 +14,33 @@ const responsiveHeight = (percentage) => {
 
 const VibesContainer = ({ image, text }) => {
   return (
-    <View style={{ marginHorizontal: 0 }}>
-      <Image
-        source={image}
-        style={{
-          borderRadius: 10,
-          width: responsiveWidth(45),
-          height: responsiveHeight(15),
-        }}
-      />
-
-      <Text
-        style={{
-          fontSize: 18,
-          marginTop: 5,
-          marginLeft: 5,
-          color: "green",
-        }}
-      >
-        {text}
-      </Text>
+    <View style={styles.itemContainer}>
+      <Image source={{ image }} style={styles.image} />
+      <Text style={styles.text}>{text}</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  itemContainer: {
+    flex: 1,
+    margin: 5,
+    borderWidth: 2,
+    borderRadius: 10,
+    overflow: "hidden",
+  },
+  image: {
+    width: "100%",
+    height: 150,
+  },
+  text: {
+    position: "absolute",
+    bottom: 10,
+    left: 10,
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+});
 
 export default VibesContainer;

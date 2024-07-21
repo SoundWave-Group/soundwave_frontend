@@ -17,7 +17,12 @@ const StorageScreen = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Pressable onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" type="material" size={24} />
+          <Ionicons
+            name="chevron-back"
+            type="material"
+            size={24}
+            color={"white"}
+          />
         </Pressable>
         <Text style={styles.headerTitle}>Storage</Text>
         <Text style={styles.headerTitle}></Text>
@@ -104,7 +109,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#fff",
+    backgroundColor: "black",
   },
   header: {
     flexDirection: "row",
@@ -117,6 +122,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: "bold",
+    color: "white",
     marginLeft: 10,
   },
   storageInfo: {
@@ -129,6 +135,7 @@ const styles = StyleSheet.create({
   },
   infoText: {
     fontSize: 16,
+    color: "white",
   },
   progressBar: {
     flexDirection: "row",
@@ -146,7 +153,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   button: {
-    backgroundColor: "#fff",
+    backgroundColor: "#ff4256",
     borderWidth: 1,
     borderColor: "#000",
     paddingVertical: 10,
@@ -160,11 +167,11 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: "#000",
+    color: "white",
   },
   note: {
     fontSize: 14,
-    color: "#777",
+    color: "white",
     textAlign: "center",
     marginTop: 10,
     width: "70%",

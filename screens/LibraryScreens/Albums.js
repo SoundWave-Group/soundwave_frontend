@@ -22,14 +22,15 @@ const Albums = () => {
         }}
       >
         <View>
-          <Pressable onPress={() => navigation.navigate("LibraryScreen")}>
-            <Ionicons name="chevron-back" size={25} />
+          <Pressable onPress={() => navigation.goBack()}>
+            <Ionicons name="chevron-back" size={25} color={"white"} />
           </Pressable>
         </View>
         <Text
           style={{
             fontSize: 20,
             marginHorizontal: "auto",
+            color: "white",
           }}
         >
           Albums
@@ -38,7 +39,9 @@ const Albums = () => {
 
       <View style={{ marginTop: 20, marginLeft: 10 }}>
         <Text style={{ fontSize: 25, color: "green" }}>No Albums Yet</Text>
-        <Text style={{ fontSize: 18, marginTop: 10, width: "70%" }}>
+        <Text
+          style={{ fontSize: 18, marginTop: 10, width: "70%", color: "white" }}
+        >
           Albums you have created or liked will appear here.
         </Text>
 
@@ -66,7 +69,7 @@ const Albums = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
   },
   content: {
     flex: 1,

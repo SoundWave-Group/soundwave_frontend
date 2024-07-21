@@ -127,18 +127,21 @@ export default function SignUp() {
           placeholder="Full Name *"
           value={fullName}
           onChangeText={setFullname}
+          placeholderTextColor={"lightgreen"}
         />
         <TextInput
           style={styles.inputBox}
           placeholder="Username *"
           value={username}
           onChangeText={setUsername}
+          placeholderTextColor={"lightgreen"}
         />
         <TextInput
           style={styles.inputBox}
           placeholder="Email *"
           value={email}
           onChangeText={setEmail}
+          placeholderTextColor={"lightgreen"}
         />
         <View style={styles.inputContainer}>
           <TextInput
@@ -147,6 +150,7 @@ export default function SignUp() {
             placeholder="Password *"
             value={password}
             onChangeText={setPassword}
+            placeholderTextColor={"lightgreen"}
           />
         </View>
         <TextInput
@@ -155,12 +159,14 @@ export default function SignUp() {
           placeholder="Confirm Password *"
           value={confirmPassword}
           onChangeText={setConfirmPassword}
+          placeholderTextColor={"lightgreen"}
         />
         <TextInput
           style={styles.inputBox}
           placeholder="Country"
           value={country}
           onChangeText={setCountry}
+          placeholderTextColor={"lightgreen"}
         />
       </View>
 
@@ -188,7 +194,7 @@ export default function SignUp() {
             flexDirection: "row",
           }}
         >
-          <Text style={{ fontSize: 18, marginHorizontal: 5 }}>
+          <Text style={{ fontSize: 18, marginHorizontal: 5, color: "white" }}>
             Already have an account?
           </Text>
           <Pressable onPress={() => navigation.navigate("LoginScreen")}>
@@ -204,7 +210,9 @@ export default function SignUp() {
             );
           }}
         >
-          <Text style={{ fontSize: 15, textAlign: "center" }}>About App</Text>
+          <Text style={{ fontSize: 15, textAlign: "center", color: "white" }}>
+            About App
+          </Text>
         </Pressable>
       </View>
       <StatusBar style="auto" />
@@ -215,10 +223,9 @@ export default function SignUp() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "black",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 20,
   },
   inputContainer: {
     flexDirection: "row",
@@ -226,7 +233,8 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     borderStyle: "solid",
-    backgroundColor: "#CCEAE3",
+    borderWidth: 1,
+    borderColor: "lightgreen",
     padding: 10,
     paddingTop: 20,
     borderRadius: 5,

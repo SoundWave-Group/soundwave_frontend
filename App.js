@@ -162,7 +162,7 @@ const SearchStack = () => (
     <Stack.Screen
       name="Search"
       component={SearchScreen}
-      options={{ headerShown: false, animationEnabled: false }}
+      options={{ headerShown: false }}
     />
     <Stack.Screen
       name="Download"
@@ -174,7 +174,11 @@ const SearchStack = () => (
 
 const BottomNavigationBar = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: { backgroundColor: "black", borderTopWidth: 0 },
+      }}
+    >
       <Tab.Screen
         name="HomeTab"
         component={HomeStack}
@@ -310,7 +314,6 @@ export default function App() {
           component={LandingScreen}
           options={{
             headerShown: false,
-            ...TransitionPresets.FadeFromBottomAndroid,
           }}
         />
         <Stack.Screen
@@ -318,7 +321,6 @@ export default function App() {
           component={LoginScreen}
           options={{
             headerShown: false,
-            ...TransitionPresets.FadeFromBottomAndroid,
           }}
         />
         <Stack.Screen
@@ -326,7 +328,6 @@ export default function App() {
           component={SignUpScreen}
           options={{
             headerShown: false,
-            ...TransitionPresets.FadeFromBottomAndroid,
           }}
         />
         <Stack.Screen
@@ -334,13 +335,15 @@ export default function App() {
           component={BottomNavigationBar}
           options={{
             headerShown: false,
-            ...TransitionPresets.FadeFromBottomAndroid,
           }}
         />
         <Stack.Screen
           name="PlayerScreen"
           component={PlayerScreen}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+            ...TransitionPresets.ModalSlideFromBottomIOS,
+          }}
         />
         <Stack.Screen
           name="ShazamScreen"

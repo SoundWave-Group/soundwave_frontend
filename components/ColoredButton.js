@@ -2,7 +2,7 @@ import { View, Text, Pressable } from "react-native";
 import { StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-const ColoredButton = ({ name, link, color }) => {
+const ColoredButton = ({ name, link, color, textColor }) => {
   const navigation = useNavigation();
 
   return (
@@ -11,7 +11,7 @@ const ColoredButton = ({ name, link, color }) => {
       style={{ marginHorizontal: 2 }}
     >
       <View style={[styles.button, { backgroundColor: `${color}` }]}>
-        <Text style={{ fontSize: 15, fontWeight: 600, color: "white" }}>
+        <Text style={{ fontSize: 15, fontWeight: 600, color: `${textColor}}` }}>
           {name}
         </Text>
       </View>

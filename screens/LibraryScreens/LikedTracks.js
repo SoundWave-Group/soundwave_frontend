@@ -16,13 +16,13 @@ const LikedTracks = () => {
         }}
       >
         <View>
-          <Pressable onPress={() => navigation.navigate("LibraryScreen")}>
-            <Ionicons name="chevron-back" size={25} />
+          <Pressable onPress={() => navigation.goBack()}>
+            <Ionicons name="chevron-back" size={25} color={"white"} />
           </Pressable>
         </View>
-        <Text style={{ fontSize: 20 }}>Liked Tracks</Text>
+        <Text style={{ fontSize: 20, color: "white" }}>Liked Tracks</Text>
         <View>
-          <Ionicons name="shuffle" size={25} />
+          <Ionicons name="shuffle" size={25} color={"white"} />
         </View>
       </View>
 
@@ -34,7 +34,7 @@ const LikedTracks = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
   },
   content: {
     flex: 1,

@@ -122,6 +122,7 @@ export default function LoginScreen() {
           placeholder="Username or Email"
           value={username}
           onChangeText={setUsername}
+          placeholderTextColor={"lightgreen"}
         />
         <TextInput
           style={[styles.inputBox, { marginTop: 10 }]}
@@ -129,6 +130,7 @@ export default function LoginScreen() {
           placeholder="Password"
           value={password}
           onChangeText={setPassword}
+          placeholderTextColor={"lightgreen"}
         />
       </View>
 
@@ -156,11 +158,11 @@ export default function LoginScreen() {
             flexDirection: "row",
           }}
         >
-          <Text style={{ fontSize: 18, marginHorizontal: 5 }}>
+          <Text style={{ fontSize: 18, marginHorizontal: 5, color: "white" }}>
             Don't have an account?
           </Text>
           <Pressable onPress={() => navigation.navigate("SignUpScreen")}>
-            <Text style={{ fontSize: 18, color: "green" }}>Sign Up</Text>
+            <Text style={{ fontSize: 18, color: "lightgreen" }}>Sign Up</Text>
           </Pressable>
         </View>
 
@@ -172,12 +174,19 @@ export default function LoginScreen() {
             );
           }}
         >
-          <Text style={{ fontSize: 15, textAlign: "center", marginTop: 120 }}>
+          <Text
+            style={{
+              fontSize: 15,
+              textAlign: "center",
+              marginTop: 120,
+              color: "white",
+            }}
+          >
             About App
           </Text>
         </Pressable>
       </View>
-      <StatusBar style="auto" />
+      <StatusBar style="dark" />
     </View>
   );
 }
@@ -185,23 +194,25 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "black",
     alignItems: "center",
     justifyContent: "center",
   },
   inputBox: {
     borderStyle: "solid",
-    backgroundColor: "#CCEAE3",
+    borderWidth: 1,
+    borderColor: "lightgreen",
     padding: 10,
     paddingTop: 20,
     borderRadius: 5,
     width: 300,
     margin: 10,
+    color: "lightgreen",
   },
   modalBackground: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "aquamarine",
+    backgroundColor: "black",
   },
 });

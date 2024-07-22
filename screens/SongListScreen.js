@@ -82,11 +82,11 @@ const styles = StyleSheet.create({
   songContainer: {
     flexDirection: "row",
     alignItems: "center",
+    backgroundColor: "#101010",
+    padding: 10,
     marginLeft: 10,
     marginBottom: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "gray",
-    paddingBottom: 10,
+    borderRadius: 10,
   },
   albumArt: {
     width: 50,
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
   },
   songDetails: {
     flex: 1,
+    marginLeft: 10,
   },
   songTitle: {
     fontSize: 18,

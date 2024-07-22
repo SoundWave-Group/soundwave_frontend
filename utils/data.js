@@ -11,7 +11,6 @@ const data = [
             title: "City Boys",
             albumArt:
               "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/CityBoysBurnaBoy.jpg",
-            genre: "Hip Hop",
             link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/CityBoysBurnaBoy.mp3",
           },
           {
@@ -19,7 +18,6 @@ const data = [
             title: "For My Hand",
             albumArt:
               "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/ForMyHandBurnaBoyEdSheeran.jpg",
-            genre: "Hip Hop",
             link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/ForMyHandBurnaBoyEdSheeran.mp3",
           },
         ],
@@ -34,7 +32,6 @@ const data = [
             title: "Starlight",
             albumArt:
               "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/StarlightDave.jpg",
-            genre: "Hip Hop",
             link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/StarlightDave.mp3",
           },
         ],
@@ -49,8 +46,14 @@ const data = [
             title: "No More Witches",
             albumArt:
               "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/NoMoreWitchesIsaiahRobin.jpg",
-            genre: "R&B",
             link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/NoMoreWitchesIsaiahRobin.mp3",
+          },
+          {
+            artist: "Isaiah Robin",
+            title: "Holy Faith",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/HolyFaithDJEvonKierantheLightIsaiahRobin.jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/HolyFaithDJEvonKierantheLightIsaiahRobin.mp3",
           },
         ],
       },
@@ -61,10 +64,9 @@ const data = [
         songs: [
           {
             artist: "Tyla",
-            title: "To Last",
+            title: "Water",
             albumArt:
               "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/WaterTyla.jpg",
-            genre: "Pop",
             link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/WaterTyla.mp3",
           },
         ],
@@ -79,12 +81,53 @@ const data = [
         photo: require("../assets/browse/bol.png"),
         songs: [
           {
-            artist: "Bitch Ass Nigga",
-            title: "Bitch Ass Song",
+            artist: "Sabrina Carpenter",
+            title: "Expresso",
             albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "Hip Hop",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).mp3",
+          },
+          {
+            artist: "Taylor Swift & Post Malone",
+            title: "Fortnight",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).mp3",
+          },
+          {
+            artist: "Dean Lewis",
+            title: "How Do I Say Goodbye",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/How%20Do%20I%20Say%20Goodbye%20-%20Dean%20Lewis%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/How%20Do%20I%20Say%20Goodbye%20-%20Dean%20Lewis%20(128).mp3",
+          },
+          {
+            artist: "Sam Smith & Kim Petras",
+            title: "Unholy",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Unholy%20-%20Sam%20Smith%20%20Kim%20Petras%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Unholy%20-%20Sam%20Smith%20%20Kim%20Petras%20(128).mp3",
+          },
+          {
+            artist: "Olivia Rodrigo",
+            title: "Vampire",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/vampire%20-%20Olivia%20Rodrigo%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/vampire%20-%20Olivia%20Rodrigo%20(128).mp3",
+          },
+          {
+            artist: "We Can't Be Friends (wait for your love)",
+            title: "Ariana Grande",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/we_can_t_be_friends_wait_for_your_love_Ariana_Grande_128.jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/we_can_t_be_friends_wait_for_your_love_Ariana_Grande_128.mp3",
+          },
+          {
+            artist: "Post Malone",
+            title: "Wrapped Around Your Finger",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Wrapped%20Around%20Your%20Finger%20-%20Post%20Malone%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Wrapped%20Around%20Your%20Finger%20-%20Post%20Malone%20(128).mp3",
           },
         ],
       },
@@ -98,7 +141,6 @@ const data = [
             title: "Top Hits 2023",
             albumArt:
               "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "Pop",
             link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
           },
         ],
@@ -109,12 +151,18 @@ const data = [
         photo: require("../assets/browse/indie.png"),
         songs: [
           {
-            artist: "Various Artists",
-            title: "Fusion Hits",
+            artist: "We Can't Be Friends (wait for your love)",
+            title: "Ariana Grande",
             albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "Pop",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/we_can_t_be_friends_wait_for_your_love_Ariana_Grande_128.jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/we_can_t_be_friends_wait_for_your_love_Ariana_Grande_128.mp3",
+          },
+          {
+            artist: "Post Malone",
+            title: "Wrapped Around Your Finger",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Wrapped%20Around%20Your%20Finger%20-%20Post%20Malone%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Wrapped%20Around%20Your%20Finger%20-%20Post%20Malone%20(128).mp3",
           },
         ],
       },
@@ -124,12 +172,18 @@ const data = [
         photo: require("../assets/browse/new.png"),
         songs: [
           {
-            artist: "Various Artists",
-            title: "New Releases",
+            artist: "Tyla",
+            title: "Water",
             albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "Various",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/WaterTyla.jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/WaterTyla.mp3",
+          },
+          {
+            artist: "Sabrina Carpenter",
+            title: "Expresso",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).mp3",
           },
         ],
       },
@@ -139,12 +193,11 @@ const data = [
         photo: require("../assets/browse/pods.png"),
         songs: [
           {
-            artist: "Various Artists",
-            title: "Daily Top Hits",
+            artist: "Dave",
+            title: "Starlight",
             albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "Various",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/StarlightDave.jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/StarlightDave.mp3",
           },
         ],
       },
@@ -154,12 +207,11 @@ const data = [
         photo: require("../assets/browse/u.png"),
         songs: [
           {
-            artist: "Various Artists",
-            title: "Your Favorites",
+            artist: "Sabrina Carpenter",
+            title: "Expresso",
             albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "Various",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).mp3",
           },
         ],
       },
@@ -177,7 +229,6 @@ const data = [
             title: "Indie Vibes",
             albumArt:
               "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "Indie",
             link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
           },
         ],
@@ -192,7 +243,6 @@ const data = [
             title: "K Pop Hits",
             albumArt:
               "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "K Pop",
             link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
           },
         ],

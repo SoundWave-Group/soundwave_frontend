@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -7,7 +6,6 @@ import {
   ScrollView,
   SafeAreaView,
   Pressable,
-  TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -89,7 +87,7 @@ export default function HomeScreen() {
             </View>
           </View>
           <View style={styles.section}>
-            <Text style={styles.headerStyle}>Moods</Text>
+            <Text style={styles.headerStyle}>Browse More</Text>
             <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
               {
                 // GenreBox

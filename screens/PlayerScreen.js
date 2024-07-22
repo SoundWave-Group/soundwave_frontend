@@ -101,7 +101,7 @@ export default function PlayerScreen({ route }) {
         </Pressable>
       </View>
       <View>
-        <Image source={albumArt} style={styles.albumArt} />
+        <Image source={{ uri: albumArt }} style={styles.albumArt} />
       </View>
       <View>
         <View style={styles.songDetails}>
@@ -166,15 +166,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   songTitle: {
-    fontSize: 22,
+    fontSize: 24,
     textAlign: "center",
     marginTop: 80,
     fontWeight: "bold",
   },
   songArtist: {
-    fontSize: 18,
+    fontSize: 20,
     textAlign: "center",
-    marginTop: 5,
   },
   timeContainer: {
     flexDirection: "row",

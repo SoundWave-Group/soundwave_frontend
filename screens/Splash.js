@@ -30,7 +30,7 @@ const SplashScreen = () => {
       >
         SoundWave
       </Text>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </View>
   );
 };

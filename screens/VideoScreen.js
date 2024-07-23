@@ -5,10 +5,12 @@ import {
   StyleSheet,
   Dimensions,
   SafeAreaView,
+  Platform,
   FlatList,
 } from "react-native";
 import { Video } from "expo-av";
 import { useFocusEffect } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 
 const { width, height } = Dimensions.get("window");
 
@@ -62,7 +64,7 @@ const VideoScreen = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <Text style={styles.heading}>Videos</Text>
       <FlatList
         data={videos}
@@ -84,13 +86,20 @@ const VideoScreen = () => {
         showsHorizontalScrollIndicator={false}
       />
       <Text style={{ color: "white", marginTop: 20, fontSize: 20 }}>
-        Swipe {" =>"}
+        Swipe {" >"}
       </Text>
+      <StatusBar style="light" />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  AndroidSafeArea: {
+    flex: 1,
+    backgroundColor: "black",
+    paddingTop: Platform.OS === "android" ? 35 : 0,
+  },
+
   container: {
     flex: 1,
     backgroundColor: "black",

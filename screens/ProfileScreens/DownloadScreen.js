@@ -36,7 +36,7 @@ const DownloadScreen = () => {
         </Text>
       </View>
 
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </View>
   );
 };

@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
+  Platform,
   Text,
   View,
   ScrollView,
@@ -21,7 +22,7 @@ export default function HomeScreen() {
   const heroData = data[6].vibes[5];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <HomeNavigation activeRouteName="MainScreen" />
       <ScrollView>
         <View style={styles.section}>
@@ -60,7 +61,17 @@ export default function HomeScreen() {
               {
                 // GenreContainer
                 data[4].mixes.map((genre, index) => (
-                  <GenreContainer key={index} image={genre.photo} />
+                  <Pressable
+                    key={index}
+                    onPress={() => {
+                      navigation.navigate("SongListScreen", {
+                        genre: genre.name,
+                        songs: genre.songs,
+                      });
+                    }}
+                  >
+                    <GenreContainer key={index} image={genre.photo} />
+                  </Pressable>
                 ))
               }
             </ScrollView>
@@ -115,6 +126,11 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  AndroidSafeArea: {
+    flex: 1,
+    backgroundColor: "black",
+    paddingTop: Platform.OS === "android" ? 35 : 0,
+  },
   section: {
     flex: 1,
     marginTop: 20,

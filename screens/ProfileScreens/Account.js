@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   Pressable,
   ActivityIndicator,
+  Platform,
   Alert,
 } from "react-native";
 import React, { useState, useEffect } from "react";
@@ -12,6 +13,7 @@ import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import Button from "../../components/Button";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { StatusBar } from "expo-status-bar";
 
 const Account = () => {
   const navigation = useNavigation();
@@ -85,8 +87,6 @@ const Account = () => {
     );
   };
 
-  const handleBioChange = () => {};
-
   if (loading) {
     return (
       <View style={styles.loaderContainer}>
@@ -96,7 +96,7 @@ const Account = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <View style={styles.container}>
         <View style={styles.header}>
           <Pressable onPress={() => navigation.goBack()}>
@@ -144,6 +144,7 @@ const Account = () => {
           )}
         </View>
       </View>
+      <StatusBar style="light" />
     </SafeAreaView>
   );
 };
@@ -151,6 +152,12 @@ const Account = () => {
 export default Account;
 
 const styles = StyleSheet.create({
+  AndroidSafeArea: {
+    flex: 1,
+    backgroundColor: "black",
+    paddingTop: Platform.OS === "android" ? 35 : 0,
+  },
+
   container: {
     flex: 1,
     backgroundColor: "black",

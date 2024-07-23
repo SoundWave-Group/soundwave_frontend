@@ -1,11 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  StatusBar,
+  SafeAreaView,
+  Platform,
+} from "react-native";
 import LibrarySections from "../components/LibrarySections";
 import MiniPlayer from "../components/MiniPlayer";
 
 const LibraryScreen = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <SafeAreaView style={styles.content}>
         <Text
           style={{
@@ -42,12 +49,18 @@ const LibraryScreen = () => {
         </View>
       </SafeAreaView>
 
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  AndroidSafeArea: {
+    flex: 1,
+    backgroundColor: "black",
+    paddingTop: Platform.OS === "android" ? 35 : 0,
+  },
+
   container: {
     flex: 1,
     backgroundColor: "black",

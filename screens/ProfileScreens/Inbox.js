@@ -3,12 +3,14 @@ import {
   Text,
   View,
   SafeAreaView,
+  Platform,
   Pressable,
   Switch,
 } from "react-native";
 import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 
 const Inbox = () => {
   const navigation = useNavigation();
@@ -16,7 +18,7 @@ const Inbox = () => {
 
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <View style={styles.container}>
         <View style={styles.header}>
           <Pressable onPress={() => navigation.goBack()}>
@@ -46,6 +48,7 @@ const Inbox = () => {
           </Text>
         </View>
       </View>
+      <StatusBar style="light" />
     </SafeAreaView>
   );
 };
@@ -53,6 +56,11 @@ const Inbox = () => {
 export default Inbox;
 
 const styles = StyleSheet.create({
+  AndroidSafeArea: {
+    flex: 1,
+    backgroundColor: "black",
+    paddingTop: Platform.OS === "android" ? 35 : 0,
+  },
   container: {
     flex: 1,
     backgroundColor: "black",
@@ -70,7 +78,6 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    padding: 20,
     paddingBottom: 10,
     flexDirection: "row",
     borderBottomWidth: 1,

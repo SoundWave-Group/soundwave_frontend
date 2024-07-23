@@ -8,11 +8,11 @@ import {
   Switch,
   Linking,
   Share,
+  Platform,
 } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign, Feather } from "@expo/vector-icons";
-import { FontAwesome5 } from "@expo/vector-icons";
 import Button from "../../components/Button";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -52,7 +52,7 @@ const Settings = () => {
 
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <View style={styles.header}>
         <Pressable onPress={() => navigation.goBack()}>
           <AntDesign
@@ -187,6 +187,12 @@ const Settings = () => {
 export default Settings;
 
 const styles = StyleSheet.create({
+  AndroidSafeArea: {
+    flex: 1,
+    backgroundColor: "black",
+    paddingTop: Platform.OS === "android" ? 35 : 0,
+  },
+
   container: {
     flex: 1,
     backgroundColor: "black",
@@ -259,7 +265,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     fontSize: 20,
     fontWeight: "700",
-    borderRadius: "10px",
+    borderRadius: 10,
     marginVertical: 50,
     alignSelf: "center",
   },

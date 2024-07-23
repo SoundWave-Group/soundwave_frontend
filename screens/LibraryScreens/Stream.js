@@ -11,7 +11,7 @@ const Stream = () => {
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          marginTop: 60,
+          marginTop: 40,
           marginHorizontal: 10,
         }}
       >
@@ -44,6 +44,7 @@ const Stream = () => {
             borderRadius: 10,
             marginTop: 20,
           }}
+          onPress={() => navigation.navigate("SearchTab")}
         >
           <Text style={{ fontSize: 15, margin: "auto", color: "white" }}>
             Search for An Artist
@@ -51,7 +52,7 @@ const Stream = () => {
         </Pressable>
       </View>
 
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </View>
   );
 };

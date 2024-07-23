@@ -11,7 +11,7 @@ const Following = () => {
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          marginTop: 60,
+          marginTop: 40,
           marginHorizontal: 10,
         }}
       >
@@ -27,7 +27,7 @@ const Following = () => {
         </Text>
       </View>
 
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </View>
   );
 };

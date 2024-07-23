@@ -186,7 +186,7 @@ export default function LoginScreen() {
           </Text>
         </Pressable>
       </View>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
     </View>
   );
 }

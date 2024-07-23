@@ -11,7 +11,7 @@ const LikedTracks = () => {
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          marginTop: 60,
+          marginTop: 40,
           marginHorizontal: 10,
         }}
       >
@@ -26,7 +26,7 @@ const LikedTracks = () => {
         </View>
       </View>
 
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </View>
   );
 };

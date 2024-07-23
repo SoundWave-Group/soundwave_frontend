@@ -1,11 +1,13 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   View,
   Text,
   FlatList,
   Image,
+  Platform,
   StyleSheet,
   Pressable,
   SafeAreaView,
@@ -37,7 +39,7 @@ const SongListScreen = ({ route }) => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <View
         style={{
           flexDirection: "row",
@@ -61,11 +63,18 @@ const SongListScreen = ({ route }) => {
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
       />
+      <StatusBar style="light" />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  AndroidSafeArea: {
+    flex: 1,
+    backgroundColor: "black",
+    paddingTop: Platform.OS === "android" ? 35 : 0,
+  },
+
   container: {
     flex: 1,
     backgroundColor: "black",
@@ -73,7 +82,8 @@ const styles = StyleSheet.create({
   genreTitle: {
     fontSize: 24,
     fontWeight: "bold",
-    marginLeft: 10,
+    marginLeft: "auto",
+    marginRight: "auto",
     marginBottom: 10,
     borderBottomWidth: 1,
     borderBottomColor: "gray",

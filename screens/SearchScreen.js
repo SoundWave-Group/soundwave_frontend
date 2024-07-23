@@ -6,6 +6,7 @@ import {
   TextInput,
   Pressable,
   SafeAreaView,
+  Platform,
   StatusBar,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -26,13 +27,14 @@ const SearchScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <View
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
           marginHorizontal: 20,
+          marginTop: 5,
         }}
       >
         <Pressable
@@ -121,6 +123,12 @@ const SearchScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  AndroidSafeArea: {
+    flex: 1,
+    backgroundColor: "black",
+    paddingTop: Platform.OS === "android" ? 35 : 0,
+  },
+
   container: {
     backgroundColor: "black",
     flex: 1,

@@ -13,12 +13,13 @@ import { useNavigation } from "@react-navigation/native";
 const Uploads = () => {
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
           marginHorizontal: 10,
+          marginTop: 40,
         }}
       >
         <View>
@@ -33,7 +34,7 @@ const Uploads = () => {
             color: "white",
           }}
         >
-          Albums
+          Uploads
         </Text>
       </View>
 
@@ -58,8 +59,8 @@ const Uploads = () => {
         </Pressable>
       </View>
 
-      <StatusBar style="auto" />
-    </SafeAreaView>
+      <StatusBar style="light" />
+    </View>
   );
 };
 

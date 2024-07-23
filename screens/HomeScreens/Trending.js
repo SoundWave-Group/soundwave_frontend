@@ -4,6 +4,7 @@ import {
   Text,
   View,
   ScrollView,
+  Platform,
   SafeAreaView,
   Pressable,
 } from "react-native";
@@ -36,7 +37,7 @@ export default function App() {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <HomeNavigation activeRouteName="Trending" />
       <ScrollView>
         <View style={styles.genre}>
@@ -70,12 +71,18 @@ export default function App() {
           </View>
         </View>
       </ScrollView>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  AndroidSafeArea: {
+    flex: 1,
+    backgroundColor: "black",
+    paddingTop: Platform.OS === "android" ? 35 : 0,
+  },
+
   genre: {
     flex: 1,
     paddingTop: 20,

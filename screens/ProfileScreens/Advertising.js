@@ -1,13 +1,21 @@
-import { StyleSheet, Text, View, SafeAreaView, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Platform,
+  Pressable,
+} from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import Button from "../../components/Button";
+import { StatusBar } from "expo-status-bar";
 
 const Advertising = () => {
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <View style={styles.container}>
         <View style={styles.header}>
           <Pressable onPress={() => navigation.goBack()}>
@@ -30,6 +38,7 @@ const Advertising = () => {
           />
         </View>
       </View>
+      <StatusBar style="light" />
     </SafeAreaView>
   );
 };
@@ -37,6 +46,12 @@ const Advertising = () => {
 export default Advertising;
 
 const styles = StyleSheet.create({
+  AndroidSafeArea: {
+    flex: 1,
+    backgroundColor: "black",
+    paddingTop: Platform.OS === "android" ? 35 : 0,
+  },
+
   container: {
     flex: 1,
     backgroundColor: "black",
@@ -50,7 +65,6 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    padding: 20,
     paddingBottom: 10,
     flexDirection: "row",
     borderBottomWidth: 1,

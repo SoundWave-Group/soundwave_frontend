@@ -4,6 +4,7 @@ import {
   Text,
   SafeAreaView,
   StyleSheet,
+  Platform,
   Image,
   Pressable,
 } from "react-native";
@@ -11,6 +12,7 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Slider } from "@miblanchard/react-native-slider";
 import { Audio } from "expo-av";
+import { StatusBar } from "expo-status-bar";
 
 export default function PlayerScreen({ route }) {
   const { artist, title, albumArt, link } = route.params;
@@ -89,7 +91,7 @@ export default function PlayerScreen({ route }) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <View style={{ margin: 20, justifyContent: "flex-start" }}>
         <Pressable
           onPress={() => {
@@ -143,11 +145,17 @@ export default function PlayerScreen({ route }) {
           </View>
         </View>
       </View>
+      <StatusBar style="light" />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  AndroidSafeArea: {
+    flex: 1,
+    paddingTop: Platform.OS === "android" ? 35 : 0,
+  },
+
   container: {
     flex: 1,
     backgroundColor: "rgb(50, 153, 168)",

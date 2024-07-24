@@ -38,7 +38,7 @@ const Analytics = () => {
             data
           </Text>
           <View style={styles.toggler}>
-            <Text>No</Text>
+            <Text style={{ color: "white" }}>No</Text>
             <Switch
               trackColor={{ false: "#767577", true: "rgba(98, 218, 92, 1)" }}
               thumbColor="#f4f3f4"
@@ -47,7 +47,7 @@ const Analytics = () => {
               value={isEnabled}
               style={styles.switch}
             />
-            <Text>Yes</Text>
+            <Text style={{ color: "white" }}>Yes</Text>
           </View>
           <Text style={styles.paragraphText}>
             Changes require an app restart to become effective.

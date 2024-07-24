@@ -99,7 +99,7 @@ const SearchScreen = () => {
         </Pressable>
         <TextInput
           style={{
-            width: "80%",
+            width: "90%",
             borderWidth: 0.5,
             marginHorizontal: "auto",
             paddingHorizontal: 10,
@@ -113,13 +113,6 @@ const SearchScreen = () => {
           value={searchItem}
           placeholder="Songs, Artist & More"
         />
-        <Pressable
-          onPress={() => {
-            navigation.navigate("AIScreen");
-          }}
-        >
-          <Ionicons name="balloon" size={24} color="white" />
-        </Pressable>
       </View>
 
       {search ? (
@@ -207,11 +200,12 @@ const styles = StyleSheet.create({
   gridContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
+    marginTop: -20,
     marginLeft: 10,
   },
   genrePressable: {
     width: "50%",
-    marginBottom: 20,
+    marginBottom: 10,
   },
 });
 

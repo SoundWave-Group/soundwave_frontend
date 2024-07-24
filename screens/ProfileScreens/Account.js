@@ -50,11 +50,14 @@ const Account = () => {
         {
           text: "Yes",
           onPress: async () => {
-            const userId = userDetails.userProfile.username;
+            const username = userDetails.userProfile.username;
 
             try {
-              const response = await axios.delete(
-                `https://soundwave-56af.onrender.com/api/delete-user/${userId}`
+              const response = await fetch(
+                `https://soundwave-56af.onrender.com/api/delete-user/${username}`,
+                {
+                  method: "DELETE",
+                }
               );
 
               if (response.status === "200") {

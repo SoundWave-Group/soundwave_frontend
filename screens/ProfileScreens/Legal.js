@@ -28,13 +28,10 @@ const Legal = () => {
           <Text style={styles.text}>Legal</Text>
         </View>
         <View>
-          <Text style={styles.headText}></Text>
-          <Text style={styles.paragraphText}></Text>
-          <Button
-            title=""
-            buttonStyle={styles.button}
-            textStyle={styles.buttonText}
-          />
+          <Text style={styles.textSecondary}>Cookie Policy</Text>
+          <Text style={styles.textSecondary}>Terms of Use</Text>
+          <Text style={styles.textSecondary}>Privacy Policy</Text>
+          <Text style={styles.textSecondary}>Imprint</Text>
         </View>
       </View>
       <StatusBar style="light" />
@@ -68,5 +65,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderBottomWidth: 1,
     borderBottomColor: "rgba(0, 0, 0, 0.1)",
+  },
+  textSecondary: {
+    color: "lightblue",
+    fontSize: 18,
+    marginLeft: 20,
+    marginVertical: 10,
   },
 });

@@ -1,5 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
-import { View, Image, Text, Pressable } from "react-native";
+import { View, Image, Text } from "react-native";
 import { Dimensions } from "react-native";
 
 const responsiveWidth = (percentage) => {
@@ -13,7 +12,6 @@ const responsiveHeight = (percentage) => {
 };
 
 const VibesContainer = ({ image, text }) => {
-  const navigator = useNavigation();
   return (
     <View
       style={{

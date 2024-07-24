@@ -46,6 +46,7 @@ export default function PlayerScreen({ route }) {
     return () => {
       if (sound) {
         sound.unloadAsync();
+        setSound(null);
       }
     };
   }, [loadSound]);
@@ -94,8 +95,9 @@ export default function PlayerScreen({ route }) {
     <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <View style={{ margin: 20, justifyContent: "flex-start" }}>
         <Pressable
-          onPress={() => {
-            sound.unloadAsync();
+          onPress={async () => {
+            await sound.unloadAsync();
+            setSound(null);
             navigation.goBack();
           }}
         >

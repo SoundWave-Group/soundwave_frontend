@@ -9,10 +9,8 @@ import {
   MaterialCommunityIcons,
   FontAwesome,
   FontAwesome5,
-  FontAwesome6,
 } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { View, ActivityIndicator } from "react-native";
 
 import Splash from "./screens/Splash";
 import LandingScreen from "./screens/LandingScreen";
@@ -40,10 +38,8 @@ import Analytics from "./screens/ProfileScreens/Analytics";
 import SearchScreen from "./screens/SearchScreen";
 import DownloadScreen from "./screens/ProfileScreens/DownloadScreen";
 import PlayerScreen from "./screens/PlayerScreen";
-import ShazamScreen from "./screens/ShazamScreen";
 import SongListScreen from "./screens/SongListScreen";
 import VideoScreen from "./screens/VideoScreen";
-import AIScreen from "./screens/AIScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -343,18 +339,8 @@ export default function App() {
           }}
         />
         <Stack.Screen
-          name="ShazamScreen"
-          component={ShazamScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
           name="SongListScreen"
           component={SongListScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="AIScreen"
-          component={AIScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

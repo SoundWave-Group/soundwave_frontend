@@ -6,121 +6,235 @@ import {
   StatusBar,
   Pressable,
   TextInput,
-  Alert,
   FlatList,
+  TouchableOpacity,
+  Modal,
+  Button,
+  Animated,
+  Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 const Playlists = () => {
   const navigation = useNavigation();
+  const [playlists, setPlaylists] = useState([]);
+  const [filteredPlaylists, setFilteredPlaylists] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [newPlaylistName, setNewPlaylistName] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const rotation = new Animated.Value(0);
 
-  const [playlist, setPlaylists] = useState(null);
+  const handleCreatePlaylist = async () => {
+    try {
+      const response = await fetch(
+        "https://soundwave-56af.onrender.com/api/playlists/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ playlistTitle: newPlaylistName }),
+        }
+      );
 
-  const handleCreatePlaylist = () => {
-    const playlistName = Alert.prompt(
-      "Create New Playlist",
-      "Enter Playlist Name"
-    );
+      if (!response.ok) {
+        throw new Error("Failed to create playlist");
+      }
+
+      const data = await response.json();
+      const updatedPlaylists = [...playlists, data];
+      setPlaylists(updatedPlaylists);
+      setFilteredPlaylists(updatedPlaylists);
+      setModalVisible(false);
+      setNewPlaylistName("");
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Error", "Failed to create playlist");
+    }
   };
 
   const fetchPlaylists = async () => {
-    const response = await fetch(
-      "https://soundwave-56af.onrender.com/api/playlists"
-    );
+    try {
+      const response = await fetch(
+        "https://soundwave-56af.onrender.com/api/playlists"
+      );
 
-    if (response) {
-      setPlaylists(JSON.stringify(response));
+      if (!response.ok) {
+        throw new Error("Failed to fetch playlists");
+      }
+
+      const data = await response.json();
+      setPlaylists(data.playlists);
+      setFilteredPlaylists(data.playlists);
+    } catch (error) {
+      console.error(error);
     }
+  };
+
+  const deletePlaylist = async (id) => {
+    try {
+      const response = await fetch(
+        `https://soundwave-56af.onrender.com/api/playlists/delete/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete playlist");
+      }
+
+      fetchPlaylists();
+
+      Alert.alert("Success", "Playlist has been deleted");
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Error", "Failed to delete playlist");
+    }
+  };
+
+  const confirmDeletePlaylist = (id) => {
+    Alert.alert(
+      "Delete Playlist",
+      "Are you sure you want to delete this playlist?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: () => deletePlaylist(id),
+        },
+      ],
+      { cancelable: true }
+    );
+  };
+
+  const handleSearch = () => {
+    if (!searchTerm) {
+      setFilteredPlaylists(playlists);
+      return;
+    }
+
+    const filtered = playlists.filter((playlist) =>
+      playlist.playlistTitle.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredPlaylists(filtered);
   };
 
   useEffect(() => {
     fetchPlaylists();
   }, []);
 
+  useEffect(() => {
+    handleSearch();
+  }, [searchTerm]);
+
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginTop: 40,
-          marginHorizontal: 10,
-        }}
-      >
-        <View>
-          <Pressable onPress={() => navigation.goBack()}>
-            <Ionicons name="chevron-back" size={25} color={"white"} />
-          </Pressable>
-        </View>
-        <Text
-          style={{
-            fontSize: 20,
-            marginHorizontal: "auto",
-            color: "white",
-          }}
-        >
-          Playlists
-        </Text>
+      <View style={styles.header}>
+        <Pressable onPress={() => navigation.goBack()}>
+          <Ionicons name="chevron-back" size={25} color={"white"} />
+        </Pressable>
+        <Text style={styles.headerText}>Playlists</Text>
       </View>
 
-      <View style={{ marginTop: 10, marginLeft: 10 }}>
-        <Text style={{ fontSize: 25, marginLeft: 5, color: "white" }}>
-          Playlists
-        </Text>
-
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <View style={styles.content}>
+        <View style={styles.searchContainer}>
           <TextInput
-            style={{
-              width: "85%",
-              borderWidth: 0.5,
-              paddingHorizontal: 10,
-              marginHorizontal: 5,
-              marginVertical: 10,
-              height: 40,
-              borderRadius: 10,
-              borderColor: "green",
-            }}
-            placeholder="Songs, Artist & More"
+            style={[styles.searchInput, { color: "lightgreen" }]}
+            placeholder="Search Songs, Artists & More"
             placeholderTextColor="lightgreen"
+            value={searchTerm}
+            onChangeText={setSearchTerm}
           />
-          <Ionicons name="shuffle" size={30} color={"white"} />
+          <Pressable
+            onPress={() => {
+              handleSearch();
+            }}
+          >
+            <Ionicons
+              name="reload"
+              size={24}
+              color={"white"}
+              style={{ marginHorizontal: 5 }}
+            />
+          </Pressable>
         </View>
 
         <Pressable
-          style={{
-            backgroundColor: "green",
-            padding: 10,
-            width: 100,
-            height: 50,
-            borderRadius: 10,
-            marginTop: 20,
-          }}
-          onPress={handleCreatePlaylist}
+          style={styles.createButton}
+          onPress={() => setModalVisible(true)}
         >
           <Ionicons
             name="add-circle"
             size={25}
-            style={{ margin: "auto", color: "white" }}
+            style={styles.createButtonIcon}
           />
         </Pressable>
 
-        <View style={{ marginTop: 20 }}>
-          {!playlist ? (
-            <Text style={{ fontSize: 25 }}>Create a playlist </Text>
-          ) : (
-            <FlatList
-              data={playlist}
-              renderItem={({ item }) => (
-                <Text style={{ fontSize: 20 }}>{item}</Text>
-              )}
-              keyExtractor={(item, index) => index.toString()}
-            />
-          )}
+        <View style={styles.playlistContainer}>
+          <FlatList
+            data={filteredPlaylists}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={styles.playlistItem}
+                onPress={() =>
+                  navigation.navigate("SongListScreen", {
+                    genre: item.playlistTitle,
+                    songs: item.playlistTracks,
+                  })
+                }
+                onLongPress={() => {
+                  confirmDeletePlaylist(item._id);
+                }}
+              >
+                <Text style={styles.playlistTitle}>{item.playlistTitle}</Text>
+                <Ionicons name="chevron-forward" size={25} color={"white"} />
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item) => item._id}
+          />
         </View>
       </View>
 
       <StatusBar style="light" />
+
+      <Modal
+        transparent={true}
+        visible={modalVisible}
+        animationType="slide"
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalTitle}>Create New Playlist</Text>
+            <TextInput
+              style={styles.modalInput}
+              placeholder="Enter Playlist Name"
+              value={newPlaylistName}
+              onChangeText={setNewPlaylistName}
+              placeholderTextColor={"grey"}
+              color={"white"}
+            />
+            <View style={{ flexDirection: "row" }}>
+              <Button
+                title="Save"
+                onPress={handleCreatePlaylist}
+                color="lightgreen"
+              />
+              <Button
+                title="Cancel"
+                onPress={() => setModalVisible(false)}
+                color="red"
+              />
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -130,8 +244,97 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "black",
   },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 40,
+    marginHorizontal: 10,
+  },
+  headerText: {
+    fontSize: 20,
+    marginHorizontal: "auto",
+    color: "white",
+  },
   content: {
+    marginTop: 10,
+    marginLeft: 10,
+  },
+  title: {
+    fontSize: 25,
+    marginLeft: 5,
+    color: "white",
+  },
+  searchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  searchInput: {
+    width: "85%",
+    borderWidth: 0.5,
+    paddingHorizontal: 10,
+    marginHorizontal: 5,
+    marginVertical: 10,
+    height: 40,
+    borderRadius: 10,
+    borderColor: "green",
+  },
+  createButton: {
+    backgroundColor: "green",
+    padding: 10,
+    width: 100,
+    height: 50,
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  createButtonIcon: {
+    margin: "auto",
+    color: "white",
+  },
+  playlistContainer: {
+    marginTop: 20,
+  },
+  playlistItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 5,
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: "#101010",
+  },
+  playlistTitle: {
+    color: "white",
+    fontSize: 20,
+  },
+  loaderContainer: {
     flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalView: {
+    width: "80%",
+    backgroundColor: "#101010",
+    borderRadius: 10,
+    padding: 20,
+    alignItems: "center",
+  },
+  modalTitle: {
+    fontSize: 20,
+    color: "white",
+    marginBottom: 20,
+  },
+  modalInput: {
+    width: "100%",
+    borderWidth: 1,
+    borderColor: "lightgreen",
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 20,
   },
 });
 

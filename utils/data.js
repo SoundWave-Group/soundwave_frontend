@@ -413,16 +413,7 @@ const data = [
         id: 1,
         name: "Afro Gospel",
         photo: require("../assets/recents/AfroGospel.png"),
-        songs: [
-          {
-            artist: "Various Artists",
-            title: "Afro Gospel Hits",
-            albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "Gospel",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
-          },
-        ],
+        songs: [],
       },
       {
         id: 2,
@@ -442,16 +433,7 @@ const data = [
         id: 3,
         name: "Afropop",
         photo: require("../assets/recents/Afropop.png"),
-        songs: [
-          {
-            artist: "Various Artists",
-            title: "Gospel Classics",
-            albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "Gospel",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
-          },
-        ],
+        songs: [],
       },
       {
         id: 4,
@@ -459,12 +441,18 @@ const data = [
         photo: require("../assets/recents/Chill.png"),
         songs: [
           {
-            artist: "Various Artists",
-            title: "Gospel Classics",
+            artist: "Sabrina Carpenter",
+            title: "Expresso",
             albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "Gospel",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).mp3",
+          },
+          {
+            artist: "Taylor Swift & Post Malone",
+            title: "Fortnight",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).mp3",
           },
         ],
       },
@@ -478,12 +466,19 @@ const data = [
         photo: require("../assets/mixes/Chill.png"),
         songs: [
           {
-            artist: "Various Artists",
-            title: "Chill Vibes",
+            artist: "Taylor Swift & Post Malone",
+            title: "Fortnight",
             albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "Chill",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).mp3",
+          },
+          {
+            id: 2,
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
           },
         ],
       },
@@ -493,12 +488,11 @@ const data = [
         photo: require("../assets/mixes/Upbeat.png"),
         songs: [
           {
-            artist: "Various Artists",
-            title: "Upbeat Vibes",
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
             albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "Upbeat",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
           },
         ],
       },
@@ -516,6 +510,13 @@ const data = [
             link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Not%20Like%20Us%20-%20Kendrick%20Lamar%20(128).mp3",
           },
           {
+            artist: "BLACKPINK",
+            title: "Forever Young",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Forever%20Young%20-%20BLACKPINK%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Forever%20Young%20-%20BLACKPINK%20(128).mp3",
+          },
+          {
             id: 2,
             artist: "Tommy Richman",
             title: "MILLION DOLLAR BABY",
@@ -529,15 +530,7 @@ const data = [
         id: 4,
         name: "K Pop",
         photo: require("../assets/mixes/KPop.png"),
-        songs: [
-          {
-            artist: "BLACKPINK",
-            title: "Forever Young",
-            albumArt:
-              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Forever%20Young%20-%20BLACKPINK%20(128).jpg",
-            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Forever%20Young%20-%20BLACKPINK%20(128).mp3",
-          },
-        ],
+        songs: [],
       },
       {
         id: 5,
@@ -602,26 +595,7 @@ const data = [
         id: 3,
         name: "Folk",
         photo: require("../assets/trending/Folk.png"),
-        songs: [
-          {
-            id: 1,
-            artist: "Bob Dylan",
-            title: "Blowin' in the Wind",
-            albumArt:
-              "https://example.com/album-art/folk/blowin-in-the-wind.jpg",
-            genre: "Folk",
-            link: "https://example.com/songs/folk/blowin-in-the-wind.mp3",
-          },
-          {
-            id: 2,
-            artist: "Joan Baez",
-            title: "Diamonds & Rust",
-            albumArt:
-              "https://example.com/album-art/folk/diamonds-and-rust.jpg",
-            genre: "Folk",
-            link: "https://example.com/songs/folk/diamonds-and-rust.mp3",
-          },
-        ],
+        songs: [],
       },
       {
         id: 4,
@@ -654,7 +628,15 @@ const data = [
         id: 6,
         name: "Pop",
         photo: require("../assets/trending/Pop.png"),
-        songs: [],
+        songs: [
+          {
+            artist: "BLACKPINK",
+            title: "Forever Young",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Forever%20Young%20-%20BLACKPINK%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Forever%20Young%20-%20BLACKPINK%20(128).mp3",
+          },
+        ],
       },
       {
         id: 7,
@@ -744,13 +726,43 @@ const data = [
         id: 5,
         name: "Workout",
         photo: require("../assets/vibes/Workout.png"),
-        songs: [],
+        songs: [
+          {
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
+          },
+        ],
       },
       {
         id: 6,
         name: "Soul",
         photo: require("../assets/vibes/Soul.png"),
-        songs: [],
+        songs: [
+          {
+            artist: "Frank Ocean",
+            title: "Pink + White",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Pink%20%2B%20White%20-%20Frank%20Ocean%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Pink%20%2B%20White%20-%20Frank%20Ocean%20(128).mp3",
+          },
+          {
+            artist: "The Teskey Brothers",
+            title: "Forever You and Me",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/1.%20The%20Teskey%20Brothers%20-%20Forever%20You%20and%20Me%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/1.%20The%20Teskey%20Brothers%20-%20Forever%20You%20and%20Me%20(128).mp3",
+          },
+          {
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
+          },
+        ],
       },
       {
         id: 7,
@@ -769,6 +781,16 @@ const data = [
         name: "Study",
         photo: require("../assets/vibes/Study.png"),
         songs: [],
+      },
+    ],
+  },
+  {
+    hero: [
+      {
+        id: 1,
+        name: "Featured",
+        photo: require("../assets/genre/heroImage.png"),
+        songs: [{}],
       },
     ],
   },

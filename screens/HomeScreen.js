@@ -14,19 +14,18 @@ import data from "../utils/data";
 import GenreContainer from "../components/GenreContainer";
 import HomeNavigation from "../components/HomeNavigation";
 import HeroComponent from "../components/HeroComponent";
-import GenreBox from "../components/GenreBox";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
 
-  const heroData = data[6].vibes[5];
+  const heroData = data[7].hero[0];
 
   return (
     <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <HomeNavigation activeRouteName="MainScreen" />
       <ScrollView>
         <View style={styles.section}>
-          <Text style={styles.headerStyle}>Featured</Text>
+          <Text style={styles.headerStyle}>Playlists</Text>
           <View style={styles.subSection}>
             <View>
               {
@@ -41,14 +40,6 @@ export default function HomeScreen() {
                   <HeroComponent image={heroData.photo} />
                 </Pressable>
               }
-              <Text
-                style={[
-                  styles.text,
-                  { marginTop: -10, fontSize: 18, fontWeight: 400 },
-                ]}
-              >
-                {heroData.name}
-              </Text>
             </View>
           </View>
           <View style={styles.section}>

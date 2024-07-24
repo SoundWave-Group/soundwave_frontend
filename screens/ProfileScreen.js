@@ -127,7 +127,7 @@ const ProfileScreen = () => {
       <View>
         <View style={{ marginHorizontal: "auto" }}>
           <Image
-            source={require("../assets/singer1.jpg")}
+            source={require("../assets/adaptive-icon.png")}
             style={{
               width: 100,
               height: 100,

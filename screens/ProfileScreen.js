@@ -63,7 +63,7 @@ const ProfileScreen = () => {
       setUserDetails(updatedDetails);
       await AsyncStorage.setItem("userDetails", JSON.stringify(updatedDetails));
 
-      const apiUrl = `https://soundwave-56af.onrender.com/api/user-profile/edit/${userDetails.id}`;
+      const apiUrl = `https://soundwave-56af.onrender.com/api/user-profile/edit/${userDetails.userProfile.username}`;
       await fetch(apiUrl, {
         method: "PUT",
         headers: {

@@ -12,6 +12,7 @@ import {
   Alert,
   Modal,
   ActivityIndicator,
+  Button,
 } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -23,6 +24,10 @@ export default function LoginScreen() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [forgotPasswordVisible, setForgotPasswordVisible] = useState(false);
+  const [lastRememberedPassword, setLastRememberedPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
 
   const navigation = useNavigation();
 
@@ -87,6 +92,60 @@ export default function LoginScreen() {
       }
     }
   };
+
+  const handlePasswordReset = async () => {
+    if (!lastRememberedPassword || !newPassword || !confirmNewPassword) {
+      Alert.alert("Error", "Please fill in all the fields");
+      return;
+    }
+
+    if (newPassword !== confirmNewPassword) {
+      Alert.alert("Error", "New passwords do not match");
+      return;
+    }
+
+    const data = {
+      username,
+      lastRememberedPassword,
+      newPassword,
+    };
+
+    try {
+      setLoading(true);
+      const response = await axios.put(
+        "https://soundwave-56af.onrender.com/api/settings/account/password",
+        data
+      );
+
+      if (response.status === 200) {
+        setLoading(false);
+        setForgotPasswordVisible(false);
+        Alert.alert("Success", "Password reset successfully");
+      } else {
+        setLoading(false);
+        Alert.alert("Error", response.data.message || "Something went wrong");
+      }
+    } catch (error) {
+      setLoading(false);
+      if (error.response) {
+        console.error("Error response:", error.response);
+        Alert.alert(
+          "Error",
+          error.response.data.message || "An error occurred. Please try again."
+        );
+      } else if (error.request) {
+        console.error("Error request:", error.request);
+        Alert.alert(
+          "Error",
+          "No response from server. Please check your internet connection."
+        );
+      } else {
+        console.error("Error message:", error.message);
+        Alert.alert("Error", "An error occurred. Please try again.");
+      }
+    }
+  };
+
   const LoadingModal = ({ visible }) => {
     return (
       <Modal transparent={true} animationType="fade" visible={visible}>
@@ -152,6 +211,21 @@ export default function LoginScreen() {
           <Text style={{ fontSize: 20, textAlign: "center" }}>LOG IN</Text>
         </Pressable>
 
+        <Pressable
+          style={{ marginTop: 20 }}
+          onPress={() => setForgotPasswordVisible(true)}
+        >
+          <Text
+            style={{
+              fontSize: 15,
+              textAlign: "center",
+              color: "lightgreen",
+            }}
+          >
+            Forgot Password?
+          </Text>
+        </Pressable>
+
         <View
           style={{
             marginTop: 50,
@@ -186,6 +260,59 @@ export default function LoginScreen() {
           </Text>
         </Pressable>
       </View>
+
+      <Modal
+        transparent={true}
+        visible={forgotPasswordVisible}
+        animationType="slide"
+        onRequestClose={() => setForgotPasswordVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalTitle}>Reset Password</Text>
+            <TextInput
+              style={styles.modalInput}
+              placeholder="Last remembered password"
+              value={lastRememberedPassword}
+              onChangeText={setLastRememberedPassword}
+              secureTextEntry={true}
+              placeholderTextColor={"grey"}
+              color={"white"}
+            />
+            <TextInput
+              style={styles.modalInput}
+              placeholder="New password"
+              value={newPassword}
+              onChangeText={setNewPassword}
+              secureTextEntry={true}
+              placeholderTextColor={"grey"}
+              color={"white"}
+            />
+            <TextInput
+              style={styles.modalInput}
+              placeholder="Confirm new password"
+              value={confirmNewPassword}
+              onChangeText={setConfirmNewPassword}
+              secureTextEntry={true}
+              placeholderTextColor={"grey"}
+              color={"white"}
+            />
+            <View style={{ flexDirection: "row", marginTop: 20 }}>
+              <Button
+                title="Reset"
+                onPress={handlePasswordReset}
+                color="lightgreen"
+              />
+              <Button
+                title="Cancel"
+                onPress={() => setForgotPasswordVisible(false)}
+                color="red"
+              />
+            </View>
+          </View>
+        </View>
+      </Modal>
+
       <StatusBar style="light" />
     </View>
   );
@@ -214,5 +341,42 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "black",
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  modalView: {
+    width: 300,
+    backgroundColor: "black",
+    borderRadius: 10,
+    padding: 20,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 20,
+    color: "lightgreen",
+  },
+  modalInput: {
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderColor: "grey",
+    padding: 10,
+    borderRadius: 5,
+    width: 250,
+    marginBottom: 20,
+    color: "white",
   },
 });

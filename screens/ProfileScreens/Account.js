@@ -14,6 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import Button from "../../components/Button";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
+import axios from "axios";
 
 const Account = () => {
   const navigation = useNavigation();
@@ -49,17 +50,14 @@ const Account = () => {
         {
           text: "Yes",
           onPress: async () => {
-            const userId = userDetails.userProfile._id;
+            const userId = userDetails.userProfile.username;
 
             try {
-              const response = await fetch(
-                `https://soundwave-56af.onrender.com/api/delete-user/${userId}`,
-                {
-                  method: "DELETE",
-                }
+              const response = await axios.delete(
+                `https://soundwave-56af.onrender.com/api/delete-user/${userId}`
               );
 
-              if (response.ok) {
+              if (response.status === "200") {
                 await AsyncStorage.clear();
                 Alert.alert("Success", "Account Deleted Successfully");
                 navigation.navigate("LandingScreen");

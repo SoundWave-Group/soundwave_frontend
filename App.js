@@ -43,6 +43,7 @@ import PlayerScreen from "./screens/PlayerScreen";
 import ShazamScreen from "./screens/ShazamScreen";
 import SongListScreen from "./screens/SongListScreen";
 import VideoScreen from "./screens/VideoScreen";
+import AIScreen from "./screens/AIScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -185,7 +186,7 @@ const BottomNavigationBar = () => {
         options={{
           tabBarLabel: "Home",
           headerShown: false,
-          tabBarLabelStyle: { color: "white" },
+          tabBarLabelStyle: { color: "black" },
           tabBarIcon: ({ focused }) =>
             focused ? (
               <Ionicons name="home" size={24} color="#0A4A3B" />
@@ -200,7 +201,7 @@ const BottomNavigationBar = () => {
         options={{
           tabBarLabel: "Search",
           headerShown: false,
-          tabBarLabelStyle: { color: "white" },
+          tabBarLabelStyle: { color: "black" },
           tabBarIcon: ({ focused }) =>
             focused ? (
               <Ionicons name="search" size={24} color="#0A4A3B" />
@@ -215,7 +216,7 @@ const BottomNavigationBar = () => {
         options={{
           tabBarLabel: "Video",
           headerShown: false,
-          tabBarLabelStyle: { color: "white" },
+          tabBarLabelStyle: { color: "black" },
           tabBarIcon: ({ focused }) =>
             focused ? (
               <MaterialCommunityIcons name="video" size={24} color="#0A4A3B" />
@@ -234,7 +235,7 @@ const BottomNavigationBar = () => {
         options={{
           tabBarLabel: "Library",
           headerShown: false,
-          tabBarLabelStyle: { color: "white" },
+          tabBarLabelStyle: { color: "black" },
           tabBarIcon: ({ focused }) =>
             focused ? (
               <MaterialIcons
@@ -257,7 +258,7 @@ const BottomNavigationBar = () => {
         options={{
           tabBarLabel: "Profile",
           headerShown: false,
-          tabBarLabelStyle: { color: "white" },
+          tabBarLabelStyle: { color: "black" },
           tabBarIcon: ({ focused }) =>
             focused ? (
               <FontAwesome name="user-circle-o" size={24} color="#0A4A3B" />
@@ -349,6 +350,11 @@ export default function App() {
         <Stack.Screen
           name="SongListScreen"
           component={SongListScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AIScreen"
+          component={AIScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

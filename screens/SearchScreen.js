@@ -9,11 +9,64 @@ import {
   Platform,
   StatusBar,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import data from "../utils/data";
 import VibesContainer from "../components/VibesContainer";
+
+const ArtisteComponent = ({ name, icon }) => {
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        borderWidth: 1,
+        borderStyle: "solid",
+        backgroundColor: "#101010",
+        padding: 10,
+        margin: 2,
+        borderRadius: 10,
+      }}
+    >
+      <MaterialCommunityIcons
+        name={`${icon}`}
+        color={"white"}
+        size={24}
+        style={{
+          borderColor: "grey",
+          padding: 10,
+          borderRadius: 10,
+          marginRight: 20,
+        }}
+      />
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 25,
+              marginVertical: 10,
+              fontWeight: "500",
+              color: "white",
+            }}
+          >
+            {name}
+          </Text>
+        </View>
+      </View>
+    </View>
+  );
+};
 
 const SearchScreen = () => {
   const navigation = useNavigation();
@@ -54,20 +107,18 @@ const SearchScreen = () => {
             borderRadius: 10,
             borderColor: "green",
             color: "green",
-            marginBottom: 10,
           }}
           placeholderTextColor={"green"}
           onChangeText={handleSearch}
           value={searchItem}
           placeholder="Songs, Artist & More"
         />
-
         <Pressable
           onPress={() => {
-            navigation.navigate("Download");
+            navigation.navigate("AIScreen");
           }}
         >
-          <Ionicons name="cloud-download" size={24} color="white" />
+          <Ionicons name="balloon" size={24} color="white" />
         </Pressable>
       </View>
 
@@ -90,6 +141,26 @@ const SearchScreen = () => {
                   style={styles.genrePressable}
                 >
                   <VibesContainer image={vibes.photo} text={vibes.name} />
+                </Pressable>
+              ))}
+          </View>
+          <View>
+            {data[0].artistes
+              .filter((artiste) =>
+                artiste.name.toLowerCase().includes(searchItem.toLowerCase())
+              )
+              .map((artiste, index) => (
+                <Pressable
+                  key={index}
+                  onPress={() =>
+                    navigation.navigate("SongListScreen", {
+                      genre: artiste.name,
+                      songs: artiste.songs,
+                    })
+                  }
+                  style={{ margin: 3 }}
+                >
+                  <ArtisteComponent name={artiste.name} icon={"music"} />
                 </Pressable>
               ))}
           </View>

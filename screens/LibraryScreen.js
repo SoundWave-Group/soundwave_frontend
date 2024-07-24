@@ -8,7 +8,6 @@ import {
   Platform,
 } from "react-native";
 import LibrarySections from "../components/LibrarySections";
-import MiniPlayer from "../components/MiniPlayer";
 
 const LibraryScreen = () => {
   return (

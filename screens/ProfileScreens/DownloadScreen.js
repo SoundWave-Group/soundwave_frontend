@@ -29,13 +29,6 @@ const DownloadScreen = () => {
           Downloads
         </Text>
       </View>
-
-      <View style={{ marginTop: 10, marginLeft: 10 }}>
-        <Text style={{ fontSize: 25, margin: 5, color: "white" }}>
-          No downloads yet...{" "}
-        </Text>
-      </View>
-
       <StatusBar style="light" />
     </View>
   );

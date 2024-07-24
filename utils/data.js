@@ -34,12 +34,19 @@ const data = [
               "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/StarlightDave.jpg",
             link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/StarlightDave.mp3",
           },
+          {
+            artist: "Dave, Central Cee",
+            title: "Sprinter",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/SprinterDaveCentralCee.jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/SprinterDaveCentralCee.mp3",
+          },
         ],
       },
       {
         id: 3,
         name: "Isaiah Robin",
-        photo: require("../assets/artistes/IsaiahRobin.png"),
+        photo: require("../assets/artistes/IsaiahRobin.jpg"),
         songs: [
           {
             artist: "Isaiah Robin",
@@ -68,6 +75,89 @@ const data = [
             albumArt:
               "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/WaterTyla.jpg",
             link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/WaterTyla.mp3",
+          },
+          {
+            artist: "Tyla, Skillibeng, Gunna",
+            title: "Jump",
+            albumArt:
+              "https://github.com/thelocalgodd/storage/blob/main/soundwave/songs/JumpTylaGunnaSkillibeng.jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/JumpTylaGunnaSkillibeng.mp3",
+          },
+        ],
+      },
+      {
+        id: 5,
+        name: "Gyakie",
+        photo: require("../assets/artistes/Gyakie.jpg"),
+        songs: [
+          {
+            artist: "Gyakie",
+            title: "December",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/WaterTyla.jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/WaterTyla.mp3",
+          },
+        ],
+      },
+      {
+        id: 5,
+        name: "Saweetie",
+        photo: require("../assets/artistes/Saweetie.jpg"),
+        songs: [],
+      },
+      {
+        id: 6,
+        name: "Drake",
+        photo: require("../assets/artistes/Drake.jpg"),
+        songs: [
+          {
+            artist: "Drake",
+            title: "God's Plan",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/God%20s%20Plan%20-%20Drake%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/God%20s%20Plan%20-%20Drake%20(128).mp3",
+          },
+          {
+            artist: "Drake, J. Cole",
+            title: "First Person Shooter",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/First%20Person%20Shooter%20-%20Drake%20%20J.%20Cole%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/First%20Person%20Shooter%20-%20Drake%20%20J.%20Cole%20(128).mp3",
+          },
+          {
+            artist: "Future, Drake, Tems",
+            title: "WAIT FOR U",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/WAIT%20FOR%20U%20(feat.%20Drake%20%20Tems)%20-%20Future%20%20Tems%20%20Drake%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/WAIT%20FOR%20U%20(feat.%20Drake%20%20Tems)%20-%20Future%20%20Tems%20%20Drake%20(128).mp3",
+          },
+        ],
+      },
+      {
+        id: 7,
+        name: "Kendrick Lamar",
+        photo: require("../assets/artistes/KendrickLamar.jpg"),
+        songs: [
+          {
+            artist: "Kendrick Lamar",
+            title: "Not Like Us",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Not%20Like%20Us%20-%20Kendrick%20Lamar%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Not%20Like%20Us%20-%20Kendrick%20Lamar%20(128).mp3",
+          },
+          {
+            artist: "Kendrick Lamar, SZA",
+            title: "All The Stars",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/All%20The%20Stars%20-%20Kendrick%20Lamar%20%20SZA%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/All%20The%20Stars%20-%20Kendrick%20Lamar%20%20SZA%20(128).mp3",
+          },
+          {
+            artist: "Kendrick Lamar, Jay Rock",
+            title: "MONEY TREES",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Money%20Trees%20-%20Kendrick%20Lamar%20%20Jay%20Rock%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Money%20Trees%20-%20Kendrick%20Lamar%20%20Jay%20Rock%20(128).mp3",
           },
         ],
       },
@@ -135,15 +225,7 @@ const data = [
         id: 2,
         name: "Music Charts",
         photo: require("../assets/browse/charts.png"),
-        songs: [
-          {
-            artist: "Various Artists",
-            title: "Top Hits 2023",
-            albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
-          },
-        ],
+        songs: [],
       },
       {
         id: 3,
@@ -199,6 +281,27 @@ const data = [
               "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/StarlightDave.jpg",
             link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/StarlightDave.mp3",
           },
+          {
+            artist: "Kenrick Lamar",
+            title: "Not Like Us",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Not%20Like%20Us%20-%20Kendrick%20Lamar%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Not%20Like%20Us%20-%20Kendrick%20Lamar%20(128).mp3",
+          },
+          {
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
+          },
+          {
+            artist: "Sabrina Carpenter",
+            title: "Expresso",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).mp3",
+          },
         ],
       },
       {
@@ -213,6 +316,20 @@ const data = [
               "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).jpg",
             link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).mp3",
           },
+          {
+            artist: "Kenrick Lamar",
+            title: "Not Like Us",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Not%20Like%20Us%20-%20Kendrick%20Lamar%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Not%20Like%20Us%20-%20Kendrick%20Lamar%20(128).mp3",
+          },
+          {
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
+          },
         ],
       },
     ],
@@ -225,11 +342,18 @@ const data = [
         photo: require("../assets/genre/Indie.png"),
         songs: [
           {
-            artist: "Various Artists",
-            title: "Indie Vibes",
+            artist: "Sabrina Carpenter",
+            title: "Expresso",
             albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).mp3",
+          },
+          {
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
           },
         ],
       },
@@ -239,11 +363,18 @@ const data = [
         photo: require("../assets/genre/kpop.png"),
         songs: [
           {
-            artist: "Various Artists",
-            title: "K Pop Hits",
+            artist: "BLACKPINK",
+            title: "Forever Young",
             albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Forever%20Young%20-%20BLACKPINK%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Forever%20Young%20-%20BLACKPINK%20(128).mp3",
+          },
+          {
+            artist: "BLACKPINK",
+            title: "Don't Know What To Do",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Don%20t%20Know%20What%20To%20Do%20-%20BLACKPINK%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Don%20t%20Know%20What%20To%20Do%20-%20BLACKPINK%20(128).mp3",
           },
         ],
       },
@@ -253,12 +384,18 @@ const data = [
         photo: require("../assets/genre/popp.png"),
         songs: [
           {
-            artist: "Various Artists",
-            title: "Pop Classics",
+            artist: "Sabrina Carpenter",
+            title: "Expresso",
             albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "Pop",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).mp3",
+          },
+          {
+            artist: "We Can't Be Friends (wait for your love)",
+            title: "Ariana Grande",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/we_can_t_be_friends_wait_for_your_love_Ariana_Grande_128.jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/we_can_t_be_friends_wait_for_your_love_Ariana_Grande_128.mp3",
           },
         ],
       },
@@ -266,48 +403,7 @@ const data = [
         id: 4,
         name: "R&B",
         photo: require("../assets/genre/rnb.png"),
-        songs: [
-          {
-            artist: "Various Artists",
-            title: "R&B Essentials",
-            albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "R&B",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
-          },
-        ],
-      },
-      {
-        id: 5,
-        name: "Hip Hop",
-        photo:
-          "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-        songs: [
-          {
-            artist: "Various Artists",
-            title: "Hip Hop Bangers",
-            albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "Hip Hop",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
-          },
-        ],
-      },
-      {
-        id: 6,
-        name: "Party",
-        photo:
-          "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-        songs: [
-          {
-            artist: "Various Artists",
-            title: "Party Anthems",
-            albumArt:
-              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
-            genre: "Party",
-            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
-          },
-        ],
+        songs: [],
       },
     ],
   },
@@ -332,6 +428,35 @@ const data = [
         id: 2,
         name: "You Are Great",
         photo: require("../assets/recents/YouAreGreat.png"),
+        songs: [
+          {
+            artist: "Isaiah Robin",
+            title: "No More Witches",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/NoMoreWitchesIsaiahRobin.jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/NoMoreWitchesIsaiahRobin.mp3",
+          },
+        ],
+      },
+      {
+        id: 3,
+        name: "Afropop",
+        photo: require("../assets/recents/Afropop.png"),
+        songs: [
+          {
+            artist: "Various Artists",
+            title: "Gospel Classics",
+            albumArt:
+              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
+            genre: "Gospel",
+            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+          },
+        ],
+      },
+      {
+        id: 4,
+        name: "Chill",
+        photo: require("../assets/recents/Chill.png"),
         songs: [
           {
             artist: "Various Artists",
@@ -366,6 +491,58 @@ const data = [
         id: 2,
         name: "Upbeat Mix",
         photo: require("../assets/mixes/Upbeat.png"),
+        songs: [
+          {
+            artist: "Various Artists",
+            title: "Upbeat Vibes",
+            albumArt:
+              "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.jpg",
+            genre: "Upbeat",
+            link: "https://raw.githubusercontent.com/thelocalgodd/soundcloud-clone-api/main/tracks/BYoungRDrill.mp3?raw=true",
+          },
+        ],
+      },
+      {
+        id: 3,
+        name: "Hip Hop",
+        photo: require("../assets/mixes/HipHop.png"),
+        songs: [
+          {
+            id: 1,
+            artist: "Kenrick Lamar",
+            title: "Not Like Us",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Not%20Like%20Us%20-%20Kendrick%20Lamar%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Not%20Like%20Us%20-%20Kendrick%20Lamar%20(128).mp3",
+          },
+          {
+            id: 2,
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
+          },
+        ],
+      },
+      {
+        id: 4,
+        name: "K Pop",
+        photo: require("../assets/mixes/KPop.png"),
+        songs: [
+          {
+            artist: "BLACKPINK",
+            title: "Forever Young",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Forever%20Young%20-%20BLACKPINK%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Forever%20Young%20-%20BLACKPINK%20(128).mp3",
+          },
+        ],
+      },
+      {
+        id: 5,
+        name: "GH Rap",
+        photo: require("../assets/mixes/GHRap.png"),
         songs: [
           {
             artist: "Various Artists",
@@ -452,20 +629,18 @@ const data = [
         photo: require("../assets/trending/Gospel.png"),
         songs: [
           {
-            id: 1,
-            artist: "Mahalia Jackson",
-            title: "How I Got Over",
-            albumArt: "https://example.com/album-art/gospel/how-i-got-over.jpg",
-            genre: "Gospel",
-            link: "https://example.com/songs/gospel/how-i-got-over.mp3",
+            artist: "Hilsong",
+            title: "Clean",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Clean%20(Live)%20-%20Hillsong%20UNITED%20%20TAYA%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Clean%20(Live)%20-%20Hillsong%20UNITED%20%20TAYA%20(128).mp3",
           },
           {
-            id: 2,
-            artist: "Kirk Franklin",
-            title: "Imagine Me",
-            albumArt: "https://example.com/album-art/gospel/imagine-me.jpg",
-            genre: "Gospel",
-            link: "https://example.com/songs/gospel/imagine-me.mp3",
+            artist: "Hilsong",
+            title: "Oceans (Where Feet May Fail)",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Oceans%20(Where%20Feet%20May%20Fail)%20-%20Hillsong%20UNITED%20%20TAYA%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Oceans%20(Where%20Feet%20May%20Fail)%20-%20Hillsong%20UNITED%20%20TAYA%20(128).mp3",
           },
         ],
       },
@@ -473,118 +648,31 @@ const data = [
         id: 5,
         name: "Jazz",
         photo: require("../assets/trending/Jazz.png"),
-        songs: [
-          {
-            id: 1,
-            artist: "Miles Davis",
-            title: "So What",
-            albumArt: "https://example.com/album-art/jazz/so-what.jpg",
-            genre: "Jazz",
-            link: "https://example.com/songs/jazz/so-what.mp3",
-          },
-          {
-            id: 2,
-            artist: "Ella Fitzgerald",
-            title: "Summertime",
-            albumArt: "https://example.com/album-art/jazz/summertime.jpg",
-            genre: "Jazz",
-            link: "https://example.com/songs/jazz/summertime.mp3",
-          },
-        ],
+        songs: [],
       },
       {
         id: 6,
         name: "Pop",
         photo: require("../assets/trending/Pop.png"),
-        songs: [
-          {
-            id: 1,
-            artist: "Michael Jackson",
-            title: "Billie Jean",
-            albumArt: "https://example.com/album-art/pop/billie-jean.jpg",
-            genre: "Pop",
-            link: "https://example.com/songs/pop/billie-jean.mp3",
-          },
-          {
-            id: 2,
-            artist: "Madonna",
-            title: "Like a Prayer",
-            albumArt: "https://example.com/album-art/pop/like-a-prayer.jpg",
-            genre: "Pop",
-            link: "https://example.com/songs/pop/like-a-prayer.mp3",
-          },
-        ],
+        songs: [],
       },
       {
         id: 7,
         name: "R&B",
         photo: require("../assets/trending/R&B.png"),
-        songs: [
-          {
-            id: 1,
-            artist: "Stevie Wonder",
-            title: "Superstition",
-            albumArt: "https://example.com/album-art/rnb/superstition.jpg",
-            genre: "R&B",
-            link: "https://example.com/songs/rnb/superstition.mp3",
-          },
-          {
-            id: 2,
-            artist: "Beyoncé",
-            title: "Crazy in Love",
-            albumArt: "https://example.com/album-art/rnb/crazy-in-love.jpg",
-            genre: "R&B",
-            link: "https://example.com/songs/rnb/crazy-in-love.mp3",
-          },
-        ],
+        songs: [],
       },
       {
         id: 8,
         name: "Reggae",
         photo: require("../assets/trending/Reggae.png"),
-        songs: [
-          {
-            id: 1,
-            artist: "Bob Marley",
-            title: "No Woman, No Cry",
-            albumArt:
-              "https://example.com/album-art/reggae/no-woman-no-cry.jpg",
-            genre: "Reggae",
-            link: "https://example.com/songs/reggae/no-woman-no-cry.mp3",
-          },
-          {
-            id: 2,
-            artist: "Peter Tosh",
-            title: "Legalize It",
-            albumArt: "https://example.com/album-art/reggae/legalize-it.jpg",
-            genre: "Reggae",
-            link: "https://example.com/songs/reggae/legalize-it.mp3",
-          },
-        ],
+        songs: [],
       },
       {
         id: 9,
         name: "Rock",
         photo: require("../assets/trending/Rock.png"),
-        songs: [
-          {
-            id: 1,
-            artist: "Led Zeppelin",
-            title: "Stairway to Heaven",
-            albumArt:
-              "https://example.com/album-art/rock/stairway-to-heaven.jpg",
-            genre: "Rock",
-            link: "https://example.com/songs/rock/stairway-to-heaven.mp3",
-          },
-          {
-            id: 2,
-            artist: "The Beatles",
-            title: "Hey Jude",
-            albumArt: "https://example.com/album-art/rock/hey-jude.jpg",
-            genre: "Rock",
-            link: "https://example.com/songs/rock/hey-jude.mp3",
-          },
-        ],
+        songs: [],
       },
       {
         id: 10,
@@ -592,20 +680,18 @@ const data = [
         photo: require("../assets/trending/Soul.png"),
         songs: [
           {
-            id: 1,
-            artist: "Otis Redding",
-            title: "(Sittin' On) The Dock of the Bay",
-            albumArt: "https://example.com/album-art/soul/dock-of-the-bay.jpg",
-            genre: "Soul",
-            link: "https://example.com/songs/soul/dock-of-the-bay.mp3",
+            artist: "Frank Ocean",
+            title: "Pink + White",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Pink%20%2B%20White%20-%20Frank%20Ocean%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Pink%20%2B%20White%20-%20Frank%20Ocean%20(128).mp3",
           },
           {
-            id: 2,
-            artist: "Aretha Franklin",
-            title: "Respect",
-            albumArt: "https://example.com/album-art/soul/respect.jpg",
-            genre: "Soul",
-            link: "https://example.com/songs/soul/respect.mp3",
+            artist: "The Teskey Brothers",
+            title: "Forever You and Me",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/1.%20The%20Teskey%20Brothers%20-%20Forever%20You%20and%20Me%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/1.%20The%20Teskey%20Brothers%20-%20Forever%20You%20and%20Me%20(128).mp3",
           },
         ],
       },
@@ -622,9 +708,17 @@ const data = [
             id: 1,
             artist: "Kenrick Lamar",
             title: "Not Like Us",
-            albumArt: "null",
-            genre: "Hip Hop & Rap",
-            link: "https://null.mp3",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Not%20Like%20Us%20-%20Kendrick%20Lamar%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Not%20Like%20Us%20-%20Kendrick%20Lamar%20(128).mp3",
+          },
+          {
+            id: 2,
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
           },
         ],
       },
@@ -632,121 +726,49 @@ const data = [
         id: 2,
         name: "Electronic",
         photo: require("../assets/vibes/Electronic.png"),
-        songs: [
-          {
-            id: 1,
-            artist: "Daft Punk",
-            title: "One More Time",
-            albumArt: "null",
-            genre: "Electronic",
-            link: "https://null.mp3",
-          },
-        ],
+        songs: [],
       },
       {
         id: 3,
         name: "R & B",
         photo: require("../assets/vibes/Chill.png"),
-        songs: [
-          {
-            id: 1,
-            artist: "SZA",
-            title: "Good Days",
-            albumArt: "null",
-            genre: "R & B",
-            link: "https://null.mp3",
-          },
-        ],
+        songs: [],
       },
       {
         id: 4,
         name: "Party",
         photo: require("../assets/vibes/Party.png"),
-        songs: [
-          {
-            id: 1,
-            artist: "Cardi B",
-            title: "Up",
-            albumArt: "null",
-            genre: "Party",
-            link: "https://null.mp3",
-          },
-        ],
+        songs: [],
       },
       {
         id: 5,
         name: "Workout",
         photo: require("../assets/vibes/Workout.png"),
-        songs: [
-          {
-            id: 1,
-            artist: "Kanye West",
-            title: "Stronger",
-            albumArt: "null",
-            genre: "Workout",
-            link: "https://null.mp3",
-          },
-        ],
+        songs: [],
       },
       {
         id: 6,
         name: "Soul",
         photo: require("../assets/vibes/Soul.png"),
-        songs: [
-          {
-            id: 1,
-            artist: "Frank Ocean",
-            title: "Pink + White",
-            albumArt: "null",
-            genre: "Chill",
-            link: "https://null.mp3",
-          },
-        ],
+        songs: [],
       },
       {
         id: 7,
         name: "Country",
         photo: require("../assets/vibes/Acoustic.png"),
-        songs: [
-          {
-            id: 1,
-            artist: "Johnny Cash",
-            title: "I Walk the Line",
-            albumArt: "null",
-            genre: "Country",
-            link: "https://null.mp3",
-          },
-        ],
+        songs: [],
       },
       {
         id: 8,
         name: "Rock",
         photo: require("../assets/vibes/Rock.png"),
-        songs: [
-          {
-            id: 1,
-            artist: "The Rolling Stones",
-            title: "Paint It Black",
-            albumArt: "null",
-            genre: "Rock",
-            link: "https://null.mp3",
-          },
-        ],
+        songs: [],
       },
       {
         id: 9,
         name: "Study",
         photo: require("../assets/vibes/Study.png"),
-        songs: [
-          {
-            id: 1,
-            artist: "Lo-fi",
-            title: "Lo-fi Beats",
-            albumArt: "null",
-            genre: "Study",
-            link: "https://null.mp3",
-          },
-        ],
+        songs: [],
       },
     ],
   },

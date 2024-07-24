@@ -9,7 +9,7 @@ const GenreBox = ({ image, text }) => {
       style={{
         width: 150,
         height: 150,
-        marginHorizontal: 5,
+        marginHorizontal: 7,
         marginVertical: 5,
         borderRadius: 10,
       }}

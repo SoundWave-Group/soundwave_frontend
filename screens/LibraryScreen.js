@@ -41,6 +41,11 @@ const LibraryScreen = () => {
             link="Playlists"
             icon={"folder-plus"}
           />
+          <LibrarySections
+            name="Downloads"
+            link="Downloads"
+            icon={"download"}
+          />
           <LibrarySections name="Albums" link="Albums" icon={"folder-plus"} />
           <LibrarySections name="Following" link="Following" icon={"plus"} />
           <LibrarySections name="Stream" link="Stream" icon={"broadcast"} />

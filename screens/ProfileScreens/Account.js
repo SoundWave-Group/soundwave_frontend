@@ -9,12 +9,11 @@ import {
   Alert,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import Button from "../../components/Button";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
-import axios from "axios";
 
 const Account = () => {
   const navigation = useNavigation();
@@ -29,6 +28,7 @@ const Account = () => {
 
         if (userData) {
           setUserDetails(JSON.parse(userData));
+          console.log(userData);
         }
       } catch (error) {
         console.error("Failed to load user details", error);

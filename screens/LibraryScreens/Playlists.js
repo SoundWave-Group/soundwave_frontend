@@ -84,13 +84,12 @@ const Playlists = () => {
       if (!response.ok) {
         throw new Error("Failed to delete playlist");
       }
-
       fetchPlaylists();
 
       Alert.alert("Success", "Playlist has been deleted");
     } catch (error) {
       console.error(error);
-      Alert.alert("Error", "Failed to delete playlist");
+      Alert.alert("Error", "Failed to Delete Playlist");
     }
   };
 

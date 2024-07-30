@@ -8,10 +8,7 @@ import {
   Image,
   Pressable,
   ActivityIndicator,
-  Modal,
-  ScrollView,
-  Animated,
-  PanResponder,
+  Alert,
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -19,7 +16,7 @@ import { Slider } from "@miblanchard/react-native-slider";
 import { Audio } from "expo-av";
 import { StatusBar } from "expo-status-bar";
 
-import { getAudioUri } from "../utils/cacheAudio";
+import { getAudioUri, cacheAudio } from "../utils/cacheAudio";
 
 export default function PlayerScreen({ route }) {
   const { artist, title, albumArt, link } = route.params;
@@ -32,28 +29,7 @@ export default function PlayerScreen({ route }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [sliderValue, setSliderValue] = useState(0);
-  const [showLyricsModal, setShowLyricsModal] = useState(false);
-  const [lyrics, setLyrics] = useState("");
-  const [isFetchingLyrics, setIsFetchingLyrics] = useState(false);
-
-  const pan = useRef(new Animated.ValueXY()).current;
-  const panResponder = useRef(
-    PanResponder.create({
-      onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: Animated.event([null, { dy: pan.y }], {
-        useNativeDriver: false,
-      }),
-      onPanResponderRelease: (_, gestureState) => {
-        if (gestureState.dy > 50) {
-          setShowLyricsModal(false);
-        }
-        Animated.spring(pan, {
-          toValue: { x: 0, y: 0 },
-          useNativeDriver: false,
-        }).start();
-      },
-    })
-  ).current;
+  const [isCached, setIsCached] = useState(false);
 
   const loadSound = useCallback(async () => {
     setIsLoading(true);
@@ -67,7 +43,10 @@ export default function PlayerScreen({ route }) {
     try {
       let audioUri = await getAudioUri(link);
       if (!audioUri) {
+        setIsCached(false);
         audioUri = link; // Use the original link if not cached
+      } else {
+        setIsCached(true);
       }
 
       const { sound: newSound, status } = await Audio.Sound.createAsync(
@@ -181,26 +160,18 @@ export default function PlayerScreen({ route }) {
     }
   };
 
-  const fetchLyrics = async () => {
-    setIsFetchingLyrics(true);
+  const handleDownload = async () => {
     try {
-      const response = await fetch(
-        `https://api.lyrics.ovh/v1/${artist}/${title}`
-      );
-      const data = await response.json();
-      setLyrics(data.lyrics || "Lyrics not found");
-    } catch (error) {
-      console.error("Error fetching lyrics:", error);
-      setLyrics("Failed to fetch lyrics. Please try again.");
+      setIsLoading(true);
+      const filename = link.split("/").pop();
+      await cacheAudio(link, filename, title, artist, albumArt);
+      setIsCached(true);
+      Alert.alert("Success", "Song downloaded successfully");
+    } catch (err) {
+      console.error("Error downloading:", err);
+      Alert.alert("Error", "Failed to download the song. Please try again.");
     } finally {
-      setIsFetchingLyrics(false);
-    }
-  };
-
-  const handleShowLyrics = () => {
-    setShowLyricsModal(true);
-    if (!lyrics) {
-      fetchLyrics();
+      setIsLoading(false);
     }
   };
 
@@ -232,7 +203,13 @@ export default function PlayerScreen({ route }) {
 
   return (
     <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
-      <View style={styles.header}>
+      <View
+        style={{
+          margin: 20,
+          justifyContent: "space-between",
+          flexDirection: "row",
+        }}
+      >
         <Pressable
           onPress={async () => {
             if (sound) {
@@ -245,76 +222,55 @@ export default function PlayerScreen({ route }) {
           <Ionicons name="chevron-down" size={24} color="black" />
         </Pressable>
       </View>
-      <Image source={{ uri: albumArt }} style={styles.albumArt} />
-      <View style={styles.songDetails}>
-        <View style={styles.containerSecondary}>
-          <Text style={styles.songTitle}>{title}</Text>
-          <Text style={styles.songArtist}>{artist}</Text>
-          <Slider
-            value={sliderValue}
-            minimumValue={0}
-            maximumValue={duration}
-            thumbTintColor="lightblue"
-            trackStyle={{ backgroundColor: "lightblue" }}
-            style={styles.slider}
-            width={300}
-            onValueChange={(value) => setSliderValue(value[0])}
-            onSlidingComplete={handleSeek}
-          />
-          <View style={styles.timeContainer}>
-            <Text>{formatTime(currentPosition)}</Text>
-            <Text>{formatTime(duration)}</Text>
+      <View>
+        <Image source={{ uri: albumArt }} style={styles.albumArt} />
+      </View>
+      <View>
+        <View style={styles.songDetails}>
+          <View style={styles.containerSecondary}>
+            <Text style={styles.songTitle}>{title}</Text>
+            <Text style={styles.songArtist}>{artist}</Text>
+            <Slider
+              value={sliderValue}
+              minimumValue={0}
+              maximumValue={duration}
+              thumbTintColor="lightblue"
+              trackStyle={{ backgroundColor: "lightblue" }}
+              width={300}
+              onValueChange={(value) => setSliderValue(value[0])}
+              onSlidingComplete={handleSeek}
+            />
+            <View style={styles.timeContainer}>
+              <Text>{formatTime(currentPosition)}</Text>
+              <Text>{formatTime(duration)}</Text>
+            </View>
+            <View style={styles.buttonContainer}>
+              <Pressable onPress={handleBackward}>
+                <MaterialIcons name="replay-10" size={36} color="black" />
+              </Pressable>
+              <Pressable onPress={handlePlayPause}>
+                <Ionicons
+                  name={isPlaying ? "pause" : "play"}
+                  size={36}
+                  color="black"
+                />
+              </Pressable>
+              <Pressable onPress={handleForward}>
+                <MaterialIcons name="forward-10" size={36} color="black" />
+              </Pressable>
+            </View>
           </View>
-          <View style={styles.buttonContainer}>
-            <Pressable onPress={handleBackward}>
-              <MaterialIcons name="replay-10" size={36} color="black" />
+        </View>
+        <View style={{ marginTop: 40 }}>
+          {!isCached ? (
+            <Pressable onPress={handleDownload}>
+              <Ionicons name="download-outline" size={34} color="black" />
             </Pressable>
-            <Pressable onPress={handlePlayPause}>
-              <Ionicons
-                name={isPlaying ? "pause" : "play"}
-                size={36}
-                color="black"
-              />
-            </Pressable>
-            <Pressable onPress={handleForward}>
-              <MaterialIcons name="forward-10" size={36} color="black" />
-            </Pressable>
-          </View>
-          <Pressable
-            style={[styles.lyricsButton, { marginTop: 100 }]}
-            onPress={handleShowLyrics}
-          >
-            <Text style={styles.lyricsButtonText}>Show Lyrics</Text>
-          </Pressable>
+          ) : (
+            <Text style={styles.downloadedText}>Downloaded</Text>
+          )}
         </View>
       </View>
-      <Modal
-        visible={showLyricsModal}
-        animationType="slide"
-        transparent={true}
-        onRequestClose={() => setShowLyricsModal(false)}
-      >
-        <Animated.View
-          style={[
-            styles.modalContent,
-            {
-              transform: [{ translateY: pan.y }],
-            },
-          ]}
-          {...panResponder.panHandlers}
-        >
-          <View style={styles.modalHeader}>
-            <View style={styles.modalHeaderBar} />
-          </View>
-          <ScrollView contentContainerStyle={styles.lyricsContainer}>
-            {isFetchingLyrics ? (
-              <ActivityIndicator size="large" color="#000" />
-            ) : (
-              <Text style={styles.lyricsText}>{lyrics}</Text>
-            )}
-          </ScrollView>
-        </Animated.View>
-      </Modal>
       <StatusBar style="light" />
     </SafeAreaView>
   );
@@ -336,12 +292,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgb(50, 153, 168)",
   },
-  header: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    paddingHorizontal: 20,
-    marginTop: 20,
+  downloadedText: {
+    color: "black",
+    fontSize: 16,
+    fontWeight: "bold",
   },
   albumArt: {
     width: 330,
@@ -354,22 +308,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 20,
   },
   songTitle: {
     fontSize: 24,
     textAlign: "center",
+    marginTop: 80,
     fontWeight: "bold",
-    color: "black",
   },
   songArtist: {
     fontSize: 20,
     textAlign: "center",
-    color: "black",
-    marginBottom: 20,
-  },
-  slider: {
-    width: 300,
   },
   timeContainer: {
     flexDirection: "row",
@@ -379,7 +327,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
-    alignItems: "center",
     marginTop: 30,
     width: 300,
   },
@@ -408,42 +355,5 @@ const styles = StyleSheet.create({
     color: "rgb(50, 153, 168)",
     fontSize: 16,
     fontWeight: "bold",
-  },
-  lyricsButton: {
-    marginTop: 20,
-    backgroundColor: "#ffffff",
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 10,
-  },
-  lyricsButtonText: {
-    color: "rgb(50, 153, 168)",
-    fontSize: 14,
-    fontWeight: "bold",
-  },
-  modalContent: {
-    backgroundColor: "white",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    padding: 20,
-    height: "80%",
-    marginTop: "auto",
-  },
-  modalHeader: {
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  modalHeaderBar: {
-    width: 40,
-    height: 5,
-    backgroundColor: "gray",
-    borderRadius: 3,
-  },
-  lyricsContainer: {
-    paddingBottom: 40,
-  },
-  lyricsText: {
-    fontSize: 16,
-    lineHeight: 24,
   },
 });

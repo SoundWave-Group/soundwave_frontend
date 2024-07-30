@@ -233,8 +233,8 @@ const data = [
         photo: require("../assets/browse/indie.png"),
         songs: [
           {
-            artist: "We Can't Be Friends (wait for your love)",
-            title: "Ariana Grande",
+            artist: "Ariana Grande",
+            title: "We Can't Be Friends (wait for your love)",
             albumArt:
               "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/we_can_t_be_friends_wait_for_your_love_Ariana_Grande_128.jpg",
             link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/we_can_t_be_friends_wait_for_your_love_Ariana_Grande_128.mp3",

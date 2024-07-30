@@ -23,8 +23,8 @@ const HeroComponent = ({ image, text }) => {
         source={image}
         style={{
           borderRadius: 20,
-          width: responsiveWidth(90),
-          height: responsiveHeight(45),
+          width: responsiveWidth(95),
+          height: responsiveHeight(47.5),
         }}
       />
 

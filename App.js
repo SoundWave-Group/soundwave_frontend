@@ -36,10 +36,10 @@ import Account from "./screens/ProfileScreens/Account";
 import Storage from "./screens/ProfileScreens/Storage";
 import Analytics from "./screens/ProfileScreens/Analytics";
 import SearchScreen from "./screens/SearchScreen";
-import DownloadScreen from "./screens/ProfileScreens/DownloadScreen";
 import PlayerScreen from "./screens/PlayerScreen";
 import SongListScreen from "./screens/SongListScreen";
 import VideoScreen from "./screens/VideoScreen";
+import Downloads from "./screens/LibraryScreens/Downloads";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -101,6 +101,11 @@ const LibraryStack = () => (
       component={Uploads}
       options={{ headerShown: false }}
     />
+    <Stack.Screen
+      name="Downloads"
+      component={Downloads}
+      options={{ headerShown: false }}
+    />
   </Stack.Navigator>
 );
 
@@ -159,11 +164,6 @@ const SearchStack = () => (
     <Stack.Screen
       name="Search"
       component={SearchScreen}
-      options={{ headerShown: false }}
-    />
-    <Stack.Screen
-      name="Download"
-      component={DownloadScreen}
       options={{ headerShown: false }}
     />
   </Stack.Navigator>
@@ -336,6 +336,7 @@ export default function App() {
           options={{
             headerShown: false,
             ...TransitionPresets.ModalSlideFromBottomIOS,
+            animationEnabled: false,
           }}
         />
         <Stack.Screen

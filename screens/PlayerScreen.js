@@ -304,7 +304,7 @@ export default function PlayerScreen({ route }) {
           {...panResponder.panHandlers}
         >
           <View style={styles.modalHeader}>
-            <View style={styles.modalHeaderBar} />
+            <View style={styles.modalHeaderBar}></View>
           </View>
           <ScrollView contentContainerStyle={styles.lyricsContainer}>
             {isFetchingLyrics ? (
@@ -368,9 +368,6 @@ const styles = StyleSheet.create({
     color: "black",
     marginBottom: 20,
   },
-  slider: {
-    width: 300,
-  },
   timeContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -426,24 +423,30 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 20,
-    height: "80%",
+    height: "70%",
+    marginHorizontal: 10,
     marginTop: "auto",
   },
   modalHeader: {
     alignItems: "center",
-    marginBottom: 20,
+    paddingVertical: 10,
+    marginTop: -20,
+    paddingBottom: 10,
   },
   modalHeaderBar: {
-    width: 40,
+    width: 50,
     height: 5,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 10,
     backgroundColor: "gray",
-    borderRadius: 3,
+    borderRadius: 10,
   },
   lyricsContainer: {
     paddingBottom: 40,
   },
   lyricsText: {
-    fontSize: 16,
+    fontSize: 18,
     lineHeight: 24,
   },
 });

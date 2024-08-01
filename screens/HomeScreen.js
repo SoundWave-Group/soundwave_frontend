@@ -51,7 +51,37 @@ export default function HomeScreen() {
             >
               {
                 // GenreContainer
-                data[4].mixes.map((genre, index) => (
+                data[8].madeforyou.map((genre, index) => (
+                  <Pressable
+                    key={index}
+                    onPress={() => {
+                      navigation.navigate("SongListScreen", {
+                        genre: genre.name,
+                        songs: genre.songs,
+                      });
+                    }}
+                  >
+                    <GenreContainer
+                      key={index}
+                      image={genre.photo}
+                      text={genre.name}
+                    />
+                  </Pressable>
+                ))
+              }
+            </ScrollView>
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.headerStyle}>Trending on SoundWave</Text>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={{ marginTop: 10 }}
+            >
+              {
+                // GenreContainer
+                data[9].trending.map((genre, index) => (
                   <Pressable
                     key={index}
                     onPress={() => {
@@ -128,7 +158,7 @@ const styles = StyleSheet.create({
   },
   headerStyle: {
     fontSize: 25,
-    color: "green",
+    color: "white",
     marginLeft: 10,
     marginVertical: 10,
   },

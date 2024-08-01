@@ -21,9 +21,7 @@ const LikedTracks = () => {
           </Pressable>
         </View>
         <Text style={{ fontSize: 20, color: "white" }}>Liked Tracks</Text>
-        <View>
-          <Ionicons name="shuffle" size={25} color={"white"} />
-        </View>
+        <View></View>
       </View>
 
       <StatusBar style="light" />

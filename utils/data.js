@@ -282,7 +282,7 @@ const data = [
             link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/StarlightDave.mp3",
           },
           {
-            artist: "Kenrick Lamar",
+            artist: "Kendrick Lamar",
             title: "Not Like Us",
             albumArt:
               "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Not%20Like%20Us%20-%20Kendrick%20Lamar%20(128).jpg",
@@ -317,7 +317,7 @@ const data = [
             link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Espresso%20-%20Sabrina%20Carpenter%20(128).mp3",
           },
           {
-            artist: "Kenrick Lamar",
+            artist: "Kendrick Lamar",
             title: "Not Like Us",
             albumArt:
               "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Not%20Like%20Us%20-%20Kendrick%20Lamar%20(128).jpg",
@@ -503,7 +503,7 @@ const data = [
         songs: [
           {
             id: 1,
-            artist: "Kenrick Lamar",
+            artist: "Kendrick Lamar",
             title: "Not Like Us",
             albumArt:
               "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Not%20Like%20Us%20-%20Kendrick%20Lamar%20(128).jpg",
@@ -688,7 +688,7 @@ const data = [
         songs: [
           {
             id: 1,
-            artist: "Kenrick Lamar",
+            artist: "Kendrick Lamar",
             title: "Not Like Us",
             albumArt:
               "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Not%20Like%20Us%20-%20Kendrick%20Lamar%20(128).jpg",
@@ -791,6 +791,169 @@ const data = [
         name: "Featured",
         photo: require("../assets/genre/heroImage.png"),
         songs: [{}],
+      },
+    ],
+  },
+
+  {
+    madeforyou: [
+      {
+        id: 1,
+        name: "Mega Mix 1",
+        photo: require("../assets/mixes/Mega Mix 1.png"),
+        songs: [
+          {
+            artist: "Taylor Swift & Post Malone",
+            title: "Fortnight",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).mp3",
+          },
+          {
+            id: 2,
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "Mega Mix 2",
+        photo: require("../assets/mixes/Mega Mix 2.png"),
+        songs: [
+          {
+            artist: "Taylor Swift & Post Malone",
+            title: "Fortnight",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).mp3",
+          },
+          {
+            id: 2,
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
+          },
+        ],
+      },
+      {
+        id: 1,
+        name: "Mega Mix 3",
+        photo: require("../assets/mixes/Mega Mix 3.png"),
+        songs: [
+          {
+            artist: "Taylor Swift & Post Malone",
+            title: "Fortnight",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).mp3",
+          },
+          {
+            id: 2,
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    trending: [
+      {
+        id: 1,
+        name: "Soul Music",
+        photo: require("../assets/madeforyou/1.png"),
+        songs: [
+          {
+            artist: "Taylor Swift & Post Malone",
+            title: "Fortnight",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).mp3",
+          },
+          {
+            id: 2,
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: "Trending Pop",
+        photo: require("../assets/madeforyou/2.png"),
+        songs: [
+          {
+            artist: "Taylor Swift & Post Malone",
+            title: "Fortnight",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).mp3",
+          },
+          {
+            id: 2,
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
+          },
+        ],
+      },
+      {
+        id: 3,
+        name: "Hip Hop",
+        photo: require("../assets/madeforyou/3.png"),
+        songs: [
+          {
+            artist: "Taylor Swift & Post Malone",
+            title: "Fortnight",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).mp3",
+          },
+          {
+            id: 2,
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
+          },
+        ],
+      },
+      {
+        id: 4,
+        name: "Buzzing Pop",
+        photo: require("../assets/madeforyou/4.png"),
+        songs: [
+          {
+            artist: "Taylor Swift & Post Malone",
+            title: "Fortnight",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/Fortnight%20-%20Taylor%20Swift%20%20Post%20Malone%20(128).mp3",
+          },
+          {
+            id: 2,
+            artist: "Tommy Richman",
+            title: "MILLION DOLLAR BABY",
+            albumArt:
+              "https://media.githubusercontent.com/media/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).jpg",
+            link: "https://raw.githubusercontent.com/thelocalgodd/storage/main/soundwave/songs/MILLION%20DOLLAR%20BABY%20-%20Tommy%20Richman%20(128).mp3",
+          },
+        ],
       },
     ],
   },

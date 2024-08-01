@@ -182,10 +182,13 @@ export default function PlayerScreen({ route }) {
   };
 
   const fetchLyrics = async () => {
+    let artistN = artist.split("&")[0];
+    console.log(artistN);
+    console.log(title);
     setIsFetchingLyrics(true);
     try {
       const response = await fetch(
-        `https://api.lyrics.ovh/v1/${artist}/${title}`
+        `https://api.lyrics.ovh/v1/${artistN}/${title}`
       );
       const data = await response.json();
       setLyrics(data.lyrics || "Lyrics not found");
@@ -225,6 +228,12 @@ export default function PlayerScreen({ route }) {
         <Text style={styles.errorText}>{error}</Text>
         <Pressable style={styles.retryButton} onPress={loadSound}>
           <Text style={styles.retryButtonText}>Retry</Text>
+        </Pressable>
+        <Pressable
+          style={styles.retryButton}
+          onPress={() => navigation.goBack()}
+        >
+          <Text style={styles.retryButtonText}>Go Back</Text>
         </Pressable>
       </SafeAreaView>
     );
@@ -323,7 +332,7 @@ export default function PlayerScreen({ route }) {
 const styles = StyleSheet.create({
   AndroidSafeArea: {
     flex: 1,
-    paddingTop: Platform.OS === "android" ? 35 : 0,
+    paddingTop: Platform.OS === "android" ? 15 : 0,
   },
   container: {
     flex: 1,
@@ -399,6 +408,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     paddingHorizontal: 20,
     paddingVertical: 10,
+    marginVertical: 10,
     borderRadius: 5,
   },
   retryButtonText: {

@@ -48,6 +48,7 @@ const Playlists = () => {
       setFilteredPlaylists(updatedPlaylists);
       setModalVisible(false);
       setNewPlaylistName("");
+      fetchPlaylists();
     } catch (error) {
       console.error(error);
       Alert.alert("Error", "Failed to create playlist");
@@ -88,7 +89,7 @@ const Playlists = () => {
 
       Alert.alert("Success", "Playlist has been deleted");
     } catch (error) {
-      console.error(error);
+      console.error("Error:", error);
       Alert.alert("Error", "Failed to Delete Playlist");
     }
   };
@@ -150,18 +151,6 @@ const Playlists = () => {
             value={searchTerm}
             onChangeText={setSearchTerm}
           />
-          <Pressable
-            onPress={() => {
-              handleSearch();
-            }}
-          >
-            <Ionicons
-              name="reload"
-              size={24}
-              color={"white"}
-              style={{ marginHorizontal: 5 }}
-            />
-          </Pressable>
         </View>
 
         <Pressable
@@ -188,7 +177,7 @@ const Playlists = () => {
                   })
                 }
                 onLongPress={() => {
-                  confirmDeletePlaylist(item._id);
+                  confirmDeletePlaylist(item.playlistTitle);
                 }}
               >
                 <Text style={styles.playlistTitle}>{item.playlistTitle}</Text>
@@ -268,7 +257,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   searchInput: {
-    width: "85%",
+    width: "95%",
     borderWidth: 0.5,
     paddingHorizontal: 10,
     marginHorizontal: 5,

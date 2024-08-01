@@ -127,7 +127,7 @@ const ProfileScreen = () => {
       <View>
         <View style={{ marginHorizontal: "auto" }}>
           <Image
-            source={require("../assets/adaptive-icon.png")}
+            source={require("../assets/app-icon.png")}
             style={{
               width: 100,
               height: 100,
@@ -188,7 +188,7 @@ const ProfileScreen = () => {
         }}
       >
         <Text style={{ color: "#252525" }}>
-          Tap on any detail above to edit
+          tap on any detail above to edit
         </Text>
       </View>
 

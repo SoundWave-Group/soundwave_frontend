@@ -6,7 +6,7 @@ const HomeNavigation = ({ activeRouteName }) => {
     <SafeAreaView style={styles.topNavigation}>
       <View style={{ marginLeft: 10, flexDirection: "row" }}>
         <ColoredButton
-          name="Home"
+          name="All"
           color={activeRouteName === "MainScreen" ? "#0C5745" : "#CCEAE3"}
           link="Home"
           textColor={activeRouteName === "MainScreen" ? "black" : "white"}

@@ -60,12 +60,7 @@ const Uploads = () => {
           keyExtractor={(item) => item.id.toString()}
         />
       ) : (
-        <View style={styles.emptyState}>
-          <Text style={styles.emptyStateTitle}>No Uploads Yet</Text>
-          <Text style={styles.emptyStateSubtitle}>
-            Your Uploads will appear here.
-          </Text>
-        </View>
+        <View style={styles.emptyState}></View>
       )}
 
       {showUploadForm ? (

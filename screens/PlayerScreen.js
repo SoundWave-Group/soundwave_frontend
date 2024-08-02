@@ -19,10 +19,12 @@ import { Slider } from "@miblanchard/react-native-slider";
 import { Audio } from "expo-av";
 import { StatusBar } from "expo-status-bar";
 
-import { getAudioUri } from "../utils/cacheAudio";
+import { getAudioUri, cacheAudio } from "../utils/cacheAudio";
 
 export default function PlayerScreen({ route }) {
-  const { artist, title, albumArt, link } = route.params;
+  const { songs, currentIndex, genre } = route.params;
+  const [currentSongIndex, setCurrentSongIndex] = useState(currentIndex);
+  const currentSong = songs[currentSongIndex];
 
   const navigation = useNavigation();
   const [sound, setSound] = useState(null);
@@ -55,40 +57,50 @@ export default function PlayerScreen({ route }) {
     })
   ).current;
 
-  const loadSound = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
+  const loadSound = useCallback(
+    async (link) => {
+      setIsLoading(true);
+      setError(null);
 
-    if (sound) {
-      await sound.unloadAsync();
-      setSound(null);
-    }
-
-    try {
-      let audioUri = await getAudioUri(link);
-      if (!audioUri) {
-        audioUri = link; // Use the original link if not cached
+      if (sound) {
+        await sound.unloadAsync();
+        setSound(null);
       }
 
-      const { sound: newSound, status } = await Audio.Sound.createAsync(
-        { uri: audioUri },
-        { shouldPlay: true },
-        onPlaybackStatusUpdate
-      );
+      try {
+        let audioUri = await getAudioUri(link);
+        if (!audioUri) {
+          audioUri = link; // Use the original link if not cached
+          cacheAudio(
+            link,
+            `song_${currentSongIndex}.mp3`,
+            currentSong.title,
+            currentSong.artist,
+            currentSong.albumArt
+          );
+        }
 
-      setSound(newSound);
-      setDuration(status.durationMillis);
-      setIsPlaying(status.isPlaying);
-    } catch (err) {
-      console.error("Error loading sound:", err);
-      setError("Failed to load audio. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  }, [link]);
+        const { sound: newSound, status } = await Audio.Sound.createAsync(
+          { uri: audioUri },
+          { shouldPlay: true },
+          onPlaybackStatusUpdate
+        );
+
+        setSound(newSound);
+        setDuration(status.durationMillis);
+        setIsPlaying(status.isPlaying);
+      } catch (err) {
+        console.error("Error loading sound:", err);
+        setError("Failed to load audio. Please try again.");
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [currentSongIndex, currentSong]
+  );
 
   useEffect(() => {
-    loadSound();
+    loadSound(currentSong.link);
 
     return () => {
       if (sound) {
@@ -96,7 +108,7 @@ export default function PlayerScreen({ route }) {
         setSound(null);
       }
     };
-  }, [loadSound]);
+  }, [loadSound, currentSong]);
 
   const onPlaybackStatusUpdate = (status) => {
     if (status.isLoaded) {
@@ -104,6 +116,9 @@ export default function PlayerScreen({ route }) {
       setSliderValue(status.positionMillis);
       setDuration(status.durationMillis);
       setIsPlaying(status.isPlaying);
+      if (status.didJustFinish) {
+        playNextSong();
+      }
     } else if (status.error) {
       console.error(`Playback error: ${status.error}`);
       setError(`Playback error: ${status.error}`);
@@ -182,13 +197,11 @@ export default function PlayerScreen({ route }) {
   };
 
   const fetchLyrics = async () => {
-    let artistN = artist.split("&")[0];
-    console.log(artistN);
-    console.log(title);
+    let artistN = currentSong.artist.split("&")[0];
     setIsFetchingLyrics(true);
     try {
       const response = await fetch(
-        `https://api.lyrics.ovh/v1/${artistN}/${title}`
+        `https://api.lyrics.ovh/v1/${artistN}/${currentSong.title}`
       );
       const data = await response.json();
       setLyrics(data.lyrics || "Lyrics not found");
@@ -213,6 +226,30 @@ export default function PlayerScreen({ route }) {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
+  const playNextSong = async () => {
+    if (sound) {
+      await sound.stopAsync();
+      setSound(null);
+    }
+    if (currentSongIndex < songs.length - 1) {
+      setCurrentSongIndex(currentSongIndex + 1);
+    } else {
+      setCurrentSongIndex(0);
+    }
+  };
+
+  const playPreviousSong = async () => {
+    if (sound) {
+      await sound.stopAsync();
+      setSound(null);
+    }
+    if (currentSongIndex > 0) {
+      setCurrentSongIndex(currentSongIndex - 1);
+    } else {
+      setCurrentSongIndex(songs.length - 1);
+    }
+  };
+
   if (isLoading) {
     return (
       <SafeAreaView style={[styles.loadingContainer, styles.AndroidSafeArea]}>
@@ -226,7 +263,10 @@ export default function PlayerScreen({ route }) {
     return (
       <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
         <Text style={styles.errorText}>{error}</Text>
-        <Pressable style={styles.retryButton} onPress={loadSound}>
+        <Pressable
+          style={styles.retryButton}
+          onPress={() => loadSound(currentSong.link)}
+        >
           <Text style={styles.retryButtonText}>Retry</Text>
         </Pressable>
         <Pressable
@@ -254,11 +294,11 @@ export default function PlayerScreen({ route }) {
           <Ionicons name="chevron-down" size={24} color="black" />
         </Pressable>
       </View>
-      <Image source={{ uri: albumArt }} style={styles.albumArt} />
+      <Image source={{ uri: currentSong.albumArt }} style={styles.albumArt} />
       <View style={styles.songDetails}>
         <View style={styles.containerSecondary}>
-          <Text style={styles.songTitle}>{title}</Text>
-          <Text style={styles.songArtist}>{artist}</Text>
+          <Text style={styles.songTitle}>{currentSong.title}</Text>
+          <Text style={styles.songArtist}>{currentSong.artist}</Text>
           <Slider
             value={sliderValue}
             minimumValue={0}
@@ -275,6 +315,9 @@ export default function PlayerScreen({ route }) {
             <Text>{formatTime(duration)}</Text>
           </View>
           <View style={styles.buttonContainer}>
+            <Pressable onPress={playPreviousSong}>
+              <Ionicons name="play-skip-back" size={36} color="black" />
+            </Pressable>
             <Pressable onPress={handleBackward}>
               <MaterialIcons name="replay-10" size={36} color="black" />
             </Pressable>
@@ -287,6 +330,9 @@ export default function PlayerScreen({ route }) {
             </Pressable>
             <Pressable onPress={handleForward}>
               <MaterialIcons name="forward-10" size={36} color="black" />
+            </Pressable>
+            <Pressable onPress={playNextSong}>
+              <Ionicons name="play-skip-forward" size={36} color="black" />
             </Pressable>
           </View>
           <Pressable

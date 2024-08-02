@@ -17,14 +17,13 @@ const SongListScreen = ({ route }) => {
   const { genre, songs } = route.params;
   const navigation = useNavigation();
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item, index }) => (
     <Pressable
       onPress={() =>
         navigation.navigate("PlayerScreen", {
-          artist: item.artist,
-          title: item.title,
-          albumArt: item.albumArt,
-          link: item.link,
+          songs: songs,
+          currentIndex: index,
+          genre: genre,
         })
       }
     >

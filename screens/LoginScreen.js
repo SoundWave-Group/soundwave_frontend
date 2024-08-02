@@ -272,6 +272,14 @@ export default function LoginScreen() {
             <Text style={styles.modalTitle}>Reset Password</Text>
             <TextInput
               style={styles.modalInput}
+              placeholder="Username"
+              value={username}
+              onChangeText={setUsername}
+              placeholderTextColor={"grey"}
+              color={"white"}
+            />
+            <TextInput
+              style={styles.modalInput}
               placeholder="Last remembered password"
               value={lastRememberedPassword}
               onChangeText={setLastRememberedPassword}

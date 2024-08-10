@@ -308,6 +308,7 @@ export default function LoginScreen() {
             <View style={{ flexDirection: "row", marginTop: 20 }}>
               <Button
                 title="Reset"
+                i
                 onPress={handlePasswordReset}
                 color="lightgreen"
               />
